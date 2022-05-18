@@ -46,7 +46,7 @@
     }
     span#address {
         position:absolute;
-        background:$darkgrey;
+        background:$tertiary;
         border-radius:$borderradius;
         filter:drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $black);
         padding:10px;
@@ -55,7 +55,7 @@
         text-align:center;
         justify-self: center;
         align-self: center;
-        color:$white;
+        color:$black;
     }
     img, &:after, &:before {
         grid-area: content;
@@ -102,12 +102,12 @@
         }
         &.large {
             span#address {
-                transform:translate(96px, 16px);
+                transform:translate(0px, 0px);
             }
         }
         &.medium {
             span#address {
-                transform:translate(16px, 0px);
+                transform:translate(0px, 0px);
             }
         }
         &.small {

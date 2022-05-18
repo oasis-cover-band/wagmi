@@ -1,9 +1,11 @@
 @import '../../colors.scss';
 :host {
+    position: relative;
     min-height:64px;
     max-height:64px;
-    min-width:calc(100vw - 100px);
-    max-width:calc(100vw - 100px);
+    min-width:100%;
+    max-width:100%;
+    width:100%;
     z-index:1;
     grid-area:navbar;
     background:$black;
@@ -18,5 +20,9 @@
     }
     app-action {
         grid-area:wallet;
+    }
+    @media (max-width:1100px) {
+        min-width:calc(100vw);
+        max-width:calc(100vw);
     }
 }

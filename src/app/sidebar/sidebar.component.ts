@@ -10,6 +10,34 @@ import { LoggedInService } from '../logged-in.service';
 export class SidebarComponent implements OnInit {
 
   myAddress: BehaviorSubject<string> = this.LIservice.myAddress;
+  friendList = [
+    new BehaviorSubject<string>("0x0"),
+    new BehaviorSubject<string>("0x0"),
+    new BehaviorSubject<string>("0x0"),
+    new BehaviorSubject<string>("0x0"),
+    new BehaviorSubject<string>("0x0"),
+    new BehaviorSubject<string>("0x0"),
+    new BehaviorSubject<string>("0x0"),
+    new BehaviorSubject<string>("0x0"),
+    new BehaviorSubject<string>("0x0"),
+    new BehaviorSubject<string>("0x0"),
+    new BehaviorSubject<string>("0x0"),
+    new BehaviorSubject<string>("0x0"),
+    new BehaviorSubject<string>("0x0"),
+    new BehaviorSubject<string>("0x0"),
+    new BehaviorSubject<string>("0x0"),
+    new BehaviorSubject<string>("0x0"),
+    new BehaviorSubject<string>("0x0"),
+    new BehaviorSubject<string>("0x0"),
+    new BehaviorSubject<string>("0x0"),
+    new BehaviorSubject<string>("0x0"),
+    new BehaviorSubject<string>("0x0"),
+    new BehaviorSubject<string>("0x0"),
+    new BehaviorSubject<string>("0x0"),
+    new BehaviorSubject<string>("0x0"),
+    new BehaviorSubject<string>("0x0"),
+    new BehaviorSubject<string>("0x0"),
+  ]
   constructor(
     private LIservice: LoggedInService
     ) { }

@@ -3,9 +3,8 @@
     display:grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-    margin:10px 10px;
     background:$lightgrey;
-    border-radius:$borderradius;
+    border-radius:$borderradius 0px 0px $borderradius;
     cursor: pointer;
     &:nth-of-type(even) {
         background:$darkestgrey;
@@ -20,6 +19,9 @@
     p {
         transition: $transition;
         color:$white;
-        margin:10px 10px;
+        margin:$margin;
+    }
+    @media (max-width:1100px) {
+        border-radius: $borderradius;
     }
 }
