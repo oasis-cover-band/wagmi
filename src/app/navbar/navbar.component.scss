@@ -1,0 +1,22 @@
+@import '../../colors.scss';
+:host {
+    min-height:50px;
+    max-height:50px;
+    min-width:calc(100vw - 100px);
+    max-width:calc(100vw - 100px);
+    z-index:1;
+    grid-area:navbar;
+    background:$black;
+    display:grid;
+    grid-template-areas:
+    "text user wallet";
+    grid-template-rows: 1fr;
+    grid-template-columns: 0.9fr 0.05fr 0.05fr;
+    align-content: center;
+    app-user {
+        grid-area: user;
+    }
+    app-action {
+        grid-area:wallet;
+    }
+}

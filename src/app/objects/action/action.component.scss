@@ -1,0 +1,46 @@
+@import '../../../colors.scss';
+:host {
+    display:grid;
+    justify-self: center;
+    align-self: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "content";
+    position:relative;
+    min-height:48px;
+    min-width:48px;
+    max-height:48px;
+    max-width:48px;
+    height:48px;
+    width:48px;
+    img {
+        grid-area:content;
+        justify-self: center;
+        align-self: center;
+        pointer-events: none;
+        // transform:scale(0.5);
+        transition:$transition;
+    }
+    &:before {
+        border-radius:100px;
+        content:'';
+        position:absolute;
+        top:0px;
+        right:0px;
+        left:0px;
+        bottom:0px;
+        border:2px solid $white;
+        background: rgba(0, 0, 0, 0.5);
+        opacity:0;
+        transition:$transition;
+    }
+    &:hover {
+        &:before {
+            opacity:1;
+        }
+        img {
+            transform:scale(0.25);
+        }
+    }
+    cursor: pointer;
+}

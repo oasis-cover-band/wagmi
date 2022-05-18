@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-user',
@@ -7,7 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  @Input() address: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  @HostBinding("class.large") @Input() large: boolean = false;
+  @HostBinding("class.medium") @Input() medium: boolean = false;
+  @HostBinding("class.small") @Input() small: boolean = false;
+  @Input() chat: boolean = false;
+  @Input() view: boolean = false;
+  constructor(
+    public APIservice: ApiService
+  ) { }
 
   ngOnInit(): void {
   }

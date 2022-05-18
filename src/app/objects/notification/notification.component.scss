@@ -1,0 +1,19 @@
+:host {
+    display:grid;
+
+    app-user {
+        grid-area: user;
+    }
+    section#notification {
+        grid-area: notification;
+    }
+    section#actions {
+
+    }
+    section#time {
+
+    }
+    section#reputation {
+
+    }
+}

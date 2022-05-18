@@ -1,0 +1,23 @@
+@import '../../colors.scss';
+:host {
+    min-height:100vh;
+    max-height:100vh;
+    min-width:120px;
+    max-width:120px;
+    z-index:2;
+    grid-area:sidebar;
+    background:$grey;
+    display:grid;
+    grid-auto-rows: max-content;
+    grid-auto-columns: 1fr;
+    overflow-y: scroll;
+    section.container {
+        grid-area:container;
+        min-width:100px;
+        max-width:100px;
+        display:grid;
+        grid-auto-rows: max-content;
+        grid-auto-columns: 1fr;
+        overflow-y: scroll;
+    }
+}

@@ -1,1 +1,6 @@
-<p>user works!</p>
+<img *ngIf="(this.address | async) as address"
+[src]="this.APIservice.getAddressImage(address)"
+/>
+<span id="address" *ngIf="(this.address | async) as address">
+    {{address}}
+</span>

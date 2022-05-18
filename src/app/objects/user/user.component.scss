@@ -1,0 +1,119 @@
+@import '../../../colors.scss';
+:host {
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:"content";
+    position: relative;
+    border-radius:100px;
+    align-self: center;
+    justify-self: center;
+    &.large {
+        min-height:96px;
+        max-height:96px;
+        min-width:96px;
+        max-width:96px;
+        img {
+            min-height:96px;
+            max-height:96px;
+            min-width:96px;
+            max-width:96px;
+        }
+    }
+    &.medium {
+        min-height:64px;
+        max-height:64px;
+        min-width:64px;
+        max-width:64px;
+        img {
+            min-height:64px;
+            max-height:64px;
+            min-width:64px;
+            max-width:64px;
+        }
+    }
+    &.small {
+        min-height:32px;
+        max-height:32px;
+        min-width:32px;
+        max-width:32px;
+        img {
+            min-height:32px;
+            max-height:32px;
+            min-width:32px;
+            max-width:32px;
+        }
+    }
+    span#address {
+        position:absolute;
+        background:$darkgrey;
+        border-radius:$borderradius;
+        filter:drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $black);
+        padding:10px;
+        transition:$transition;
+        opacity:0;
+        text-align:center;
+        justify-self: center;
+        align-self: center;
+        color:$white;
+    }
+    img, &:after, &:before {
+        grid-area: content;
+        pointer-events: none;
+    }
+    overflow:hidden;
+    cursor: pointer;
+    &:after {
+        border-radius:100px;
+        content: "";
+        position:0px;
+        top:0px;
+        left:0px;
+        right:0px;
+        bottom:0px;
+        background: $white;
+        transform:translateX(100%);
+        opacity:0;
+        transition:$transition;
+    }
+    &:before {
+        border-radius:100px;
+        content: "";
+        position:0px;
+        top:0px;
+        left:0px;
+        right:0px;
+        bottom:0px;
+        background: $black;
+        transform:translateX(0%);
+        opacity:0;
+        transition:$transition;
+    }
+    &:hover {
+        &:after {
+            transform:translate(-100%);
+            opacity:0.5;
+        }
+        &:before {
+            opacity:0.33;
+        }
+        span#address {
+            opacity:1;
+        }
+        &.large {
+            span#address {
+                transform:translate(96px, 16px);
+            }
+        }
+        &.medium {
+            span#address {
+                transform:translate(16px, 0px);
+            }
+        }
+        &.small {
+            span#address {
+                transform:translate(0px, 0px);
+            }
+        }
+    }
+}

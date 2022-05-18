@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {
+    display:grid;
+    grid-template-areas:
+    "body";
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    margin:0px;
+    padding:0px;
+    min-height:100vh;
+    max-height:fit-content;
+    min-width:100vw;
+    max-width:100vw;
+}
+body {
+    grid-area:body;
+    grid-template-areas:
+    "app-root";
+}
+img {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}

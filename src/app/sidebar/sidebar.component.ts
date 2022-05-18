@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { LoggedInService } from '../logged-in.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  myAddress: BehaviorSubject<string> = this.LIservice.myAddress;
+  constructor(
+    private LIservice: LoggedInService
+    ) { }
 
   ngOnInit(): void {
   }
