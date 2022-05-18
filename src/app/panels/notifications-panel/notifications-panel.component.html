@@ -1,1 +1,3 @@
-<p>notifications-panel works!</p>
+<app-notification *ngFor="let notification of notifications"
+[data]="notification"
+></app-notification>

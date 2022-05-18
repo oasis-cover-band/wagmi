@@ -1,19 +1,78 @@
+@import '../../../colors.scss';
 :host {
     display:grid;
-
+    grid-template-areas:
+    '. . . . . .'
+    ". user notification notification actions ."
+    ". user time . reputation ."
+    '. . . . . .';
+    grid-template-columns: 20px 0.125fr 25px 0.6fr 0.25fr 20px;
+    grid-template-rows: 
+    20px 45px 45px 20px;
+    margin: 10px 10px;
+    background: $lightestgrey;
+    border-radius: $borderradius;
+    row-gap: 2.5px;
     app-user {
         grid-area: user;
     }
+    b {
+        text-decoration: underline;
+        text-decoration-style: solid;
+    }
+    i {
+        color:$tertiary;
+        font-style: normal;
+    }
     section#notification {
         grid-area: notification;
+        font-size:1.25rem;
+        color:$white;
     }
     section#actions {
-
+        grid-area: actions;
+        display:grid;
+        grid-template-columns: 0.5fr 0.5fr;
+        column-gap: 10px;
+        grid-template-rows: 1fr;
+        justify-self: center;
+        align-self: center;
+        justify-items: center;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        text-align: center;
     }
     section#time {
-
+        min-width:45px;
+        max-width:45px;
+        min-height:45px;
+        max-height:45px;
+        grid-area: time;
+        color:$black;
+        background:$tertiary;
+        border-radius:$borderradius;
+        display:grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        justify-items: center;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        text-align: center;
     }
     section#reputation {
-
+        grid-area: reputation;
+        color:$tertiary;
+        display:grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        justify-items: center;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        text-align: center;
+        font-weight:bold;
+        font-size:2rem;
     }
 }

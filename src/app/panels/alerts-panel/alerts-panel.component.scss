@@ -1,0 +1,11 @@
+@import '../../../colors.scss';
+:host {
+    grid-area:right;
+    display:grid;
+    grid-auto-rows:max-content;
+    grid-auto-columns: 1fr;
+    background: $lightestgrey;
+    height: fit-content;
+    margin:10px 10px;
+    border-radius: $borderradius;
+}

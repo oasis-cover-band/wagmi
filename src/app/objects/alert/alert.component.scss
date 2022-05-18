@@ -1,0 +1,25 @@
+@import '../../../colors.scss';
+:host {
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    margin:10px 10px;
+    background:$lightgrey;
+    border-radius:$borderradius;
+    cursor: pointer;
+    &:nth-of-type(even) {
+        background:$darkestgrey;
+    }
+    transition:$transition;
+    &:hover {
+        background:$white;
+        p {
+            color:$black;
+        }
+    }
+    p {
+        transition: $transition;
+        color:$white;
+        margin:10px 10px;
+    }
+}

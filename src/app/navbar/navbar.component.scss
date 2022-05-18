@@ -1,7 +1,7 @@
 @import '../../colors.scss';
 :host {
-    min-height:50px;
-    max-height:50px;
+    min-height:64px;
+    max-height:64px;
     min-width:calc(100vw - 100px);
     max-width:calc(100vw - 100px);
     z-index:1;

@@ -1,1 +1,28 @@
-<p>notification works!</p>
+    <app-user
+    [large]="true"
+    [view]="true"
+    [address]="this.data.actioneerAddress"
+    ></app-user>
+
+    <section id="notification" *ngIf="this.data.notificationType === 'LIST'">
+        {{(this.data.actioneerAddress | async) + ' listed ' + this.data.notificationCollection + ' #' + this.data.notificationCollectionItem + ' for '}}<b>{{this.data.notificationPrice}}<i>Ξ</i></b>
+    </section>
+
+    <section id="actions">
+        <app-action
+        icon="stats"
+        >
+        </app-action>
+        <app-action
+        icon="share"
+        >
+        </app-action>
+    </section>
+
+    <section id="time" *ngIf="(this.timeElapsed | async) !== '0'">
+        {{(this.timeElapsed | async)}}
+    </section>
+
+    <section id="reputation">
+        +{{(this.data.reputation | async)}} Rep
+    </section>

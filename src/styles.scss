@@ -1,3 +1,4 @@
+@import './assets/fonts/stylesheet.css';
 html, body {
     display:grid;
     grid-template-areas:
@@ -20,4 +21,10 @@ img {
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
+}
+* {
+    font-family: 'Istok Web';
+}
+h1, h2, h3, h4, h5, h6, button {
+    font-family: 'Nunito';
 }
