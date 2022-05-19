@@ -97,10 +97,10 @@
             max-height:25px;
             font-size:0.75rem;
         }
-        @media (max-width:400px) {
+        @media (max-width:500px) {
             grid-template-rows: 
             20px 20px max-content 45px 20px;
-            @media (max-width:300px) {
+            @media (max-width:400px) {
                 grid-template-areas:
                 '. . . . . .'
                 ". user . . . ."

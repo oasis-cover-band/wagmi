@@ -4,7 +4,7 @@
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     background:$lightgrey;
-    border-radius:$borderradius 0px 0px $borderradius;
+    border-radius:$borderradius;
     cursor: pointer;
     align-content: center;
     align-items: center;
@@ -25,7 +25,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
-    @media (max-width:1100px) {
-        border-radius: $borderradius;
-    }
+    // @media (max-width:1100px) {
+    //     border-radius: $borderradius;
+    // }
 }

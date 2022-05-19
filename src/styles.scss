@@ -3,7 +3,7 @@
 html {
     background: $lightgrey;
     scrollbar-width: thin;          /* "auto" or "thin" */
-    scrollbar-color: $primary rgba(0,0,0,0);   /* scroll thumb and track */
+    scrollbar-color: $tertiary rgba(0,0,0,0);   /* scroll thumb and track */
     ::-webkit-scrollbar {
         border-color:$black;
         border-radius: $borderradius;       /* roundness of the scroll thumb */
