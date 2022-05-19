@@ -2,10 +2,12 @@
 :host {
     grid-area: right;
     display:grid;
-    grid-template-columns: max-content 1fr 20px;
-    grid-template-rows:1fr;
+    grid-template-columns: $margin max-content 1fr $margin;
+    grid-template-rows:$margin 1fr $margin;
     grid-template-areas:
-    "score-icon score .";
+    '. . . .'
+    ". score-icon score ."
+    ". . . .";
     // align-self: center;
     // // align-items: center;
     // // align-content: center;

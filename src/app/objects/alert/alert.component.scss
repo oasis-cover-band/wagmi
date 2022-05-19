@@ -6,6 +6,8 @@
     background:$lightgrey;
     border-radius:$borderradius 0px 0px $borderradius;
     cursor: pointer;
+    align-content: center;
+    align-items: center;
     &:nth-of-type(even) {
         background:$darkestgrey;
     }
@@ -20,6 +22,8 @@
         transition: $transition;
         color:$white;
         margin:$margin;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     @media (max-width:1100px) {
         border-radius: $borderradius;

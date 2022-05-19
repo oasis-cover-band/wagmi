@@ -8,14 +8,24 @@
     height:100%;
     grid-area: center;
     display:grid;
-    grid-auto-rows:max-content;
-    grid-auto-columns: 1fr;
+    grid-template-areas: 
+    '. . .'
+    '. notifications .'
+    '. . .';
+    grid-template-rows: $margin 1fr $margin;
+    grid-template-columns: $margin 1fr $margin;
     position:relative;
-    row-gap:$gap;
-    overflow-y: scroll;
+    section#notifications {
+        grid-area: notifications;
+        display:grid;
+        grid-auto-rows:max-content;
+        grid-auto-columns: 1fr;
+        row-gap:$gap;
+        overflow-y: scroll;
+    }
     @media (max-width:1100px) {
-        min-width:calc(100vw - 20px);
-        max-width:calc(100vw - 20px);
-        width:calc(100vw - 20px);
+        min-width:calc(100vw);
+        max-width:calc(100vw);
+        width:calc(100vw);
     }
 }
