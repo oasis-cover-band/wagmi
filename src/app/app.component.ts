@@ -19,7 +19,6 @@ import { TimeService } from './time.service';
 })
 export class AppComponent implements OnDestroy {
   title = 'wagmi';
-  address: BehaviorSubject<string> = new BehaviorSubject<string>('');
   listener!: Subscription;
   banner!: string;
   viewing!: string;

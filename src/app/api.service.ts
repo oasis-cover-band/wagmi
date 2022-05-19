@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { User } from './classes/user';
+import axios from 'axios';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +11,44 @@ export class ApiService {
     "../assets/dummy.png"
   ]
   maximumTextures = 425;
+  baseURL: string = "https://m22xvxrqse.execute-api.us-east-2.amazonaws.com/";
+  users: any = {
+  };
   constructor() { }
+
+  async getUser(address: string, force: boolean = false): Promise<User | any> {
+    if (force || (this.users[address] === null || this.users[address] === undefined)) {
+      return await axios({
+        url: 'user/'.concat(String(address)),
+        baseURL: this.baseURL,
+        method: 'get' 
+      }).then(async (response: any) => {
+        // handle success
+        // console.log(response.data);
+        this.users[address] = response.data;
+        return await response.data;
+      })
+      .catch(async (error: any) => {
+        // handle error
+        // console.log(error);
+        return await error;
+      })
+    } else {
+      return this.users[address];
+    }
+  }
   getAddressBanner(address: string | null): string {
     console.log(Number(address));
     return String(Number(address) % this.maximumTextures);
+  }
+  followAddress(address0: string | null, address1: string | null) {
+    
+  }
+  unfollowAddress(address0: string | null, address1: string | null) {
+    
+  }
+  isAddressFollowingAddress(address0: string | null, address1: string | null): boolean {
+    return true;
   }
   getAddressImage(address: string | null): string {
     return "../assets/dummy.png";

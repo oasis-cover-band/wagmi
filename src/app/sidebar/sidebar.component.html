@@ -2,14 +2,16 @@
     
 <app-action #home
 icon="home"
+description="Home"
 (click)="goHome()"
 (mouseover)="onOver()"
 (mouseleave)="onLeave()"
 >
 </app-action>
 
-<app-user *ngFor="let address of friendList"
-[address]="address"
+<app-user *ngFor="let friend of friends"
+[address]="friend.walletAddress"
+[image]="friend.avatarUri"
 [medium]="true"
 [chat]="true"
 ></app-user>

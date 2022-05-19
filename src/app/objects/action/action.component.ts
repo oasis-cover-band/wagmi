@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ActionComponent implements OnInit {
 
   @Input() icon: string = "home";
+  @Input() description: string = "Home";
   constructor() { }
 
   ngOnInit(): void {

@@ -1,9 +1,9 @@
 <section id="wrapper">
     <div id="inner">
         <img
-        [src]="this.APIservice.getAddressImage((this.address | async))" />
+        [src]="this.image" />
     </div>
 </section>
-<span id="address" *ngIf="(this.address | async) as address">
+<span id="address">
     {{address}}
 </span>

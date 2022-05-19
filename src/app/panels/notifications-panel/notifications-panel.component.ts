@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 export class NotificationsPanelComponent implements OnInit {
 
   notifications = [{
-    actioneerAddress: new BehaviorSubject<string>("0x0"),
+    address: "0x0",
     notificationType: "LIST",
     notificationCollection: "Azuki",
     notificationCollectionItem: "1939",
@@ -18,7 +18,7 @@ export class NotificationsPanelComponent implements OnInit {
     reputation: new BehaviorSubject<number>(10),
   },
   {
-    actioneerAddress: new BehaviorSubject<string>("0x0"),
+    address: "0x0",
     notificationType: "LIST",
     notificationCollection: "Azuki",
     notificationCollectionItem: "1928",
@@ -27,7 +27,7 @@ export class NotificationsPanelComponent implements OnInit {
     reputation: new BehaviorSubject<number>(10),
   },
   {
-    actioneerAddress: new BehaviorSubject<string>("0x0"),
+    address: "0x0",
     notificationType: "LIST",
     notificationCollection: "Azuki",
     notificationCollectionItem: "123",

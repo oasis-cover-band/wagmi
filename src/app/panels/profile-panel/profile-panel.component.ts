@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
+import { User } from 'src/app/classes/user';
 import { SiteService } from 'src/app/site.service';
 
 @Component({
@@ -11,30 +12,22 @@ import { SiteService } from 'src/app/site.service';
 })
 export class ProfilePanelComponent implements OnInit, OnDestroy {
 
-  address: BehaviorSubject<string> = new BehaviorSubject<string>("");
-  name!: string;
-  tagline!: string;
-  badges!: {
-      icon: string,
-      description: string
-  }[];
+  requestedAddress: BehaviorSubject<string> = new BehaviorSubject<string>("");
   listener!: Subscription;
+  user!: User;
   constructor(
     private route: ActivatedRoute,
-    private APIservice: ApiService,
     private SITEservice: SiteService
     ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.listener = this.route.params.subscribe(params => {
-      this.address.next(params['address']);
+      this.requestedAddress.next(params['address']);
     });
-    this.SITEservice.viewing.next(this.address.getValue());
+    this.SITEservice.viewing.next(this.requestedAddress.getValue());
+    this.user = await this.SITEservice.getUser(this.requestedAddress.getValue());
 
-    this.name = this.APIservice.getAddressName(this.address.getValue());
-    this.tagline = this.APIservice.getAddressTagline(this.address.getValue());
-    this.badges = this.APIservice.getAddressBadges(this.address.getValue());
-    this.SITEservice.currentRoute.next('profile/'.concat(this.address.getValue()));
+    this.SITEservice.currentRoute.next('profile/'.concat(this.requestedAddress.getValue()));
   }
 
   ngOnDestroy(): void {

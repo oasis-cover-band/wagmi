@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { User } from 'src/app/classes/user';
+import { SiteService } from 'src/app/site.service';
 import { TimeService } from 'src/app/time.service';
 
 @Component({
@@ -10,7 +12,7 @@ import { TimeService } from 'src/app/time.service';
 export class NotificationComponent implements OnInit {
 
   @Input() data = {
-    actioneerAddress: new BehaviorSubject<string>("0x0"),
+    address: "0x0",
     notificationType: "LIST",
     notificationCollection: "Azuki",
     notificationCollectionItem: "1939",
@@ -19,8 +21,10 @@ export class NotificationComponent implements OnInit {
     reputation: new BehaviorSubject<number>(10),
   }
   timeElapsed: BehaviorSubject<string> = new BehaviorSubject<string>('0');
+  user!: User;
   constructor(
-    public TIMEservice: TimeService
+    public TIMEservice: TimeService,
+    private SITEservice: SiteService
   ) { }
 
   ngOnInit(): void {
@@ -43,6 +47,9 @@ export class NotificationComponent implements OnInit {
         amountOfUnits + timeUnit
       )
     }, 1000);
+    this.SITEservice.getUser(this.data.address).then(user => {
+      this.user = user;
+    });
   }
 
 }

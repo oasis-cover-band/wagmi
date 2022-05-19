@@ -1,6 +1,8 @@
-<img [src]="'../../../assets/icons/' + this.data.icon + '.png'" />
+<img *ngIf="this.thumbnailUri !== undefined" [src]="'../../../assets/icons/' + this.thumbnailUri + '.png'" />
+<!-- <img *ngIf="this.data.thumbnailUri !== undefined" [src]="this.data.thumbnailUri" /> --> <!-- LOAD VIA BACKEND -->
+
 <span id="description">
-    <p>
+    <p *ngIf="this.data.description !== undefined">
         {{this.data.description}}
     </p>
 </span>

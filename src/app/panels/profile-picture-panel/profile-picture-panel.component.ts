@@ -2,6 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
+import { User } from 'src/app/classes/user';
+import { LoggedInService } from 'src/app/logged-in.service';
+import { SiteService } from 'src/app/site.service';
 
 @Component({
   selector: 'app-profile-picture-panel',
@@ -10,29 +13,39 @@ import { ApiService } from 'src/app/api.service';
 })
 export class ProfilePicturePanelComponent implements OnInit, OnDestroy {
 
-  address: BehaviorSubject<string> = new BehaviorSubject<string>("");
-  joinDate!: Date;
-  followerCount!: number;
-  followingCount!: number;
+  requestedAddress: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  myAddress!: BehaviorSubject<string>;
   listener!: Subscription;
+  isFollowing!: boolean;
+  user!: User;
   constructor(
     private route: ActivatedRoute,
-    private APIservice: ApiService
+    private APIservice: ApiService,
+    private LIservice: LoggedInService,
+    private SITEservice: SiteService
     ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.listener = this.route.params.subscribe(params => {
-      this.address.next(params['address']);
+      this.requestedAddress.next(params['address']);
     });
-    this.joinDate = this.APIservice.getAddressJoinDate(this.address.getValue());
-    this.followerCount = this.APIservice.getAddressFollowerCount(this.address.getValue());
-    this.followingCount = this.APIservice.getAddressFollowingCount(this.address.getValue());
+    this.myAddress = this.LIservice.myAddress;
+    this.user = await this.SITEservice.getUser(this.requestedAddress.getValue());
+    this.isFollowing = this.APIservice.isAddressFollowingAddress(this.myAddress.getValue(), this.requestedAddress.getValue());
   }
 
   ngOnDestroy(): void {
     if (this.listener) {
       this.listener.unsubscribe();
     }
+  }
+
+  follow(): void {
+    this.APIservice.followAddress(this.myAddress.getValue(), this.requestedAddress.getValue());
+  }
+
+  unfollow(): void {
+    this.APIservice.unfollowAddress(this.myAddress.getValue(), this.requestedAddress.getValue());
   }
 
 }

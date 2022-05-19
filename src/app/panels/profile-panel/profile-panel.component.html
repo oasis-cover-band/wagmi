@@ -1,18 +1,18 @@
-<h1 id="name">
-    {{this.name}}
+<h1 *ngIf="this.user !== undefined && this.user.userId !== undefined" id="name">
+    {{this.user.userId}}
 </h1>
 
-<h3 id="address">
-    {{(this.address | async)}}
+<h3 *ngIf="this.user !== undefined && this.user.walletAddress !== undefined" id="address">
+    {{this.user.walletAddress}}
 </h3>
 
-<span id="tagline">
-    {{this.tagline}}
+<span *ngIf="this.user !== undefined && this.user.bio !== undefined" id="tagline">
+    {{this.user.bio}}
 </span>
 
-<section id="badges">
-    <app-badge *ngFor="let badge of badges"
-    [data]="badge">
+<section id="badges" *ngIf="this.user !== undefined && this.user.accolades !== undefined" >
+    <app-badge *ngFor="let accolade of this.user.accolades"
+    [data]="accolade">
         
     </app-badge>
 </section>

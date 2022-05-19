@@ -6,9 +6,10 @@
     '. . .'
     '. user .'
     '. text .'
+    '. actions .'
     '. . .';
     grid-template-columns: $margin 1fr $margin;
-    grid-template-rows: $margin max-content 1fr $margin;
+    grid-template-rows: $margin max-content 1fr max-content $margin;
     app-user {
         grid-area:user;
         justify-self: center;
@@ -28,5 +29,10 @@
             font-size:1.25rem;
             color:$tertiary;
         }
+    }
+    section#actions {
+        grid-area:actions;
+        display:grid;
+        grid-auto-flow: column;
     }
 }

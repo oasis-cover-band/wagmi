@@ -1,11 +1,14 @@
+<section id="container">
     <app-user
+    *ngIf="this.user !== undefined && this.user.avatarUri !== undefined"
     [large]="true"
     [view]="true"
-    [address]="this.data.actioneerAddress"
+    [address]="this.data.address"
+    [image]="this.user.avatarUri"
     ></app-user>
 
     <section id="notification" *ngIf="this.data.notificationType === 'LIST'">
-        {{(this.data.actioneerAddress | async) + ' listed ' + this.data.notificationCollection + ' #' + this.data.notificationCollectionItem + ' for '}}<b>{{this.data.notificationPrice}}<i>Ξ</i></b>
+        {{this.data.address + ' listed ' + this.data.notificationCollection + ' #' + this.data.notificationCollectionItem + ' for '}}<b>{{this.data.notificationPrice}}<i>Ξ</i></b>
     </section>
 
     <section id="actions">
@@ -26,3 +29,8 @@
     <section id="reputation">
         +{{(this.data.reputation | async)}} Rep
     </section>
+</section>
+
+<h5 id="type">
+    {{this.data.notificationType}}
+</h5>

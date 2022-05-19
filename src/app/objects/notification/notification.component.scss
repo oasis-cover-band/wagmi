@@ -4,115 +4,150 @@
     max-width:100%;
     width:100%;
     display:grid;
-    grid-template-areas:
-    '. . . . . .'
-    ". user notification notification actions ."
-    ". user time . reputation ."
-    '. . . . . .';
-    grid-template-columns: 20px 0.125fr 25px 1fr max-content 20px;
-    grid-template-rows: 
-    20px 45px 45px 20px;
-    background: $lightergrey;
-    border-radius: $borderradius;
-    row-gap:$mobilegap;
-    justify-self: stretch;
-    app-user {
-        grid-area: user;
-    }
-    b {
-        text-decoration: underline;
-        text-decoration-style: solid;
-    }
-    i {
-        color:$tertiary;
-        font-style: normal;
-    }
-    section#notification {
-        grid-area: notification;
-        font-size:1.25rem;
-        color:$white;
-        z-index:1;
-    }
-    section#actions {
-        grid-area: actions;
+    grid-template-areas:'container';
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    section#container {
+        grid-area:container;
         display:grid;
-        grid-template-columns: 0.5fr 0.5fr;
-        column-gap: 10px;
-        grid-template-rows: 1fr;
-        justify-self: end;
-        align-self: center;
-        justify-items: center;
-        align-items: center;
-        justify-content: center;
-        align-content: center;
-        text-align: center;
-    }
-    section#time {
-        min-width:45px;
-        max-width:45px;
-        min-height:45px;
-        max-height:45px;
-        grid-area: time;
-        color:$black;
-        background:$tertiary;
-        border-radius:$borderradius;
-        display:grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr;
-        justify-items: center;
-        align-items: center;
-        justify-content: center;
-        align-content: center;
-        text-align: center;
-        z-index:0;
-    }
-    section#reputation {
-        grid-area: reputation;
-        color:$tertiary;
-        display:grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr;
-        justify-self: end;
-        align-items: center;
-        justify-content: center;
-        align-content: center;
-        text-align: center;
-        font-weight:bold;
-        font-size:2rem;
-    }
-    @media (max-width:1100px) {
         grid-template-areas:
         '. . . . . .'
-        ". . . reputation reputation ."
-        ". user notification notification notification ."
-        ". user time . actions ."
+        ". user notification notification actions ."
+        ". user time . reputation ."
         '. . . . . .';
         grid-template-columns: 20px 0.125fr 25px 1fr max-content 20px;
         grid-template-rows: 
-        20px 20px 45px 45px 20px;
-        section#time {
-            min-width:25px;
-            max-width:25px;
-            min-height:25px;
-            max-height:25px;
-            font-size:0.75rem;
+        20px 45px 45px 20px;
+        background: $lightblack;
+        border-radius: $borderradius;
+        row-gap:$mobilegap;
+        justify-self: stretch;
+        app-user {
+            grid-area: user;
         }
-        @media (max-width:500px) {
+        b {
+            text-decoration: underline;
+            text-decoration-style: solid;
+        }
+        i {
+            color:$tertiary;
+            font-style: normal;
+        }
+        section#notification {
+            grid-area: notification;
+            font-size:1.25rem;
+            color:$white;
+            z-index:1;
+        }
+        section#actions {
+            grid-area: actions;
+            display:grid;
+            grid-template-columns: 0.5fr 0.5fr;
+            column-gap: 10px;
+            grid-template-rows: 1fr;
+            justify-self: end;
+            align-self: center;
+            justify-items: center;
+            align-items: center;
+            justify-content: center;
+            align-content: center;
+            text-align: center;
+        }
+        section#time {
+            min-width:45px;
+            max-width:45px;
+            min-height:45px;
+            max-height:45px;
+            grid-area: time;
+            color:$tertiary;
+            background:$black;
+            border-radius:$borderradius;
+            display:grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr;
+            justify-items: center;
+            align-items: center;
+            justify-content: center;
+            align-content: center;
+            text-align: center;
+            z-index:0;
+        }
+        section#reputation {
+            grid-area: reputation;
+            color:$tertiary;
+            display:grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr;
+            justify-self: end;
+            align-items: center;
+            justify-content: center;
+            align-content: center;
+            text-align: center;
+            font-weight:bold;
+            font-size:2rem;
+        }
+    }
+    h5#type {
+        // z-index:-1;
+        // transform:translateY(-16px);
+        justify-self:start;
+        align-self: start;
+        grid-area:container;
+        color:$black;
+        font-size:1rem;
+        margin:$margin;
+        padding:$margin;
+        border-radius: $borderradius;
+        background:$tertiary;
+        font-variant-caps: all-small-caps;
+        display:grid;
+        justify-content: center;
+        align-content: center;
+        justify-items: center;
+        align-items: center;
+        text-align: center;
+        min-width:48px;
+        max-width:48px;
+        width:48px;
+        min-height:16px;
+        max-height:16px;
+        height:16px;
+    }
+    @media (max-width:1100px) {
+        section#container {
+            grid-template-areas:
+            '. . . . . .'
+            ". . . reputation reputation ."
+            ". user notification notification notification ."
+            ". user time . actions ."
+            '. . . . . .';
+            grid-template-columns: 20px 0.125fr 25px 1fr max-content 20px;
             grid-template-rows: 
-            20px 20px max-content 45px 20px;
-            @media (max-width:400px) {
-                grid-template-areas:
-                '. . . . . .'
-                ". user . . . ."
-                ". time reputation reputation reputation ."
-                ". notification notification notification notification ."
-                ". actions actions actions actions ."
-                '. . . . . .';
-                grid-template-columns: 20px 0.125fr 25px 1fr max-content 20px;
+            20px 20px 45px 45px 20px;
+            section#time {
+                min-width:25px;
+                max-width:25px;
+                min-height:25px;
+                max-height:25px;
+                font-size:0.75rem;
+            }
+            @media (max-width:500px) {
                 grid-template-rows: 
-                20px 45px 20px max-content 45px 20px;
-                section#reputation {
-                    font-size:0.9rem;
+                20px 20px max-content 45px 20px;
+                @media (max-width:400px) {
+                    grid-template-areas:
+                    '. . . . . .'
+                    ". user . . . ."
+                    ". time reputation reputation reputation ."
+                    ". notification notification notification notification ."
+                    ". actions actions actions actions ."
+                    '. . . . . .';
+                    grid-template-columns: 20px 0.125fr 25px 1fr max-content 20px;
+                    grid-template-rows: 
+                    20px 45px 20px max-content 45px 20px;
+                    section#reputation {
+                        font-size:0.9rem;
+                    }
                 }
             }
         }

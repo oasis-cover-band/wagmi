@@ -1,7 +1,7 @@
 
 <span id="console">
-    <b id="user">
-        {{this.myAddress | async}}:
+    <b id="user" *ngIf="this.user !== undefined && this.user.walletAddress !== undefined">
+        {{this.user.walletAddress}}:
     </b>
     <span id="route">~/
         {{(this.currentRoute | async)}}
@@ -16,12 +16,15 @@
 </span>
 
 <app-user
+*ngIf="this.user !== undefined && this.user.walletAddress !== undefined && this.user.avatarUri !== undefined"
 [small]="true"
 [view]="true"
-[address]="myAddress"
+[address]="this.user.walletAddress"
+[image]="this.user.avatarUri"
 ></app-user>
 
 <app-action
 icon="wallet"
+description="Wallet"
 >
 </app-action>

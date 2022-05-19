@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { LoggedInService } from '../logged-in.service';
 import { SiteService } from '../site.service';
 
 @Component({
@@ -11,42 +10,23 @@ import { SiteService } from '../site.service';
 })
 export class SidebarComponent implements OnInit {
 
-  myAddress: BehaviorSubject<string> = this.LIservice.myAddress;
   friendList = [
-    new BehaviorSubject<string>("0x0"),
-    new BehaviorSubject<string>("0x0"),
-    new BehaviorSubject<string>("0x0"),
-    new BehaviorSubject<string>("0x0"),
-    new BehaviorSubject<string>("0x0"),
-    new BehaviorSubject<string>("0x0"),
-    new BehaviorSubject<string>("0x0"),
-    new BehaviorSubject<string>("0x0"),
-    new BehaviorSubject<string>("0x0"),
-    new BehaviorSubject<string>("0x0"),
-    new BehaviorSubject<string>("0x0"),
-    new BehaviorSubject<string>("0x0"),
-    new BehaviorSubject<string>("0x0"),
-    new BehaviorSubject<string>("0x0"),
-    new BehaviorSubject<string>("0x0"),
-    new BehaviorSubject<string>("0x0"),
-    new BehaviorSubject<string>("0x0"),
-    new BehaviorSubject<string>("0x0"),
-    new BehaviorSubject<string>("0x0"),
-    new BehaviorSubject<string>("0x0"),
-    new BehaviorSubject<string>("0x0"),
-    new BehaviorSubject<string>("0x0"),
-    new BehaviorSubject<string>("0x0"),
-    new BehaviorSubject<string>("0x0"),
-    new BehaviorSubject<string>("0x0"),
-    new BehaviorSubject<string>("0x0"),
+    "0x0",
+    "0x0",
+    "0x0",
   ]
+  friends: any = [
+
+  ];
   constructor(
-    private LIservice: LoggedInService,
     private router: Router,
     private SITEservice: SiteService
     ) { }
 
   ngOnInit(): void {
+    this.friendList.forEach(async friend => {
+      this.friends.push(await this.SITEservice.getUser(friend));
+    });
   }
 
   goHome() {

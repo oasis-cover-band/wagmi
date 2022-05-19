@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProfilePicturePanelComponent } from './profile-picture-panel.component';
 import { UserModule } from 'src/app/objects/user/user.module';
+import { ActionModule } from 'src/app/objects/action/action.module';
 
 
 
@@ -11,7 +12,8 @@ import { UserModule } from 'src/app/objects/user/user.module';
   ],
   imports: [
     CommonModule,
-    UserModule
+    UserModule,
+    ActionModule
   ],
   exports: [
     ProfilePicturePanelComponent

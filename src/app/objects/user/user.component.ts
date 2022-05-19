@@ -11,7 +11,8 @@ import { SiteService } from 'src/app/site.service';
 })
 export class UserComponent implements OnInit {
 
-  @Input() address: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  @Input() address!: string;
+  @Input() image!: string;
   @HostBinding("class.extralarge") @Input() extralarge: boolean = false;
   @HostBinding("class.large") @Input() large: boolean = false;
   @HostBinding("class.medium") @Input() medium: boolean = false;
@@ -23,9 +24,9 @@ export class UserComponent implements OnInit {
 
     } else if (this.view === true) {
       this.router.navigate([{outlets: {
-        left: ['profile-picture',  this.address.getValue()],
-        center: ['profile',  this.address.getValue()],
-        right: ['profile-stats',  this.address.getValue()]
+        left: ['profile-picture',  this.address],
+        center: ['profile',  this.address],
+        right: ['profile-stats',  this.address]
       }}])
       this.SITEservice.mouseover.next('');
       // ['/profile',  this.address.getValue()]
@@ -58,7 +59,7 @@ export class UserComponent implements OnInit {
   }
 
   showAddress() {
-    this.SITEservice.mouseover.next('profile/'.concat(this.address.getValue()));
+    this.SITEservice.mouseover.next('profile/'.concat(this.address));
   }
 
   hideAddress() {
