@@ -1,5 +1,5 @@
-<img *ngIf="(this.address | async) as address"
-[src]="this.APIservice.getAddressImage(address)"
+<img
+[src]="this.APIservice.getAddressImage((this.address | async))"
 />
 <span id="address" *ngIf="(this.address | async) as address">
     {{address}}

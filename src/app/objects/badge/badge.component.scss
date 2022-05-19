@@ -1,0 +1,42 @@
+@import '../../../colors.scss';
+:host {
+    display:grid;
+    grid-template-areas:
+    'content';
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    justify-items: center;
+    img, span#description {
+        grid-area:content;
+        cursor: pointer;
+    }
+    cursor: pointer;
+    position:relative;
+    span#description {
+        opacity: 0;
+        transition: $transition;
+    }
+    &:hover {
+        span#description {
+            opacity:1;
+        }
+    }
+    span#description {
+        width: 150px;
+        color:$white;
+        background:$darkestgrey;
+        border-radius:$borderradius;
+        display:grid;
+        grid-template-columns: $margin 1fr $margin;
+        grid-template-rows: $margin 1fr $margin;
+        grid-template-areas:
+        '. . .'
+        '. content .'
+        '. . .';
+        font-size:0.75rem;
+        p {
+            grid-area:content;
+        }
+        filter:drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $black);
+    }
+}

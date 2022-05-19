@@ -1,4 +1,36 @@
 @import './assets/fonts/stylesheet.css';
+@import './colors.scss';
+html {
+    background: $lightgrey;
+    scrollbar-width: thin;          /* "auto" or "thin" */
+    scrollbar-color: $primary $lightestgrey;   /* scroll thumb and track */
+    ::-webkit-scrollbar {
+        border-color:$black;
+        border-radius: 20px;       /* roundness of the scroll thumb */
+      width: 6px;               /* width of the entire scrollbar */
+    }
+    
+    ::-webkit-scrollbar-track {
+        border-color:rgba(0, 0, 0, 0.2);
+        border-radius: 20px;       /* roundness of the scroll thumb */
+      background: $lightestgrey;        /* color of the tracking area */
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: $tertiary; /* Old browsers */
+        // background: -moz-linear-gradient(top,  $dark-primary 0%, $primary 100%); /* FF3.6-15 */
+        // background: -webkit-linear-gradient(top,  $dark-primary 0%, $primary 100%); /* Chrome10-25,Safari5.1-6 */
+        // background: linear-gradient(to bottom,  $dark-primary 0%, $primary 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#89ffb0', endColorstr='#89daff',GradientType=0 ); /* IE6-9 */
+      border-radius: 20px;       /* roundness of the scroll thumb */
+      border: 3px solid rgba(0, 0, 0, 0.2);  /* creates padding around scroll thumb */
+    }
+
+    ::-webkit-scrollbar-corner {
+        background: rgba(0,0,0,0.5);
+        border-radius:10px;
+    }
+}
 html, body {
     display:grid;
     grid-template-areas:

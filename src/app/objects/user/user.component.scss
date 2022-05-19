@@ -5,9 +5,21 @@
     grid-template-rows: 1fr;
     grid-template-areas:"content";
     position: relative;
-    border-radius:100px;
+    border-radius:320px;
     align-self: center;
     justify-self: center;
+    &.extralarge {
+        min-height:160px;
+        max-height:160px;
+        min-width:160px;
+        max-width:160px;
+        img {
+            min-height:160px;
+            max-height:160px;
+            min-width:160px;
+            max-width:160px;
+        }
+    }
     &.large {
         min-height:80px;
         max-height:80px;
@@ -101,6 +113,11 @@
             opacity:1;
         }
         &.large {
+            span#address {
+                transform:translate(0px, 0px);
+            }
+        }
+        &.extralarge {
             span#address {
                 transform:translate(0px, 0px);
             }

@@ -1,0 +1,22 @@
+@import '../../../colors.scss';
+:host {
+    grid-area: right;
+    display:grid;
+    grid-template-columns: max-content 1fr 20px;
+    grid-template-rows:1fr;
+    grid-template-areas:
+    "score-icon score .";
+    // align-self: center;
+    // // align-items: center;
+    // // align-content: center;
+    img {
+        grid-area:score-icon;
+    }
+    b#score {
+        justify-self: end;
+        grid-area:score;
+        font-size:2rem;
+        color:$white;
+    }
+    
+}

@@ -1,0 +1,13 @@
+<app-user
+[extralarge]="true"
+[view]="true"
+[address]="this.address"></app-user>
+
+<section id="text">
+    <div>
+        Joined on <span>{{this.joinDate | date:'longDate'}}</span>
+    </div>
+    <b>{{((this.followerCount / 1000) | number:'1.1-1')}}k</b> Followers
+    <br>
+    <b>{{((this.followingCount / 1000) | number:'1.1-1')}}k</b> Following
+</section>
