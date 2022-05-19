@@ -6,6 +6,8 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SiteService {
 
-  public viewing: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  public viewing: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  public mouseover: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  public currentRoute: BehaviorSubject<string> = new BehaviorSubject<string>('');
   constructor() { }
 }

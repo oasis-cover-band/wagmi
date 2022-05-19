@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { LoggedInService } from '../logged-in.service';
+import { SiteService } from '../site.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -41,7 +42,8 @@ export class SidebarComponent implements OnInit {
   ]
   constructor(
     private LIservice: LoggedInService,
-    private router: Router
+    private router: Router,
+    private SITEservice: SiteService
     ) { }
 
   ngOnInit(): void {
@@ -49,6 +51,15 @@ export class SidebarComponent implements OnInit {
 
   goHome() {
     this.router.navigate([{outlets: {left: ['empty'], center: ['notifications'], right: ['alerts']}}])
+    this.SITEservice.currentRoute.next('home');
+  }
+
+  onOver() {
+    this.SITEservice.mouseover.next('home');
+  }
+
+  onLeave() {
+    this.SITEservice.mouseover.next('');
   }
 
 }

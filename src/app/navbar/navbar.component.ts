@@ -1,17 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { ngIfAnimations } from '../animations';
 import { LoggedInService } from '../logged-in.service';
+import { SiteService } from '../site.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
+  animations: [
+    ngIfAnimations
+  ]
 })
 export class NavbarComponent implements OnInit {
 
   myAddress: BehaviorSubject<string> = this.LIservice.myAddress;
+  currentRoute: BehaviorSubject<string> = this.SITEservice.currentRoute;
   constructor(
-    private LIservice: LoggedInService
+    private LIservice: LoggedInService,
+    public SITEservice: SiteService
   ) { }
 
   ngOnInit(): void {

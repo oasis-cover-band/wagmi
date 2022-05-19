@@ -87,18 +87,42 @@ trigger(
       transition(
         ':enter', 
         [
-          style({ top: '-160px'} ),
-          animate('1s ease-out', 
-                  style({ top: '0px' }))
+          style({ transform: 'translateY(-160px)'} ),
+          animate('0.25s ease-out', 
+                  style({ transform: 'translateY(0px)' }))
         ]
       ),
       transition(
         ':leave', 
         [
-          style({ top: '0px' }),
-          animate('1s ease-out', 
-                  style({ top: '-160px' }))
+          style({ transform: 'translateY(0px)' }),
+          animate('0.25s ease-out', 
+                  style({ transform: 'translateY(-160px)' }))
         ]
       )
     ]
   );
+
+  export const ngIfBannerAnimations =
+  trigger(
+    'ngIfBannerAnimations',
+      [
+        transition(
+          ':enter', 
+          [
+            style({ top: '-160px'} ),
+            animate('1s ease-out', 
+                    style({ top: '0px' }))
+          ]
+        ),
+        transition(
+          ':leave', 
+          [
+            style({ top: '0px' }),
+            animate('1s ease-out', 
+                    style({ top: '-160px' }))
+          ]
+        )
+      ]
+    );
+  

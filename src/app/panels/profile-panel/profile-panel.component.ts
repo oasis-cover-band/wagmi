@@ -34,6 +34,7 @@ export class ProfilePanelComponent implements OnInit, OnDestroy {
     this.name = this.APIservice.getAddressName(this.address.getValue());
     this.tagline = this.APIservice.getAddressTagline(this.address.getValue());
     this.badges = this.APIservice.getAddressBadges(this.address.getValue());
+    this.SITEservice.currentRoute.next('profile/'.concat(this.address.getValue()));
   }
 
   ngOnDestroy(): void {

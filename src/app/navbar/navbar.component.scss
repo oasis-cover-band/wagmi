@@ -11,10 +11,38 @@
     background:$black;
     display:grid;
     grid-template-areas:
-    "text user wallet";
+    ". console user wallet .";
     grid-template-rows: 1fr;
-    grid-template-columns: 0.9fr 0.05fr 0.05fr;
+    grid-template-columns: $margin 0.9fr 0.05fr 0.05fr $margin;
     align-content: center;
+    span#console {
+        align-self: center;
+        justify-self: start;
+        justify-items: start;
+        justify-content: start;
+        display:grid;
+        grid-area:console;
+        grid-auto-flow: column;
+        color:$white;
+        grid-template-areas:
+        "user route delimiter mouseover";
+        grid-template-columns: max-content;
+        grid-template-rows: 1fr;
+        b#user {
+            grid-area:user;
+            color:$tertiary;
+        }
+        span#route {
+            grid-area:route;
+        }
+        b#delimiter {
+            grid-area:delimiter;
+        }
+        span#mouseover {
+            grid-area:mouseover;
+            position: relative;
+        }
+    }
     app-user {
         grid-area: user;
     }

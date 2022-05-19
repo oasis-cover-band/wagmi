@@ -2,6 +2,7 @@ import { Component, HostBinding, HostListener, Input, OnInit } from '@angular/co
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
+import { SiteService } from 'src/app/site.service';
 
 @Component({
   selector: 'app-user',
@@ -26,15 +27,42 @@ export class UserComponent implements OnInit {
         center: ['profile',  this.address.getValue()],
         right: ['profile-stats',  this.address.getValue()]
       }}])
+      this.SITEservice.mouseover.next('');
       // ['/profile',  this.address.getValue()]
     }
   }
+  @HostListener('mouseleave') onLeave(){
+    if (this.showingAddress === true) {
+      this.showingAddress = false;
+      this.hideAddress();
+    } else {
+
+    }
+  }
+  @HostListener('mouseenter') onEnter(){
+    if (this.showingAddress === false) {
+      this.showingAddress = true;
+      this.showAddress();
+    } else {
+      
+    }
+  }
+  showingAddress: boolean = false;
   constructor(
     public APIservice: ApiService,
-    private router: Router
+    private router: Router,
+    private SITEservice: SiteService
   ) { }
 
   ngOnInit(): void {
+  }
+
+  showAddress() {
+    this.SITEservice.mouseover.next('profile/'.concat(this.address.getValue()));
+  }
+
+  hideAddress() {
+    this.SITEservice.mouseover.next('');
   }
 
 }

@@ -9,7 +9,7 @@
     ". user notification notification actions ."
     ". user time . reputation ."
     '. . . . . .';
-    grid-template-columns: 20px 0.125fr 25px 0.5fr 0.5fr 20px;
+    grid-template-columns: 20px 0.125fr 25px 1fr max-content 20px;
     grid-template-rows: 
     20px 45px 45px 20px;
     background: $lightergrey;

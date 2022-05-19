@@ -1,3 +1,20 @@
+
+<span id="console">
+    <b id="user">
+        {{this.myAddress | async}}:
+    </b>
+    <span id="route">~/
+        {{(this.currentRoute | async)}}
+    </span>
+    <b id="delimiter">
+        $
+    </b>
+    <span id="mouseover" *ngIf="(this.SITEservice.mouseover | async) !== ''"
+    [@ngIfAnimations]>
+        {{(this.SITEservice.mouseover | async)}}
+    </span>
+</span>
+
 <app-user
 [small]="true"
 [view]="true"

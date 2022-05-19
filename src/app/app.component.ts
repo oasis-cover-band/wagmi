@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { ngIfAnimations, centerRouterAnimations, leftRouterAnimations, rightRouterAnimations } from './animations';
+import { ngIfBannerAnimations, centerRouterAnimations, leftRouterAnimations, rightRouterAnimations } from './animations';
 import { ApiService } from './api.service';
 import { SiteService } from './site.service';
 import { TimeService } from './time.service';
@@ -14,7 +14,7 @@ import { TimeService } from './time.service';
     leftRouterAnimations,
     centerRouterAnimations,
     rightRouterAnimations,
-    ngIfAnimations
+    ngIfBannerAnimations
   ]
 })
 export class AppComponent implements OnDestroy {
@@ -34,6 +34,7 @@ export class AppComponent implements OnDestroy {
       this.viewing = viewing;
       this.banner = this.APIservice.getAddressBanner(viewing);
     });
+    this.SITEservice.currentRoute.next('home');
 
   }
 
