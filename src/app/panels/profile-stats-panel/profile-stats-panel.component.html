@@ -1,3 +1,11 @@
 
+    <b id="score"
+    [ngClass]="{
+        'terrible': this.score < 0,
+        'bad': this.score < 100 && this.score >= 0,
+        'okay': this.score < 1000 && this.score >= 100,
+        'good': this.score < 5000 && this.score >= 1000,
+        'great': this.score >= 5000
+    }"
+    >{{((this.score) | number:'1.0-0')}}</b>
     <img src="../../../assets/icons/score.png">
-    <b id="score">{{((this.score) | number:'1.0-0')}}</b>
