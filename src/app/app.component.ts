@@ -1,6 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
+import { centerRouterAnimations, leftRouterAnimations, rightRouterAnimations } from './animations';
 import { ApiService } from './api.service';
 import { SiteService } from './site.service';
 import { TimeService } from './time.service';
@@ -8,7 +9,12 @@ import { TimeService } from './time.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [
+    leftRouterAnimations,
+    centerRouterAnimations,
+    rightRouterAnimations
+  ]
 })
 export class AppComponent implements OnDestroy {
   title = 'wagmi';

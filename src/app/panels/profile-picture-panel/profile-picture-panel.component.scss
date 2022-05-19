@@ -17,13 +17,15 @@
         grid-area:text;
         justify-self: end;
         text-align: right;
-        font-size:1.25rem;
+        font-size:1rem;
         color:$white;
         span {
             text-decoration: underline;
             text-decoration-color: $tertiary;
+            font-size:0.75rem;
         }
         b {
+            font-size:1.25rem;
             color:$tertiary;
         }
     }
