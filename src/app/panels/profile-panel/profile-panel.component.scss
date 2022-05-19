@@ -50,5 +50,6 @@
         grid-area:badges;
         display:grid;
         grid-template-columns: repeat(auto-fit, minmax(150px, 150px));
+        justify-content: center;
     }
 }

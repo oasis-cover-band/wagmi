@@ -14,14 +14,14 @@ trigger('leftRouterAnimations', [
         query(
             ':leave',
             [
-                animate('0.5s ease-in', style({opacity: 0, transform: 'translateX(-25vw)'})),
+                animate('0.5s ease-out', style({opacity: 0, transform: 'translateX(-25vw)'})),
             ],
             { optional: true }
             ),
         query(
             ':enter',
             [
-                animate('0.5s ease-in', style({opacity: 1, transform: 'translateX(0vw)'})),
+                animate('0.5s ease-out', style({opacity: 1, transform: 'translateX(0vw)'})),
             ],
             { optional: true }
             )
@@ -40,14 +40,14 @@ trigger('centerRouterAnimations', [
         query(
             ':leave',
             [
-                animate('0.5s ease-in', style({opacity: 0, transform: 'translateY(-25vh)'})),
+                animate('0.5s ease-out', style({opacity: 0, transform: 'translateY(-25vh)'})),
             ],
             { optional: true }
             ),
         query(
             ':enter',
             [
-                animate('0.5s ease-in', style({opacity: 1, transform: 'translateY(0vh)'})),
+                animate('0.5s ease-out', style({opacity: 1, transform: 'translateY(0vh)'})),
             ],
             { optional: true }
             )
@@ -66,14 +66,14 @@ trigger('rightRouterAnimations', [
         query(
             ':leave',
             [
-                animate('0.5s ease-in', style({opacity: 0, transform: 'translateX(25vw)'})),
+                animate('0.5s ease-out', style({opacity: 0, transform: 'translateX(25vw)'})),
             ],
             { optional: true }
             ),
         query(
             ':enter',
             [
-                animate('0.5s ease-in', style({opacity: 1, transform: 'translateX(0vw)'})),
+                animate('0.5s ease-out', style({opacity: 1, transform: 'translateX(0vw)'})),
             ],
             { optional: true }
             )
@@ -96,7 +96,7 @@ trigger(
         ':leave', 
         [
           style({ top: '0px' }),
-          animate('1s ease-in', 
+          animate('1s ease-out', 
                   style({ top: '-160px' }))
         ]
       )

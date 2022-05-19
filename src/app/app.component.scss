@@ -27,6 +27,10 @@
         row-gap:$gap;
         column-gap:$gap;
             main#left, main#center, main#right {
+                min-height:100%;
+                max-height:100%;
+                min-width:100%;
+                max-width:100%;
                 display:grid;
                 router-outlet#left, router-outlet#center, router-outlet#right {
                     z-index:-2;

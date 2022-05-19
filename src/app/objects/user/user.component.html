@@ -1,6 +1,9 @@
-<img
-[src]="this.APIservice.getAddressImage((this.address | async))"
-/>
+<section id="wrapper">
+    <div id="inner">
+        <img
+        [src]="this.APIservice.getAddressImage((this.address | async))" />
+    </div>
+</section>
 <span id="address" *ngIf="(this.address | async) as address">
     {{address}}
 </span>
