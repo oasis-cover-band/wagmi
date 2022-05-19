@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
 
 @Component({
@@ -8,19 +8,20 @@ import { ApiService } from 'src/app/api.service';
   templateUrl: './profile-picture-panel.component.html',
   styleUrls: ['./profile-picture-panel.component.scss']
 })
-export class ProfilePicturePanelComponent implements OnInit {
+export class ProfilePicturePanelComponent implements OnInit, OnDestroy {
 
   address: BehaviorSubject<string> = new BehaviorSubject<string>("");
   joinDate!: Date;
   followerCount!: number;
   followingCount!: number;
+  listener!: Subscription;
   constructor(
     private route: ActivatedRoute,
     private APIservice: ApiService
     ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
+    this.listener = this.route.params.subscribe(params => {
       this.address.next(params['address']);
     });
     this.joinDate = this.APIservice.getAddressJoinDate(this.address.getValue());
@@ -28,6 +29,10 @@ export class ProfilePicturePanelComponent implements OnInit {
     this.followingCount = this.APIservice.getAddressFollowingCount(this.address.getValue());
   }
 
-
+  ngOnDestroy(): void {
+    if (this.listener) {
+      this.listener.unsubscribe();
+    }
+  }
 
 }

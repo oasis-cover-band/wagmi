@@ -8,8 +8,12 @@ export class ApiService {
   images = [
     "../assets/dummy.png"
   ]
+  maximumTextures = 425;
   constructor() { }
-
+  getAddressBanner(address: string | null): string {
+    console.log(Number(address));
+    return String(Number(address) % this.maximumTextures);
+  }
   getAddressImage(address: string | null): string {
     return "../assets/dummy.png";
   }

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
 
 @Component({
@@ -8,22 +8,27 @@ import { ApiService } from 'src/app/api.service';
   templateUrl: './profile-stats-panel.component.html',
   styleUrls: ['./profile-stats-panel.component.scss']
 })
-export class ProfileStatsPanelComponent implements OnInit {
+export class ProfileStatsPanelComponent implements OnInit, OnDestroy {
 
   address: BehaviorSubject<string> = new BehaviorSubject<string>("");
   score!: number;
+  listener!: Subscription;
   constructor(
     private route: ActivatedRoute,
     private APIservice: ApiService
     ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
+    this.listener = this.route.params.subscribe(params => {
       this.address.next(params['address']);
     });
 
     this.score = this.APIservice.getAddressScore(this.address.getValue());
   }
 
-
+  ngOnDestroy(): void {
+    if (this.listener) {
+      this.listener.unsubscribe();
+    }
+  }
 }
