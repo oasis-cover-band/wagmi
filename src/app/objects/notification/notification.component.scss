@@ -84,7 +84,8 @@
             align-content: center;
             text-align: center;
             font-weight:bold;
-            font-size:2rem;
+            font-size:1.4rem;
+            font-variant-caps: all-small-caps;
         }
     }
     h5#type {
@@ -131,25 +132,32 @@
                 max-height:25px;
                 font-size:0.75rem;
             }
-            @media (max-width:500px) {
-                grid-template-rows: 
-                20px 20px max-content 45px 20px;
-                @media (max-width:400px) {
-                    grid-template-areas:
-                    '. . . . . .'
-                    ". user . . . ."
-                    ". time reputation reputation reputation ."
-                    ". notification notification notification notification ."
-                    ". actions actions actions actions ."
-                    '. . . . . .';
-                    grid-template-columns: 20px 0.125fr 25px 1fr max-content 20px;
-                    grid-template-rows: 
-                    20px 45px 20px max-content 45px 20px;
-                    section#reputation {
-                        font-size:0.9rem;
-                    }
-                }
+        }
+    }
+    @media (max-width:500px) {
+        section#container {
+            grid-template-rows: 
+            20px 20px max-content 45px 20px;
+        }
+    }
+    @media (max-width:400px) {
+        section#container {
+            grid-template-areas:
+            '. . . . . .'
+            ". user . . . ."
+            ". time reputation reputation reputation ."
+            ". notification notification notification notification ."
+            ". actions actions actions actions ."
+            '. . . . . .';
+            grid-template-columns: 20px 0.125fr 25px 1fr max-content 20px;
+            grid-template-rows: 
+            20px 45px 20px max-content 45px 20px;
+            section#reputation {
+                font-size:0.9rem;
             }
+        }
+        h5#type {
+            justify-self: end;
         }
     }
 }
