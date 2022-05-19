@@ -1,29 +1,31 @@
 <main id="main"
 >
   <section id="banner"
+  [@ngIfAnimations]
   *ngIf="this.viewing !== ''"
   [ngStyle]="{
   'background': 'url(../assets/textures/' + this.banner + '.png)',
   'background-size': '100% 100%',
   'background-repeat': 'repeat'
   }">
-
   </section>
+
   <app-navbar></app-navbar>
+
   <app-sidebar></app-sidebar>
-  <main id="left"
-[@leftRouterAnimations]="left.isActivated ? left.activatedRoute : ''"
->
-  <router-outlet [@leftRouterAnimations]="left.isActivated ? left.activatedRoute : ''" #left="outlet" id="left" name="left"></router-outlet>
+
+  <main id="left"[@leftRouterAnimations]="left.isActivated ? left.activatedRoute : ''">
+    <router-outlet [@leftRouterAnimations]="left.isActivated ? left.activatedRoute : ''" #left="outlet" id="left" name="left">
+    </router-outlet>
   </main>
-  <main id="center"
-[@centerRouterAnimations]="center.isActivated ? center.activatedRoute : ''"
->
-  <router-outlet [@centerRouterAnimations]="center.isActivated ? center.activatedRoute : ''" #center="outlet" id="center" name="center"></router-outlet>
+
+  <main id="center"[@centerRouterAnimations]="center.isActivated ? center.activatedRoute : ''">
+    <router-outlet [@centerRouterAnimations]="center.isActivated ? center.activatedRoute : ''" #center="outlet" id="center" name="center">
+    </router-outlet>
   </main>
-  <main id="right"
-[@rightRouterAnimations]="right.isActivated ? right.activatedRoute : ''"
->
-  <router-outlet [@rightRouterAnimations]="right.isActivated ? right.activatedRoute : ''" #right="outlet" id="right" name="right"></router-outlet>
+
+  <main id="right"[@rightRouterAnimations]="right.isActivated ? right.activatedRoute : ''">
+    <router-outlet [@rightRouterAnimations]="right.isActivated ? right.activatedRoute : ''" #right="outlet" id="right" name="right">
+    </router-outlet>
   </main>
 </main>

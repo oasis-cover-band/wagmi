@@ -79,3 +79,26 @@ trigger('rightRouterAnimations', [
             )
     ])
 ]);
+
+export const ngIfAnimations =
+trigger(
+  'ngIfAnimations',
+    [
+      transition(
+        ':enter', 
+        [
+          style({ top: '-160px'} ),
+          animate('1s ease-out', 
+                  style({ top: '0px' }))
+        ]
+      ),
+      transition(
+        ':leave', 
+        [
+          style({ top: '0px' }),
+          animate('1s ease-in', 
+                  style({ top: '-160px' }))
+        ]
+      )
+    ]
+  );

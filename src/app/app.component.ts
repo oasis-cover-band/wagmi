@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { centerRouterAnimations, leftRouterAnimations, rightRouterAnimations } from './animations';
+import { ngIfAnimations, centerRouterAnimations, leftRouterAnimations, rightRouterAnimations } from './animations';
 import { ApiService } from './api.service';
 import { SiteService } from './site.service';
 import { TimeService } from './time.service';
@@ -13,7 +13,8 @@ import { TimeService } from './time.service';
   animations: [
     leftRouterAnimations,
     centerRouterAnimations,
-    rightRouterAnimations
+    rightRouterAnimations,
+    ngIfAnimations
   ]
 })
 export class AppComponent implements OnDestroy {
