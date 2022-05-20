@@ -28,6 +28,7 @@
         "user route delimiter mouseover";
         grid-template-columns: max-content;
         grid-template-rows: 1fr;
+        font-weight:900;
         b#user {
             grid-area:user;
             color:$tertiary;

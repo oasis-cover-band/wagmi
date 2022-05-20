@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoggedInService } from 'src/app/logged-in.service';
 
 @Component({
   selector: 'app-alerts-panel',
@@ -7,13 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlertsPanelComponent implements OnInit {
 
-  alerts = [
-    `You've listed something..`,
-    `You've listed something..`,
-    `You've listed something..`,
-    `You've listed something..`
-  ];
-  constructor() { }
+  alerts = this.LIservice.alerts;
+  constructor(
+    private LIservice: LoggedInService
+  ) { }
 
   ngOnInit(): void {
   }

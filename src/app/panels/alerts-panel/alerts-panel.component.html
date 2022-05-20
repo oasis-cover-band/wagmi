@@ -1,4 +1,4 @@
-<app-alert *ngFor="let alert of alerts"
-[data]="alert">
+<app-alert *ngFor="let alert of (this.alerts | async); let index = index"
+[data]="alert" [index]="index">
 
 </app-alert>

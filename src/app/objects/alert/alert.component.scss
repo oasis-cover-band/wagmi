@@ -8,14 +8,57 @@
     cursor: pointer;
     align-content: center;
     align-items: center;
+    grid-template-areas: 'content';
     &:nth-of-type(even) {
         background:$darkestgrey;
     }
     transition:$transition;
+    p, span#buttons {
+        grid-area:content;
+    }
+    span#buttons {
+        justify-self: end;
+        display:grid;
+        grid-auto-flow: column;
+    }
+    img#close, img#view {
+        display:grid;
+        justify-content: center;
+        align-content: center;
+        justify-items: center;
+        align-items: center;
+        margin:$margin;
+        font-weight:900;
+        color:$tertiary;
+        transition:$transition;
+        border-radius: $borderradius;
+        min-width:48px;
+        max-width:48px;
+        width:48px;
+        min-height:48px;
+        max-height:48px;
+        height:48px;
+        opacity:0.25;
+    }
+    span#close, span#view {
+        display:grid;
+        justify-content: center;
+        align-content: center;
+        justify-items: center;
+        align-items: center;
+        &:hover {
+            img {
+                opacity:0.75;
+                background:$tertiary;
+                color:$black;
+                transform:scale(0.5) translateY(150%);
+            }
+        }
+    }
     &:hover {
-        background:$white;
+        background:$lightestgrey;
         p {
-            color:$black;
+            color:$tertiary;
         }
     }
     p {
