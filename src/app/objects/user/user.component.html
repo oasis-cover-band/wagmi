@@ -11,7 +11,10 @@
 <span id="address">
     {{address}}
 </span>
-<section id="accessory">
+<section id="accessory" *ngIf="this.small === false">
     <img
-    [src]="this.accessoryUri" />
+    [src]="this.accessoryUri"
+    [ngStyle]="{
+    'transform': this.defaultAccessory && this.extralarge ? 'scale(2) scaleX(-1) translate(8px, 8px)' : 'scale(1) scaleX(-1)'
+    }"/>
 </section>

@@ -50,13 +50,14 @@ export class UserComponent implements OnInit {
     }
   }
   showingAddress: boolean = false;
+  defaultAccessory: boolean = false;
   constructor(
     public APIservice: ApiService,
     private router: Router,
     private SITEservice: SiteService
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     console.log(this.avatarUri);
     if (this.avatarUri === '' || this.avatarUri === undefined || this.avatarUri === null || this.avatarUri === "") {
       this.avatarUri = `../assets/textures/` + (Math.floor(Number(this.address) * 420 / 3)) % 340 + `.png`;
@@ -65,7 +66,93 @@ export class UserComponent implements OnInit {
       this.borderUri = `../assets/textures/` + (Math.floor(Number(this.address) * 42069 / 3)) % 340 + `.png`;
     }
     if (this.accessoryUri === '' || this.accessoryUri === undefined || this.accessoryUri === null || this.accessoryUri === "") {
-      this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      const user = await this.SITEservice.getUser(this.address);
+      this.defaultAccessory = true;
+      // ***********************
+      // START FULL USE OF GIFS
+      // ***********************
+      // if (user !== undefined && user.reputation !== undefined && user.reputation < 0) {
+      //   this.accessoryUri = `../assets/accessories/png/112.png`;
+      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 100) {
+      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `../assets/accessories/gif/3.gif`;
+      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 200) {
+      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `../assets/accessories/gif/5.gif`;
+      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 300) {
+      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `../assets/accessories/gif/6.gif`;
+      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 400) {
+      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `../assets/accessories/gif/4.gif`;
+      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 500) {
+      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `../assets/accessories/gif/7.gif`;
+      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 600) {
+      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `../assets/accessories/gif/8.gif`;
+      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 700) {
+      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `../assets/accessories/gif/13.gif`;
+      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 800) {
+      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `../assets/accessories/gif/14.gif`;
+      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 900) {
+      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `../assets/accessories/gif/1.gif`;
+      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 1000) {
+      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `../assets/accessories/gif/2.gif`;
+      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 1100) {
+      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `../assets/accessories/gif/15.gif`;
+      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 1200) {
+      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `../assets/accessories/gif/0.gif`;
+      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 1300) {
+      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `../assets/accessories/gif/12.gif`;
+      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 1400) {
+      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `../assets/accessories/gif/11.gif`;
+      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 1500) {
+      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `../assets/accessories/gif/9.gif`;
+      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 1600) {
+      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `../assets/accessories/gif/10.gif`;
+      // }
+      // ***********************
+      // END FULL USE OF GIFS
+      // ***********************
+      
+      // ***********************
+      // START SHIELDS ONLY USE OF GIFS
+      // ***********************
+      if (user !== undefined && user.reputation !== undefined && user.reputation < 0) {
+          this.accessoryUri = `../assets/accessories/png/112.png`;
+        } else if (user !== undefined && user.reputation !== undefined && user.reputation < 100) {
+          // PICK PNG ACCORDING TO % OF USER ADDRESS
+          this.accessoryUri = ``;
+        } else if (user !== undefined && user.reputation !== undefined && user.reputation < 200) {
+          // PICK PNG ACCORDING TO % OF USER ADDRESS
+          this.accessoryUri = `../assets/accessories/png/` + (Math.floor(Number(this.address) * 42069 / 3)) % 311 + `.png`;
+        }  else if (user !== undefined && user.reputation !== undefined && user.reputation < 400) {
+          // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+          this.accessoryUri = `../assets/accessories/gif/4.gif`;
+        } else if (user !== undefined && user.reputation !== undefined && user.reputation < 800) {
+          // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+          this.accessoryUri = `../assets/accessories/gif/14.gif`;
+        } else if (user !== undefined && user.reputation !== undefined && user.reputation < 1200) {
+          // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+          this.accessoryUri = `../assets/accessories/gif/0.gif`;
+        } else if (user !== undefined && user.reputation !== undefined && user.reputation < 1600) {
+          // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+          this.accessoryUri = `../assets/accessories/gif/10.gif`;
+        }
+        // ***********************
+        // END SHIELDS ONLY USE OF GIFS
+        // ***********************
     }
   }
 

@@ -8,9 +8,10 @@
     border-radius:320px;
     align-self: center;
     justify-self: center;
-    overflow:hidden;
     section#accessory {
         grid-area:content;
+        z-index:100;
+        justify-self: end;
     }
     &.extralarge {
         min-height:176px;
@@ -128,6 +129,7 @@
         justify-self: center;
         align-self: center;
         color:$black;
+        z-index:100;
     }
     div#inner {
         z-index:1;
@@ -209,9 +211,17 @@
             }
         }
         &.medium {
-            span#address {
+            span#addres {
                 transform:translate(0px, 0px);
             }
+            // span#address {
+            //     transform:translate(calc(32px + 100%), 0px);
+            // }
+            // @media (max-width:1100px) {
+            //     span#address {
+            //         transform:translate(0px, 32px);
+            //     }
+            // }
         }
         &.small {
             span#address {
