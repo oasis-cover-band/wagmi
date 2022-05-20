@@ -23,7 +23,7 @@
     <app-action
     id="banner-picture"
     icon="changebannerpicture"
-    description="Change"
+    description="Banner"
     [ngClass]="{
         'changed': this.bannerChanged
     }">
@@ -31,18 +31,41 @@
     </app-action>
     </section>
     <app-user
-    *ngIf="this.user !== undefined && this.user.walletAddress !== undefined && this.user.avatarUri !== undefined"
+    *ngIf="this.user !== undefined && this.user.walletAddress !== undefined && this.user.avatarUri !== undefined && this.user.borderUri !== undefined && this.user.accessoryUri !== undefined"
     [extralarge]="true"
     [view]="true"
     [address]="this.user.walletAddress"
-    [image]="this.user.avatarUri"></app-user>
+    [avatarUri]="this.user.avatarUri"
+    [borderUri]="this.user.borderUri"
+    [accessoryUri]="this.user.accessoryUri"
+    ></app-user>
 
     <app-action
-    id="profile-picture"
-    icon="changeprofilepicture"
-    description="Change"
+    id="avatar-picture"
+    icon="changeavatarpicture"
+    description="Avatar"
     [ngClass]="{
         'changed': this.avatarChanged
+    }">
+
+    </app-action>
+
+    <app-action
+    id="border-picture"
+    icon="changeborderpicture"
+    description="Border"
+    [ngClass]="{
+        'changed': this.borderChanged
+    }">
+
+    </app-action>
+
+    <app-action
+    id="accessory-picture"
+    icon="changeaccessorypicture"
+    description="Extra"
+    [ngClass]="{
+        'changed': this.accessoryChanged
     }">
 
     </app-action>

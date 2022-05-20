@@ -22,6 +22,8 @@ export class EditProfileComponent implements OnInit {
   @ViewChild('bio') bio!: ElementRef<any>;
   avatarChanged: boolean = false;
   bannerChanged: boolean = false;
+  borderChanged: boolean = false;
+  accessoryChanged: boolean = false;
   constructor(
     private router: Router,
     private LIservice: LoggedInService,
@@ -33,20 +35,25 @@ export class EditProfileComponent implements OnInit {
     if (this.user.bannerUri === '') {
       this.user.bannerUri = `../assets/textures/` + Number(this.myAddress.getValue()) % 340 + `.png`;
     }
-    if (this.user.avatarUri === '') {
-      this.user.avatarUri = `../assets/textures/` + (Math.floor(Number(this.myAddress.getValue()) * 420 / 3)) % 340 + `.png`;
-    }
   }
 
   edit() {
 
   }
 
-  uploadProfilePicture() {
+  uploadAvatarPicture() {
 
   }
 
   uploadBannerPicture() {
+
+  }
+
+  uploadBorderPicture() {
+
+  }
+
+  uploadAccessoryPicture() {
 
   }
 

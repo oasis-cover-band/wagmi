@@ -138,10 +138,16 @@
             justify-self: end;
             align-self: end;
         }
-        app-action#profile-picture {
+        app-action#avatar-picture, app-action#border-picture, app-action#accessory-picture {
             grid-area:user;
             justify-self:start;
             align-self: start;
+        }
+        app-action#border-picture {
+            transform: translateX(136px);
+        }
+        app-action#accessory-picture {
+            transform: translateX(160px) translateY(136px);
         }
         section#name {
             grid-area:name;

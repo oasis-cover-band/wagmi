@@ -74,7 +74,6 @@
         }
         section#reputation {
             grid-area: reputation;
-            color:$tertiary;
             display:grid;
             grid-template-columns: 1fr;
             grid-template-rows: 1fr;
@@ -86,6 +85,15 @@
             font-weight:bold;
             font-size:1.4rem;
             font-variant-caps: all-small-caps;
+            &.positive {
+                color:$green;
+            }
+            &.negative{
+                color:$red;
+            }
+            &.neutral {
+                color:$blue;
+            }
         }
     }
     h5#type {

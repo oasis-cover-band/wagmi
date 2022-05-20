@@ -1,9 +1,17 @@
 <section id="wrapper">
+    <div id="outer">
+        <img
+        [src]="this.borderUri" />
+    </div>
     <div id="inner">
         <img
-        [src]="this.image" />
+        [src]="this.avatarUri" />
     </div>
 </section>
 <span id="address">
     {{address}}
 </span>
+<section id="accessory">
+    <img
+    [src]="this.accessoryUri" />
+</section>

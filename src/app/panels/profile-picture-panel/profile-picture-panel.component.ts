@@ -32,9 +32,6 @@ export class ProfilePicturePanelComponent implements OnInit, OnDestroy {
     });
     this.myAddress = this.LIservice.myAddress;
     this.user = await this.SITEservice.getUser(this.requestedAddress.getValue());
-    if (this.user.avatarUri === '') {
-      this.user.avatarUri = `../assets/textures/` + (Math.floor(Number(this.myAddress.getValue()) * 420 / 3)) % 340 + `.png`;
-    }
     this.isFollowing = this.APIservice.isAddressFollowingAddress(this.myAddress.getValue(), this.requestedAddress.getValue());
   }
 
