@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { ngIfBannerAnimations } from 'src/app/animations';
 import { User } from 'src/app/classes/user';
 import { LoggedInService } from 'src/app/logged-in.service';
 import { SiteService } from 'src/app/site.service';
@@ -8,7 +9,10 @@ import { SiteService } from 'src/app/site.service';
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
-  styleUrls: ['./edit-profile.component.scss']
+  styleUrls: ['./edit-profile.component.scss'],
+  animations: [
+    ngIfBannerAnimations
+  ]
 })
 export class EditProfileComponent implements OnInit {
 

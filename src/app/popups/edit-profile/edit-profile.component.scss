@@ -20,6 +20,7 @@
         ::ng-deep {
             img {
                 transform:scale(0.5);
+                filter:invert(1);
             }
         }
         &:before {
@@ -32,6 +33,25 @@
         grid-area:close;
         transition: $transition;
         cursor: pointer;
+        position: relative;
+        &:before {
+            content: '';
+            position:absolute;
+            top:0px;
+            right:0px;
+            left:0px;
+            bottom:0px;
+            background:rgb(0,0,0,0);
+            border-radius: $borderradius;
+            min-width:48px;
+            max-width:48px;
+            width:48px;
+            min-height:48px;
+            max-height:48px;
+            height:48px;
+            transform:scale(1);
+            transition: $transition;
+        }
         img {
             cursor: pointer;
             transition: $transition;
@@ -42,12 +62,15 @@
             min-height:48px;
             max-height:48px;
             height:48px;
-            background:rgb(0,0,0,0);
         }
         &:hover {
-            img {
-                transform:scale(0.5);
+            &:before {
                 background:$tertiary;
+                transform:scale(0.75);
+            }
+            img {
+                transform:scale(0.75);
+                filter:invert(1);
             }
         }
     }

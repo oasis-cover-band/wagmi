@@ -103,7 +103,7 @@ button {
         z-index:0;
         justify-self: end;
         text-align:left;
-        // transform:translateX(-100%);
+        transform:translateX(-32px);
         transition: $transition;
         opacity:0.25;
     }
@@ -115,6 +115,8 @@ button {
         border-radius: $borderradius;
         margin: $margin;
         resize: none;
+        overflow:hidden;
+        text-overflow: ellipsis;
     }
     input:not(:placeholder-shown),
     textarea:not(:placeholder-shown) {

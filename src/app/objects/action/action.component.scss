@@ -71,8 +71,8 @@
             background: rgba(0, 0, 0, 0.5)!important;
         }
         img {
-            transform:scale(0.25);
-            filter:hue-rotate(90deg);
+            transform:scale(0.5);
+            filter:invert(0)!important;
         }
     }
     cursor: pointer;
