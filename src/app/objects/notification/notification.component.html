@@ -10,7 +10,7 @@
     ></app-user>
 
     <section id="notification" *ngIf="this.data.notificationType === 'LIST'">
-        {{this.data.address + ' listed ' + this.data.notificationCollection + ' #' + this.data.notificationCollectionItem + ' for '}}<b>{{this.data.notificationPrice}}<i>Ξ</i></b>
+        {{this.data.address + ' listed ' + this.data.notificationCollection + ' #' + this.data.notificationCollectionItem + ' for '}}<b id="price">{{this.data.notificationPrice}}<i>Ξ</i></b>
     </section>
 
     <section id="actions">

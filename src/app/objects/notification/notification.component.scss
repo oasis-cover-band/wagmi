@@ -25,9 +25,11 @@
         app-user {
             grid-area: user;
         }
-        b {
+        b#price {
             text-decoration: underline;
             text-decoration-style: solid;
+            text-decoration-color: $tertiary;
+            text-decoration-thickness: 4px;
         }
         i {
             color:$tertiary;

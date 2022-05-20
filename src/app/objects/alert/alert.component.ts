@@ -12,6 +12,8 @@ export class AlertComponent implements OnInit {
   @Input() data!: number;
   @Input() index!: number;
   alert!: string;
+  alert0!: string;
+  alert1!: string;
   // @HostListener('click') onClick(){
   //   this.APIservice.closeAlert(this.LIservice.myAddress.getValue(), this.index);
   // }
@@ -93,6 +95,8 @@ export class AlertComponent implements OnInit {
         break;
       }
     }
+    this.alert0 = this.alert.substr(0, this.alert.indexOf(' '));
+    this.alert1 = this.alert.substr(this.alert.indexOf(' ') + 1);
   }
 
   close() {
