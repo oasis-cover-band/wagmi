@@ -9,11 +9,14 @@ description="Home"
 >
 </app-action>
 
-<app-user *ngFor="let friend of friends"
+<ng-container  *ngFor="let friend of friends">
+<app-user *ngIf="friend !== undefined && friend.walletAddress !== undefined && friend.avatarUri !== undefined"
 [address]="friend.walletAddress"
 [image]="friend.avatarUri"
 [medium]="true"
 [chat]="true"
 ></app-user>
+    
+</ng-container>
 
 </section>

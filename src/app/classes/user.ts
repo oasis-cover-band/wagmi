@@ -27,4 +27,8 @@ export interface User {
     accolades?: Accolade[];
     // First time the user ever logged in. (timestamp ISO string)
     joinDate?: string;
+    // Number representation for the user's blockchain reputation. Can be negative
+    reputation?: number;
+    // List of addresses that this user considers their friend (different than following)
+    friends: string[];
 }

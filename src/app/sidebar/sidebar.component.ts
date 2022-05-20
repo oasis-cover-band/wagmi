@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { User } from '../classes/user';
+import { LoggedInService } from '../logged-in.service';
 import { SiteService } from '../site.service';
 
 @Component({
@@ -9,24 +11,25 @@ import { SiteService } from '../site.service';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-
-  friendList = [
-    "0x0",
-    "0x0",
-    "0x0",
-  ]
-  friends: any = [
+  friends: User[] = [
 
   ];
+  user!: User;
+  myAddress: BehaviorSubject<string> = this.LIservice.myAddress;
   constructor(
     private router: Router,
-    private SITEservice: SiteService
+    private SITEservice: SiteService,
+    private LIservice: LoggedInService
     ) { }
 
-  ngOnInit(): void {
-    this.friendList.forEach(async friend => {
-      this.friends.push(await this.SITEservice.getUser(friend));
-    });
+  async ngOnInit(): Promise<void> {
+  
+      this.myAddress.subscribe(async newAddress => {
+        this.user = await this.SITEservice.getUser(newAddress);
+        this.user.friends.forEach(async friend => {
+          this.friends.push(await this.SITEservice.getUser(friend));
+        });
+      });
   }
 
   goHome() {
