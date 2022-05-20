@@ -12,6 +12,7 @@
         grid-area:content;
         z-index:100;
         justify-self: end;
+        pointer-events: none;
     }
     &.extralarge {
         min-height:176px;

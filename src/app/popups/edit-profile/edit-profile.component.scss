@@ -144,10 +144,10 @@
             align-self: start;
         }
         app-action#border-picture {
-            transform: translateX(136px);
+            transform: translateX(160px) translateY(136px);
         }
         app-action#accessory-picture {
-            transform: translateX(160px) translateY(136px);
+            transform: translateX(160px);
         }
         section#name {
             grid-area:name;
