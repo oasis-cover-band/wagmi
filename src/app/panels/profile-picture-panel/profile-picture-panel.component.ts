@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
 import { User } from 'src/app/classes/user';
@@ -22,7 +22,8 @@ export class ProfilePicturePanelComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private APIservice: ApiService,
     private LIservice: LoggedInService,
-    private SITEservice: SiteService
+    private SITEservice: SiteService,
+    private router: Router
     ) { }
 
   async ngOnInit(): Promise<void> {
@@ -31,6 +32,9 @@ export class ProfilePicturePanelComponent implements OnInit, OnDestroy {
     });
     this.myAddress = this.LIservice.myAddress;
     this.user = await this.SITEservice.getUser(this.requestedAddress.getValue());
+    if (this.user.avatarUri === '') {
+      this.user.avatarUri = `../assets/textures/` + (Math.floor(Number(this.myAddress.getValue()) * 420 / 3)) % 340 + `.png`;
+    }
     this.isFollowing = this.APIservice.isAddressFollowingAddress(this.myAddress.getValue(), this.requestedAddress.getValue());
   }
 
@@ -38,6 +42,22 @@ export class ProfilePicturePanelComponent implements OnInit, OnDestroy {
     if (this.listener) {
       this.listener.unsubscribe();
     }
+  }
+
+  showEdit(): void {
+    this.router.navigate([{outlets: {
+      popup: ['edit-profile', this.requestedAddress.getValue()]
+    }}]);
+  }
+
+  hideEdit(): void {
+
+  }
+
+  edit(): void {
+    // this.APIservice.edit(this.myAddress.getValue(), {
+
+    // });
   }
 
   follow(): void {

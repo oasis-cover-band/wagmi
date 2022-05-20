@@ -1,8 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { ngIfBannerAnimations, centerRouterAnimations, leftRouterAnimations, rightRouterAnimations } from './animations';
+import { ngIfBannerAnimations, centerRouterAnimations, leftRouterAnimations, rightRouterAnimations, popupRouterAnimations } from './animations';
 import { ApiService } from './api.service';
+import { User } from './classes/user';
 import { SiteService } from './site.service';
 import { TimeService } from './time.service';
 
@@ -14,13 +15,14 @@ import { TimeService } from './time.service';
     leftRouterAnimations,
     centerRouterAnimations,
     rightRouterAnimations,
-    ngIfBannerAnimations
+    ngIfBannerAnimations,
+    popupRouterAnimations
   ]
 })
 export class AppComponent implements OnDestroy {
   title = 'wagmi';
   listener!: Subscription;
-  banner!: string;
+  user!: User;
   viewing!: string;
   constructor(
     private TIMEservice: TimeService,
@@ -29,9 +31,12 @@ export class AppComponent implements OnDestroy {
     private SITEservice: SiteService
   ) {
     this.TIMEservice.start();
-    this.SITEservice.viewing.subscribe(viewing => {
+    this.SITEservice.viewing.subscribe(async viewing => {
       this.viewing = viewing;
-      this.banner = this.APIservice.getAddressBanner(viewing);
+      this.user = await this.SITEservice.getUser(viewing);
+      if (this.user.bannerUri === '') {
+        this.user.bannerUri = `../assets/textures/` + Number(this.viewing) % 340 + `.png`
+      }
     });
     this.SITEservice.currentRoute.next('home');
 

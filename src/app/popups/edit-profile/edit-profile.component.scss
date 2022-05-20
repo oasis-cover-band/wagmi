@@ -1,0 +1,138 @@
+@import '../../../colors.scss';
+
+:host {
+    grid-area:popup;
+    min-width:100vw;
+    max-width:100vw;
+    width:100vw;
+    min-height:100vh;
+    max-height:100vh;
+    height:100vh;
+    background: rgba(0, 0, 0, 0.75);
+    display:grid;
+    grid-template-areas: 
+    '. . close'
+    '. edit-panel .'
+    '. . .';
+    grid-template-columns: 0.125fr 1fr 0.125fr;
+    grid-template-rows: 0.125fr 1fr 0.125fr;
+    app-action.changed {
+        ::ng-deep {
+            img {
+                transform:scale(0.5);
+            }
+        }
+        &:before {
+            border: 2px solid $tertiary;
+            background:$tertiary;
+            opacity:1;
+        }
+    }
+    span#close {
+        grid-area:close;
+        transition: $transition;
+        cursor: pointer;
+        img {
+            cursor: pointer;
+            transition: $transition;
+            border-radius: $borderradius;
+            min-width:48px;
+            max-width:48px;
+            width:48px;
+            min-height:48px;
+            max-height:48px;
+            height:48px;
+            background:rgb(0,0,0,0);
+        }
+        &:hover {
+            img {
+                transform:scale(0.5);
+                background:$tertiary;
+            }
+        }
+    }
+    section#edit-panel {
+        position:relative;
+        grid-area:edit-panel;
+        border-radius: $borderradius;
+        background:$darkestgrey;
+        filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $black);
+        overflow:hidden;
+        section#banner {
+            content:'';
+            position:absolute;
+            top:0px;
+            right:0px;
+            bottom:0px;
+            left:0px;
+            min-height:128px;
+            max-height:128px;
+            height:128px;
+            z-index:-1;
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
+            display:grid;
+            grid-template-areas: 
+            '. . .'
+            '. banner-picture .'
+            '. . .';
+            grid-template-columns: $margin 1fr $margin;
+            grid-template-rows: $margin 1fr $margin;
+            app-action#banner-picture {
+                grid-area:banner-picture;
+                justify-self:end;
+                align-self: end;
+            }
+        }
+        display:grid;
+        grid-template-areas:
+        '. . .'
+        '. user .'
+        '. name .'
+        '. bio .'
+        '. save .'
+        '. . .';
+        grid-template-columns: $margin 1fr $margin;
+        grid-template-rows: $margin max-content max-content max-content 1fr $margin;
+        app-user {
+            justify-self:start;
+            align-self: start;
+            grid-area:user;
+        }
+        button#save {
+            grid-area:save;
+            border-radius: $borderradius;
+            background:$tertiary;
+            color: $black;
+            font-size:2rem;
+            cursor:pointer;
+            transition:$transition;
+            &.disabled {
+                opacity:0.25;
+                cursor:not-allowed;
+            }
+            justify-self: end;
+            align-self: end;
+        }
+        app-action#profile-picture {
+            grid-area:user;
+            justify-self:start;
+            align-self: start;
+        }
+        section#name {
+            grid-area:name;
+            min-width:100%;
+            max-width: 100%;
+            display:grid;
+            border-radius: $borderradius;
+        }
+        section#bio {
+            grid-area:bio;
+            min-width:100%;
+            max-width: 100%;
+            display:grid;
+            border-radius: $borderradius;
+        }
+    }
+}

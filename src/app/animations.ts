@@ -125,4 +125,32 @@ trigger(
         )
       ]
     );
+
+    export const popupRouterAnimations =
+    trigger('popupRouterAnimations', [
+    transition('* => *', [
+        query(
+            ':enter',
+            [
+                style({opacity: 0}),
+            ],
+            { optional: true }
+            ),
+        query(
+            ':leave',
+            [
+                animate('0.25s ease-out', style({opacity: 0})),
+            ],
+            { optional: true }
+            ),
+        query(
+            ':enter',
+            [
+                animate('0.25s ease-out', style({opacity: 1})),
+            ],
+            { optional: true }
+            )
+    ])
+  ]);
+    
   

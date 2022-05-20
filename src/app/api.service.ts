@@ -27,7 +27,7 @@ export class ApiService {
         method: 'get' 
       }).then(async (response: any) => {
         // handle success
-        // console.log(response.data);
+        console.log(response.data);
         this.users[address] = response.data;
         return await response.data;
       })

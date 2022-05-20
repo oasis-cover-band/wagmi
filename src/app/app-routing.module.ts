@@ -12,20 +12,46 @@ import { ProfilePicturePanelComponent } from './panels/profile-picture-panel/pro
 import { ProfilePicturePanelModule } from './panels/profile-picture-panel/profile-picture-panel.module';
 import { ProfileStatsPanelComponent } from './panels/profile-stats-panel/profile-stats-panel.component';
 import { ProfileStatsPanelModule } from './panels/profile-stats-panel/profile-stats-panel.module';
+import { EditProfileModule } from './popups/edit-profile/edit-profile.module';
+import { EditProfileComponent } from './popups/edit-profile/edit-profile.component';
 
 const routes: Routes = [
-  {path: '', component: EmptyComponent, outlet: "left"},
+  // ***************************
+  // INITS
+  // ***************************
+  // INIT CENTER (NOTIFICATIONS)
   {path: '', component: NotificationsPanelComponent, outlet: "center"},
   {path: 'notifications', component: NotificationsPanelComponent, outlet: "center"},
+  // INIT RIGHT (ALERTS)
   {path: '', component: AlertsPanelComponent, outlet: "right"},
   {path: 'alerts', component: AlertsPanelComponent, outlet: "right"},
-  {path: 'empty', component: EmptyComponent, outlet: "left"},
-  {path: 'empty', component: EmptyComponent, outlet: "center"},
-  {path: 'empty', component: EmptyComponent, outlet: "right"},
-  {path: 'profile', component: ProfilePanelComponent, outlet: "center"},
+  // INIT POPUP (EMPTY)
+  {path: '', component: EmptyComponent, outlet: "popup"},
+  // INIT LEFT (EMPTY)
+  {path: '', component: EmptyComponent, outlet: "left"},
+  
+  // ***************************
+  // PROFILE
+  // ***************************
   {path: 'profile/:address', component: ProfilePanelComponent, outlet: "center"},
   {path: 'profile-picture/:address', component: ProfilePicturePanelComponent, outlet: "left"},
   {path: 'profile-stats/:address', component: ProfileStatsPanelComponent, outlet: "right"},
+  
+  // ***************************
+  // EDIT PROFILE
+  // ***************************
+  {path: 'edit-profile/:address', component: EditProfileComponent, outlet: "popup"},
+  // ***************************
+  // EMPTIES
+  // ***************************
+  // EMPTY LEFT
+  {path: 'empty', component: EmptyComponent, outlet: "left"},
+  // EMPTY CENTER
+  {path: 'empty', component: EmptyComponent, outlet: "center"},
+  // EMPTY RIGHT
+  {path: 'empty', component: EmptyComponent, outlet: "right"},
+  // EMPTY POPUP
+  {path: 'empty', component: EmptyComponent, outlet: "popup"},
 ];
 
 @NgModule({
@@ -36,6 +62,7 @@ const routes: Routes = [
     ProfilePanelModule,
     ProfilePicturePanelModule,
     ProfileStatsPanelModule,
+    EditProfileModule,
     EmptyModule
   ],
   exports: [RouterModule]

@@ -61,3 +61,77 @@ img {
 h1, h2, h3, h4, h5, h6, button {
     font-family: 'Nunito';
 }
+input, textarea, button {
+    background:none;
+    border:none;
+    outline:none;
+}
+button {
+    display:grid;
+    grid-template-areas:
+    '. . .'
+    '. content .'
+    '. . .';
+    grid-template-columns: $margin 1fr $margin;
+    grid-template-rows: $margin 1fr $margin;
+    span {
+        grid-area:content;
+    }
+}
+.input {
+    border-radius: $borderradius;
+    background: rgba(0, 0, 0, 0.5);
+    color:$lightestgrey;
+    font-variant-caps: all-small-caps;
+    margin:$margin;
+    display:grid;
+    grid-template-areas:
+    '. . .'
+    '. content .'
+    '. . .';
+    grid-template-columns: $margin 1fr $margin;
+    grid-template-rows: $margin 1fr $margin;
+    justify-self: center;
+    span {
+        grid-area:content;
+        font-size:3rem;
+        font-weight: 900;
+        font-family: 'Istok Web';
+        // text-decoration: underline;
+        // text-decoration-color: $tertiary;
+        pointer-events:none;
+        z-index:0;
+        justify-self: end;
+        text-align:left;
+        // transform:translateX(-100%);
+        transition: $transition;
+        opacity:0.25;
+    }
+    textarea, input {
+        z-index:1;
+        grid-area:content;
+        color: $white;
+        font-size:3rem;
+        border-radius: $borderradius;
+        margin: $margin;
+        resize: none;
+    }
+    input:not(:placeholder-shown),
+    textarea:not(:placeholder-shown) {
+        border:2px dashed $tertiary;
+        box-sizing: border-box;
+    }
+    input:placeholder-shown,
+    textarea:placeholder-shown {
+    }
+    textarea {
+        font-size:1.5rem;
+    }
+    &:hover, &:focus, &:active {
+        span {
+            opacity:1;
+            color:$tertiary;
+            transform:translateX(-48px) translateY(-46px);
+        }
+    }
+}
