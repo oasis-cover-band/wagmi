@@ -10,6 +10,8 @@
     section#container {
         grid-area:container;
         display:grid;
+        transition: $transition;
+        cursor: pointer;
         grid-template-areas:
         '. . . . . .'
         ". user notification notification actions ."
@@ -96,6 +98,16 @@
             &.neutral {
                 color:$blue;
             }
+        }
+    }
+    &:nth-of-type(even) {
+        section#container {
+            background:$lightestblack;
+        }
+    }
+    &:hover {
+        section#container {
+            background:$lightestgrey;
         }
     }
     h5#type {
