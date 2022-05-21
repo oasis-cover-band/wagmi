@@ -22,7 +22,7 @@ export class ApiService {
   async getUser(address: string, force: boolean = false): Promise<User | any> {
     if (force || (this.users[address] === null || this.users[address] === undefined)) {
       return await axios({
-        url: 'user/'.concat(String(address)),
+        url: 'account/'.concat(String(address)),
         baseURL: this.baseURL,
         method: 'get' 
       }).then(async (response: any) => {

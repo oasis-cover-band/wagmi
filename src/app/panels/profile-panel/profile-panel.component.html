@@ -1,5 +1,5 @@
-<h1 *ngIf="this.user !== undefined && this.user.userId !== undefined" id="name">
-    {{this.user.userId}}
+<h1 *ngIf="this.user !== undefined && this.user.accountId !== undefined" id="name">
+    {{this.user.accountId}}
 </h1>
 
 <h3 *ngIf="this.user !== undefined && this.user.walletAddress !== undefined" id="address">
@@ -10,8 +10,8 @@
     {{this.user.bio}}
 </span>
 
-<section id="badges" *ngIf="this.user !== undefined && this.user.accolades !== undefined" >
-    <app-badge *ngFor="let accolade of this.user.accolades"
+<section id="badges" *ngIf="this.user !== undefined && this.user.record !== undefined" >
+    <app-badge *ngFor="let accolade of this.user.record"
     [data]="accolade">
         
     </app-badge>

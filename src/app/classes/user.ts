@@ -1,12 +1,12 @@
 
-import { Accolade } from './accolade';
+import { Record } from './record';
 
 export interface User {
     /**
      * THESE FIELDS MODIFIED BY BACKEND ONLY.
      */
     // Address or name of the user.
-    userId?: string;
+    accountId?: string;
     // Address of the user.
     walletAddress?: string;
     // Biography saved by the user.
@@ -24,7 +24,7 @@ export interface User {
     // Thumbnail image representing user's avatar accessory.
     accessoryUri?: string;
     // Array of user's accolades.
-    accolades?: Accolade[];
+    record?: Record[];
     // First time the user ever logged in. (timestamp ISO string)
     joinDate?: string;
     // Number representation for the user's blockchain reputation. Can be negative

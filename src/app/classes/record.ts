@@ -1,4 +1,4 @@
-export interface Accolade {
+export interface Record {
     // Accolade identifier.
     id: number;
     // Accolade type. (-1 = negative, 0 = neutral, 1 = positive) TODO: enum
