@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ngIfBannerAnimations, centerRouterAnimations, leftRouterAnimations, rightRouterAnimations, popupRouterAnimations } from './animations';
 import { ApiService } from './services/api.service';
-import { AccountInfo } from './classes/account';
+import { AccountInfo } from './classes/accountInfo';
 import { SiteService } from './services/site.service';
 import { TimeService } from './services/time.service';
 import { IsAccountService } from './is-account.service';

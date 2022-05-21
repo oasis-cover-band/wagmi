@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Web3Service } from '../../services/web3.service';
 
 @Component({
@@ -8,7 +9,19 @@ import { Web3Service } from '../../services/web3.service';
 })
 export class AlertsPanelComponent implements OnInit {
 
-  // alerts = this.WEB3service.alerts;
+  alerts = new BehaviorSubject<any>([
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    ''
+  ]);
   constructor(
     private WEB3service: Web3Service
   ) { }

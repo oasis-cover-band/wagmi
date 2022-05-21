@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ngIfAnimations } from '../animations';
-import { AccountInfo } from '../classes/account';
+import { AccountInfo } from '../classes/accountInfo';
 import { Web3Service } from '../services/web3.service';
 import { SiteService } from '../services/site.service';
 import { IsAccountService } from '../is-account.service';

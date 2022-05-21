@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { AccountInfo } from '../classes/account';
+import { AccountInfo } from '../classes/accountInfo';
 import { IsAccountService } from '../is-account.service';
 import { SiteService } from '../services/site.service';
 import { Web3Service } from '../services/web3.service';

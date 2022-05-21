@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ApiService } from '../../services/api.service';
-import { AccountInfo } from 'src/app/classes/account';
+import { AccountInfo } from 'src/app/classes/accountInfo';
 import { SiteService } from '../../services/site.service';
 import { IsAccountService } from 'src/app/is-account.service';
 

@@ -1,7 +1,7 @@
 import { Component, HostBinding, HostListener, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { AccountInfo } from 'src/app/classes/account';
+import { AccountInfo } from 'src/app/classes/accountInfo';
 import { IsAccountService } from 'src/app/is-account.service';
 import { ApiService } from '../../services/api.service';
 import { SiteService } from '../../services/site.service';

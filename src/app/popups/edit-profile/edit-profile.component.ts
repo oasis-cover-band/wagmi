@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ngIfBannerAnimations } from 'src/app/animations';
-import { AccountInfo } from 'src/app/classes/account';
+import { AccountInfo } from 'src/app/classes/accountInfo';
 import { IsAccountService } from 'src/app/is-account.service';
 import { Web3Service } from 'src/app/services/web3.service';
 import { SiteService } from '../../services/site.service';

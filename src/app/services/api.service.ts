@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AccountInfo } from '../classes/account';
+import { AccountInfo } from '../classes/accountInfo';
 import axios from 'axios';
 
 @Injectable({
@@ -24,7 +24,7 @@ export class ApiService {
       return await axios({
         url: 'account/'.concat(String(address)),
         baseURL: this.baseURL,
-        method: 'get' 
+        method: 'GET' 
       }).then(async (response: any) => {
         // handle success
         console.log(response.data);
@@ -49,7 +49,7 @@ export class ApiService {
       return await axios({
         url: 'account/'.concat(String(address)),
         baseURL: this.baseURL,
-        method: 'post' 
+        method: 'PUT' 
       }).then(async (response: any) => {
         // handle success
         console.log(response);
@@ -69,12 +69,27 @@ export class ApiService {
   // POST
   // 
   async createAccount(address: string, force: boolean = false): Promise<AccountInfo | number> {
+    const newAccount: AccountInfo = {
+      accountId: '',
+      walletAddress: address,
+      bio: '',
+      followers: 0,
+      following: 0,
+      avatarUri: '',
+      bannerUri: '',
+      borderUri: '',
+      accessoryUri: '',
+      record: [],
+      joinDate: '',
+      reputation: 0,
+      friends: []
+    }
     if (force || (this.accounts[address] === null || this.accounts[address] === undefined)) {
-      console.log(address);
       return await axios({
         url: 'account/'.concat(String(address)),
         baseURL: this.baseURL,
-        method: 'post' 
+        method: 'POST',
+        params: newAccount
       }).then(async (response: any) => {
         // handle success
         console.log(response);
@@ -83,7 +98,6 @@ export class ApiService {
       })
       .catch(async (error: any) => {
         // handle error
-        console.log(error.response);
         return await error.response.status;
       })
     } else {
