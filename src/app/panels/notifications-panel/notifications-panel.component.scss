@@ -21,8 +21,8 @@
         grid-auto-rows:max-content;
         grid-auto-columns: 1fr;
         row-gap:$gap;
-        overflow-y: scroll;
     }
+    overflow-y: scroll;
     @media (max-width:1100px) {
         min-width:calc(100vw);
         max-width:calc(100vw);
