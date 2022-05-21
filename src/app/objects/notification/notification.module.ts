@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NotificationComponent } from './notification.component';
-import { UserModule } from '../user/user.module';
+import { AccountModule } from '../account/account.module';
 import { ActionModule } from '../action/action.module';
 
 
@@ -12,7 +12,7 @@ import { ActionModule } from '../action/action.module';
   ],
   imports: [
     CommonModule,
-    UserModule,
+    AccountModule,
     ActionModule
   ],
   exports: [

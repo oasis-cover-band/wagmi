@@ -1,16 +1,17 @@
 import { Component, HostBinding, HostListener, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { IsUserService } from 'src/app/is-user.service';
+import { AccountInfo } from 'src/app/classes/account';
+import { IsAccountService } from 'src/app/is-account.service';
 import { ApiService } from '../../services/api.service';
 import { SiteService } from '../../services/site.service';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  selector: 'app-account',
+  templateUrl: './account.component.html',
+  styleUrls: ['./account.component.scss']
 })
-export class UserComponent implements OnInit {
+export class AccountComponent implements OnInit {
 
   @Input() address!: string;
   @Input() avatarUri!: string;
@@ -56,15 +57,15 @@ export class UserComponent implements OnInit {
     public APIservice: ApiService,
     private router: Router,
     private SITEservice: SiteService,
-    private isUser: IsUserService
+    private isAccount: IsAccountService
   ) { }
 
   async ngOnInit(): Promise<void> {
     console.log(this.avatarUri);
-    const response = await this.SITEservice.getUser(this.address);
-    let user;
-    if (this.isUser.isUser(response)) {
-      user = response;
+    const response = await this.SITEservice.getAccount(this.address);
+    let account!: AccountInfo;
+    if (this.isAccount.isAccount(response)) {
+      account = response;
     } else {
       return;
     }
@@ -79,54 +80,54 @@ export class UserComponent implements OnInit {
       // ***********************
       // START FULL USE OF GIFS
       // ***********************
-      // if (user !== undefined && user.reputation !== undefined && user.reputation < 0) {
+      // if (account !== undefined && account.reputation !== undefined && account.reputation < 0) {
       //   this.accessoryUri = `../assets/accessories/png/112.png`;
-      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 100) {
+      // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 100) {
       //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
       //   this.accessoryUri = `../assets/accessories/gif/3.gif`;
-      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 200) {
+      // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 200) {
       //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
       //   this.accessoryUri = `../assets/accessories/gif/5.gif`;
-      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 300) {
+      // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 300) {
       //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
       //   this.accessoryUri = `../assets/accessories/gif/6.gif`;
-      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 400) {
+      // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 400) {
       //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
       //   this.accessoryUri = `../assets/accessories/gif/4.gif`;
-      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 500) {
+      // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 500) {
       //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
       //   this.accessoryUri = `../assets/accessories/gif/7.gif`;
-      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 600) {
+      // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 600) {
       //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
       //   this.accessoryUri = `../assets/accessories/gif/8.gif`;
-      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 700) {
+      // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 700) {
       //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
       //   this.accessoryUri = `../assets/accessories/gif/13.gif`;
-      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 800) {
+      // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 800) {
       //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
       //   this.accessoryUri = `../assets/accessories/gif/14.gif`;
-      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 900) {
+      // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 900) {
       //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
       //   this.accessoryUri = `../assets/accessories/gif/1.gif`;
-      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 1000) {
+      // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 1000) {
       //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
       //   this.accessoryUri = `../assets/accessories/gif/2.gif`;
-      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 1100) {
+      // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 1100) {
       //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
       //   this.accessoryUri = `../assets/accessories/gif/15.gif`;
-      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 1200) {
+      // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 1200) {
       //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
       //   this.accessoryUri = `../assets/accessories/gif/0.gif`;
-      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 1300) {
+      // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 1300) {
       //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
       //   this.accessoryUri = `../assets/accessories/gif/12.gif`;
-      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 1400) {
+      // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 1400) {
       //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
       //   this.accessoryUri = `../assets/accessories/gif/11.gif`;
-      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 1500) {
+      // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 1500) {
       //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
       //   this.accessoryUri = `../assets/accessories/gif/9.gif`;
-      // } else if (user !== undefined && user.reputation !== undefined && user.reputation < 1600) {
+      // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 1600) {
       //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
       //   this.accessoryUri = `../assets/accessories/gif/10.gif`;
       // }
@@ -137,24 +138,24 @@ export class UserComponent implements OnInit {
       // ***********************
       // START SHIELDS ONLY USE OF GIFS
       // ***********************
-      if (user !== undefined && user.reputation !== undefined && user.reputation < 0) {
+      if (account !== undefined && account.reputation !== undefined && account.reputation < 0) {
           this.accessoryUri = `../assets/accessories/png/112.png`;
-        } else if (user !== undefined && user.reputation !== undefined && user.reputation < 100) {
+        } else if (account !== undefined && account.reputation !== undefined && account.reputation < 100) {
           // PICK PNG ACCORDING TO % OF USER ADDRESS
           this.accessoryUri = ``;
-        } else if (user !== undefined && user.reputation !== undefined && user.reputation < 200) {
+        } else if (account !== undefined && account.reputation !== undefined && account.reputation < 200) {
           // PICK PNG ACCORDING TO % OF USER ADDRESS
           this.accessoryUri = `../assets/accessories/png/` + (Math.floor(Number(this.address) * 42069 / 3)) % 311 + `.png`;
-        }  else if (user !== undefined && user.reputation !== undefined && user.reputation < 400) {
+        }  else if (account !== undefined && account.reputation !== undefined && account.reputation < 400) {
           // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
           this.accessoryUri = `../assets/accessories/gif/4.gif`;
-        } else if (user !== undefined && user.reputation !== undefined && user.reputation < 800) {
+        } else if (account !== undefined && account.reputation !== undefined && account.reputation < 800) {
           // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
           this.accessoryUri = `../assets/accessories/gif/14.gif`;
-        } else if (user !== undefined && user.reputation !== undefined && user.reputation < 1200) {
+        } else if (account !== undefined && account.reputation !== undefined && account.reputation < 1200) {
           // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
           this.accessoryUri = `../assets/accessories/gif/0.gif`;
-        } else if (user !== undefined && user.reputation !== undefined && user.reputation < 1600) {
+        } else if (account !== undefined && account.reputation !== undefined && account.reputation < 1600) {
           // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
           this.accessoryUri = `../assets/accessories/gif/10.gif`;
         }

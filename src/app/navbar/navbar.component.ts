@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ngIfAnimations } from '../animations';
-import { User } from '../classes/user';
+import { AccountInfo } from '../classes/account';
 import { Web3Service } from '../services/web3.service';
 import { SiteService } from '../services/site.service';
-import { IsUserService } from '../is-user.service';
+import { IsAccountService } from '../is-account.service';
 import { ApiService } from '../services/api.service';
 
 @Component({
@@ -19,21 +19,21 @@ export class NavbarComponent implements OnInit {
 
   myAddress: BehaviorSubject<string> = this.WEB3service.loggedIn.walletAddress;
   currentRoute: BehaviorSubject<string> = this.SITEservice.currentRoute;
-  user?: User;
+  account?: AccountInfo;
   constructor(
     private WEB3service: Web3Service,
     public SITEservice: SiteService,
     private APIservice: ApiService,
-    private isUser: IsUserService
+    private isAccount: IsAccountService
   ) {
     this.myAddress = this.WEB3service.loggedIn.walletAddress;
   }
 
   async ngOnInit(): Promise<void> {
     if (this.myAddress.getValue() !== "") {
-      const response = await this.SITEservice.getUser(this.myAddress.getValue());
-      if (this.isUser.isUser(response)) {
-        this.user = response;
+      const response = await this.SITEservice.getAccount(this.myAddress.getValue());
+      if (this.isAccount.isAccount(response)) {
+        this.account = response;
       }
     }
   }
@@ -41,13 +41,13 @@ export class NavbarComponent implements OnInit {
   async logout(): Promise<void> {
     this.WEB3service.disconnectWallet().then(async loggedOutWalletAddress => {
       console.log('Logged out as: ', loggedOutWalletAddress);
-      delete this.user;
+      delete this.account;
     });
   }
 
   async createAccount(): Promise<void> {
-    console.log(this.user);
-    if (this.user === undefined && this.myAddress.getValue() !== "") {
+    console.log(this.account);
+    if (this.account === undefined && this.myAddress.getValue() !== "") {
       this.APIservice.createAccount(this.myAddress.getValue());
     }
   }
@@ -57,10 +57,10 @@ export class NavbarComponent implements OnInit {
       this.WEB3service.connectWallet().then(async loggedInWalletAddress => {
         console.log('Logged in as: ', loggedInWalletAddress);
         if (loggedInWalletAddress !== "") {
-          const response = await this.SITEservice.getUser(loggedInWalletAddress);
-          if (this.isUser.isUser(response)) {
+          const response = await this.SITEservice.getAccount(loggedInWalletAddress);
+          if (this.isAccount.isAccount(response)) {
             console.log(response);
-            this.user = response;
+            this.account = response;
           }
         }
       })

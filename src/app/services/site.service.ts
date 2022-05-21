@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ApiService } from './api.service';
-import { User } from '../classes/user';
+import { AccountInfo } from '../classes/account';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class SiteService {
     private APIservice: ApiService
   ) { }
 
-  async getUser(address: string): Promise<User | number> {
-    return await this.APIservice.getUser(address, true);
+  async getAccount(address: string): Promise<AccountInfo | number> {
+    return await this.APIservice.getAccount(address, true);
   }
 }

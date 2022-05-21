@@ -111,17 +111,17 @@
         display:grid;
         grid-template-areas:
         '. . .'
-        '. user .'
+        '. account .'
         '. name .'
         '. bio .'
         '. save .'
         '. . .';
         grid-template-columns: $margin 1fr $margin;
         grid-template-rows: $margin max-content max-content max-content 1fr $margin;
-        app-user {
+        app-account {
             justify-self:start;
             align-self: start;
-            grid-area:user;
+            grid-area:account;
         }
         button#save {
             grid-area:save;
@@ -139,7 +139,7 @@
             align-self: end;
         }
         app-action#avatar-picture, app-action#border-picture, app-action#accessory-picture {
-            grid-area:user;
+            grid-area:account;
             justify-self:start;
             align-self: start;
         }

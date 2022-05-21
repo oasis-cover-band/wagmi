@@ -4,14 +4,14 @@
     display:grid;
     grid-template-areas:
     '. . .'
-    '. user .'
+    '. account .'
     '. text .'
     '. actions .'
     '. . .';
     grid-template-columns: $margin 1fr $margin;
     grid-template-rows: $margin max-content 1fr max-content $margin;
-    app-user {
-        grid-area:user;
+    app-account {
+        grid-area:account;
         justify-self: center;
     }
     section#text {

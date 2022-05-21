@@ -1,12 +1,12 @@
 
     <b id="score"
-    *ngIf="this.user !== undefined && this.user.reputation !== undefined"
+    *ngIf="this.account !== undefined && this.account.reputation !== undefined"
     [ngClass]="{
-        'terrible': this.user.reputation < 0,
-        'bad': this.user.reputation < 100 && this.user.reputation >= 0,
-        'okay': this.user.reputation < 1000 && this.user.reputation >= 100,
-        'good': this.user.reputation < 5000 && this.user.reputation >= 1000,
-        'great': this.user.reputation >= 5000
+        'terrible': this.account.reputation < 0,
+        'bad': this.account.reputation < 100 && this.account.reputation >= 0,
+        'okay': this.account.reputation < 1000 && this.account.reputation >= 100,
+        'good': this.account.reputation < 5000 && this.account.reputation >= 1000,
+        'great': this.account.reputation >= 5000
     }"
-    >{{((this.user.reputation) | number:'1.0-0')}}</b>
+    >{{((this.account.reputation) | number:'1.0-0')}}</b>
     <img src="../../../assets/icons/score.png">

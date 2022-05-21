@@ -2,8 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ngIfBannerAnimations } from 'src/app/animations';
-import { User } from 'src/app/classes/user';
-import { IsUserService } from 'src/app/is-user.service';
+import { AccountInfo } from 'src/app/classes/account';
+import { IsAccountService } from 'src/app/is-account.service';
 import { Web3Service } from 'src/app/services/web3.service';
 import { SiteService } from '../../services/site.service';
 
@@ -18,7 +18,7 @@ import { SiteService } from '../../services/site.service';
 export class EditProfileComponent implements OnInit {
 
   myAddress: BehaviorSubject<string> = this.WEB3service.loggedIn.walletAddress;
-  user!: User;
+  account!: AccountInfo;
   @ViewChild('name') name!: ElementRef<any>;
   @ViewChild('bio') bio!: ElementRef<any>;
   avatarChanged: boolean = false;
@@ -29,16 +29,16 @@ export class EditProfileComponent implements OnInit {
     private router: Router,
     private WEB3service: Web3Service,
     private SITEservice: SiteService,
-    private isUser: IsUserService
+    private isAccount: IsAccountService
   ) { }
 
   async ngOnInit(): Promise<void> {
-    const response = await this.SITEservice.getUser(this.myAddress.getValue());
-    if (this.isUser.isUser(response)) {
-      this.user = response;
+    const response = await this.SITEservice.getAccount(this.myAddress.getValue());
+    if (this.isAccount.isAccount(response)) {
+      this.account = response;
     }
-    if (this.user.bannerUri === '') {
-      this.user.bannerUri = `../assets/textures/` + Number(this.myAddress.getValue()) % 340 + `.png`;
+    if (this.account.bannerUri === '') {
+      this.account.bannerUri = `../assets/textures/` + Number(this.myAddress.getValue()) % 340 + `.png`;
     }
   }
 

@@ -2,9 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ApiService } from '../../services/api.service';
-import { User } from 'src/app/classes/user';
+import { AccountInfo } from 'src/app/classes/account';
 import { SiteService } from '../../services/site.service';
-import { IsUserService } from 'src/app/is-user.service';
+import { IsAccountService } from 'src/app/is-account.service';
 
 @Component({
   selector: 'app-profile-panel',
@@ -15,20 +15,20 @@ export class ProfilePanelComponent implements OnInit, OnDestroy {
 
   requestedAddress: BehaviorSubject<string> = new BehaviorSubject<string>("");
   listener!: Subscription;
-  user!: User;
+  account!: AccountInfo;
   constructor(
     private route: ActivatedRoute,
     private SITEservice: SiteService,
-    private isUser: IsUserService
+    private isAccount: IsAccountService
     ) { }
 
   async ngOnInit(): Promise<void> {
     this.listener = this.route.params.subscribe(params => {
       this.requestedAddress.next(params['address']);
     });
-    const response = await this.SITEservice.getUser(this.requestedAddress.getValue());
-    if (this.isUser.isUser(response)) {
-      this.user = response;
+    const response = await this.SITEservice.getAccount(this.requestedAddress.getValue());
+    if (this.isAccount.isAccount(response)) {
+      this.account = response;
     }
     this.SITEservice.viewing.next(this.requestedAddress.getValue());
     this.SITEservice.currentRoute.next('profile/'.concat(this.requestedAddress.getValue()));

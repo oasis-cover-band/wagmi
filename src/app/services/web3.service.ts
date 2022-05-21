@@ -71,10 +71,10 @@ export class Web3Service {
   }
 
   async requestAccounts(): Promise<string> {
-    return await this.web3.eth.requestAccounts().then(userAddresses => {
-      this.web3.eth.defaultAccount = userAddresses[0];
-      this.loggedIn.walletAddress.next(userAddresses[0]);
-      return userAddresses[0];
+    return await this.web3.eth.requestAccounts().then(accountAddresses => {
+      this.web3.eth.defaultAccount = accountAddresses[0];
+      this.loggedIn.walletAddress.next(accountAddresses[0]);
+      return accountAddresses[0];
       // this.notificationsService.notify({
       //   title: 'Logged In',
       //   icon: 'alarm',

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { User } from '../classes/user';
-import { IsUserService } from '../is-user.service';
+import { AccountInfo } from '../classes/account';
+import { IsAccountService } from '../is-account.service';
 import { SiteService } from '../services/site.service';
 import { Web3Service } from '../services/web3.service';
 
@@ -12,26 +12,26 @@ import { Web3Service } from '../services/web3.service';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  friends: User[] = [
+  friends: AccountInfo[] = [
 
   ];
-  user!: User | number;
+  account!: AccountInfo | number;
   myAddress: BehaviorSubject<string> = this.WEB3service.loggedIn.walletAddress;
   constructor(
     private router: Router,
     private SITEservice: SiteService,
     private WEB3service: Web3Service,
-    private isUser: IsUserService
+    private isAccount: IsAccountService
     ) { }
 
   async ngOnInit(): Promise<void> {
   
       this.myAddress.subscribe(async newAddress => {
-        this.user = await this.SITEservice.getUser(newAddress);
-        if (this.isUser.isUser(this.user)) {
-          this.user.friends.forEach(async friend => {
-            const response = await this.SITEservice.getUser(friend);
-            if (this.isUser.isUser(response)) {
+        this.account = await this.SITEservice.getAccount(newAddress);
+        if (this.isAccount.isAccount(this.account)) {
+          this.account.friends.forEach(async friend => {
+            const response = await this.SITEservice.getAccount(friend);
+            if (this.isAccount.isAccount(response)) {
               this.friends.push(response);
             }
           });

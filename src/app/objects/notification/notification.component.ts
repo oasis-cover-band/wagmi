@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { User } from 'src/app/classes/user';
-import { IsUserService } from 'src/app/is-user.service';
+import { AccountInfo } from 'src/app/classes/account';
+import { IsAccountService } from 'src/app/is-account.service';
 import { SiteService } from '../../services/site.service';
 import { TimeService } from '../../services/time.service';
 
@@ -22,11 +22,11 @@ export class NotificationComponent implements OnInit {
     reputation: new BehaviorSubject<number>(10),
   }
   timeElapsed: BehaviorSubject<string> = new BehaviorSubject<string>('0');
-  user!: User;
+  account!: AccountInfo;
   constructor(
     public TIMEservice: TimeService,
     private SITEservice: SiteService,
-    private isUser: IsUserService
+    private isAccount: IsAccountService
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -50,9 +50,9 @@ export class NotificationComponent implements OnInit {
       )
     }, 1000);
     
-    const response = await this.SITEservice.getUser(this.data.address);
-    if (this.isUser.isUser(response)) {
-      this.user = response;
+    const response = await this.SITEservice.getAccount(this.data.address);
+    if (this.isAccount.isAccount(response)) {
+      this.account = response;
     }
   }
 

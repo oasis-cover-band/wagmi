@@ -11,7 +11,7 @@
     background:$black;
     display:grid;
     grid-template-areas:
-    ". console user wallet .";
+    ". console account wallet .";
     grid-template-rows: 1fr;
     grid-template-columns: $margin 0.9fr 0.05fr 0.05fr $margin;
     align-content: center;
@@ -25,15 +25,15 @@
         grid-auto-flow: column;
         color:$white;
         grid-template-areas:
-        "user route delimiter mouseover";
+        "account route delimiter mouseover";
         grid-template-columns: max-content max-content max-content max-content;
         grid-template-rows: 1fr;
         font-weight:900;
         max-width:100%;
         overflow: hidden;
         text-overflow: hidden;
-        b#user {
-            grid-area:user;
+        b#account {
+            grid-area:account;
             color:$tertiary;
         }
         span#route {
@@ -47,8 +47,8 @@
             position: relative;
         }
     }
-    app-user, app-action.user {
-        grid-area: user;
+    app-account, app-action.account {
+        grid-area: account;
     }
     app-action.wallet {
         grid-area:wallet;

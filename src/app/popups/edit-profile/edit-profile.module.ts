@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EditProfileComponent } from './edit-profile.component';
-import { UserModule } from 'src/app/objects/user/user.module';
-import { ActionModule } from 'src/app/objects/action/action.module';
+import { AccountModule } from '../../objects/account/account.module';
+import { ActionModule } from '../../objects/action/action.module';
 
 
 
@@ -12,7 +12,7 @@ import { ActionModule } from 'src/app/objects/action/action.module';
   ],
   imports: [
     CommonModule,
-    UserModule,
+    AccountModule,
     ActionModule
   ],
   exports: [

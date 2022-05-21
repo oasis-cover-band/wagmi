@@ -1,7 +1,7 @@
 
 <span id="console">
-    <b id="user" *ngIf="this.user !== undefined && this.user.walletAddress !== undefined">
-        {{this.user.walletAddress}}:
+    <b id="account" *ngIf="this.account !== undefined && this.account.walletAddress !== undefined">
+        {{this.account.walletAddress}}:
     </b>
     <span id="route">~/
         {{(this.currentRoute | async)}}
@@ -15,15 +15,15 @@
     </span>
 </span>
 
-<app-user
-*ngIf="this.user !== undefined && this.user.walletAddress !== undefined && this.user.avatarUri !== undefined && this.user.borderUri !== undefined && this.user.accessoryUri !== undefined"
+<app-account
+*ngIf="this.account !== undefined && this.account.walletAddress !== undefined && this.account.avatarUri !== undefined && this.account.borderUri !== undefined && this.account.accessoryUri !== undefined"
 [small]="true"
 [view]="true"
-[address]="this.user.walletAddress"
-[avatarUri]="this.user.avatarUri"
-[borderUri]="this.user.borderUri"
-[accessoryUri]="this.user.accessoryUri"
-></app-user>
+[address]="this.account.walletAddress"
+[avatarUri]="this.account.avatarUri"
+[borderUri]="this.account.borderUri"
+[accessoryUri]="this.account.accessoryUri"
+></app-account>
 
 <app-action
 class="wallet"
@@ -44,10 +44,10 @@ description="Logout"
 </app-action>
 
 <app-action
-class="user"
+class="account"
 icon="create"
 description="New"
 (click)="createAccount()"
-*ngIf="(this.myAddress | async) !== '' && this.user === undefined"
+*ngIf="(this.myAddress | async) !== '' && this.account === undefined"
 >
 </app-action>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../classes/user';
+import { AccountInfo } from '../classes/account';
 import axios from 'axios';
 
 @Injectable({
@@ -12,15 +12,15 @@ export class ApiService {
   ]
   maximumTextures = 425;
   baseURL: string = "https://m22xvxrqse.execute-api.us-east-2.amazonaws.com/";
-  users: any = {
+  accounts: any = {
   };
   constructor() { }
 
   // 
   // GETS
   // 
-  async getUser(address: string, force: boolean = false): Promise<User | number> {
-    if (force || (this.users[address] === null || this.users[address] === undefined)) {
+  async getAccount(address: string, force: boolean = false): Promise<AccountInfo | number> {
+    if (force || (this.accounts[address] === null || this.accounts[address] === undefined)) {
       return await axios({
         url: 'account/'.concat(String(address)),
         baseURL: this.baseURL,
@@ -28,7 +28,7 @@ export class ApiService {
       }).then(async (response: any) => {
         // handle success
         console.log(response.data);
-        this.users[address] = response.data;
+        this.accounts[address] = response.data;
         return await response.data;
       })
       .catch(async (error: any) => {
@@ -37,14 +37,14 @@ export class ApiService {
         return await error.response.status;
       })
     } else {
-      return this.users[address];
+      return this.accounts[address];
     }
   }
   // 
   // PUT
   // 
-  async updateAccount(address: string, force: boolean = false): Promise<User | number> {
-    if (force || (this.users[address] === null || this.users[address] === undefined)) {
+  async updateAccount(address: string, force: boolean = false): Promise<AccountInfo | number> {
+    if (force || (this.accounts[address] === null || this.accounts[address] === undefined)) {
       console.log(address);
       return await axios({
         url: 'account/'.concat(String(address)),
@@ -53,7 +53,7 @@ export class ApiService {
       }).then(async (response: any) => {
         // handle success
         console.log(response);
-        this.users[address] = response.data;
+        this.accounts[address] = response.data;
         return await response.data;
       })
       .catch(async (error: any) => {
@@ -62,14 +62,14 @@ export class ApiService {
         return await error.response.status;
       })
     } else {
-      return this.users[address];
+      return this.accounts[address];
     }
   }
   // 
   // POST
   // 
-  async createAccount(address: string, force: boolean = false): Promise<User | number> {
-    if (force || (this.users[address] === null || this.users[address] === undefined)) {
+  async createAccount(address: string, force: boolean = false): Promise<AccountInfo | number> {
+    if (force || (this.accounts[address] === null || this.accounts[address] === undefined)) {
       console.log(address);
       return await axios({
         url: 'account/'.concat(String(address)),
@@ -78,7 +78,7 @@ export class ApiService {
       }).then(async (response: any) => {
         // handle success
         console.log(response);
-        this.users[address] = response.data;
+        this.accounts[address] = response.data;
         return await response.data;
       })
       .catch(async (error: any) => {
@@ -87,11 +87,11 @@ export class ApiService {
         return await error.response.status;
       })
     } else {
-      return this.users[address];
+      return this.accounts[address];
     }
   }
   edit(address: string , edit: {
-    userId: '',
+    accountId: '',
     avatarUri: '',
     bannerUri: '',
     bio: ''
@@ -111,7 +111,7 @@ export class ApiService {
     return true;
   }
   getAlerts(address: string): number[] {
-    // essentially just returns the user's alerts - not entire object
+    // essentially just returns the account's alerts - not entire object
     // would be dope to have this as a stream that i can "subscribe/observe" to
     return [0]
   }

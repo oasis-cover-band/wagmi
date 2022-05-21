@@ -14,9 +14,9 @@
 <section id="edit-panel">
     <section id="banner"
     [@ngIfBannerAnimations]
-    *ngIf="this.user !== undefined && this.user.bannerUri !== undefined"
+    *ngIf="this.account !== undefined && this.account.bannerUri !== undefined"
     [ngStyle]="{
-    'background': 'url(' + this.user.bannerUri + ')',
+    'background': 'url(' + this.account.bannerUri + ')',
     'background-size': '100% 100%',
     'background-repeat': 'repeat'
     }">
@@ -30,15 +30,15 @@
 
     </app-action>
     </section>
-    <app-user
-    *ngIf="this.user !== undefined && this.user.walletAddress !== undefined && this.user.avatarUri !== undefined && this.user.borderUri !== undefined && this.user.accessoryUri !== undefined"
+    <app-account
+    *ngIf="this.account !== undefined && this.account.walletAddress !== undefined && this.account.avatarUri !== undefined && this.account.borderUri !== undefined && this.account.accessoryUri !== undefined"
     [extralarge]="true"
     [view]="true"
-    [address]="this.user.walletAddress"
-    [avatarUri]="this.user.avatarUri"
-    [borderUri]="this.user.borderUri"
-    [accessoryUri]="this.user.accessoryUri"
-    ></app-user>
+    [address]="this.account.walletAddress"
+    [avatarUri]="this.account.avatarUri"
+    [borderUri]="this.account.borderUri"
+    [accessoryUri]="this.account.accessoryUri"
+    ></app-account>
 
     <app-action
     id="avatar-picture"
@@ -72,11 +72,11 @@
 
     <section id="name" class="input">
         <span>Name</span>
-        <input #name id="name" *ngIf="this.user !== undefined && this.user.accountId !== undefined" [placeholder]="this.user.accountId"/>
+        <input #name id="name" *ngIf="this.account !== undefined && this.account.accountId !== undefined" [placeholder]="this.account.accountId"/>
     </section>
     <section id="bio" class="input">
         <span>Bio</span>
-        <textarea #bio cols="10" rows="5" id="bio" *ngIf="this.user !== undefined && this.user.bio !== undefined" [placeholder]="this.user.bio"></textarea>
+        <textarea #bio cols="10" rows="5" id="bio" *ngIf="this.account !== undefined && this.account.bio !== undefined" [placeholder]="this.account.bio"></textarea>
     </section>
 
     <button 

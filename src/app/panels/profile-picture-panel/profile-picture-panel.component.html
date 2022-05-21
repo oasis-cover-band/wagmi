@@ -1,24 +1,24 @@
-<app-user
-*ngIf="this.user !== undefined && this.user.walletAddress !== undefined && this.user.avatarUri !== undefined && this.user.borderUri !== undefined && this.user.accessoryUri !== undefined"
+<app-account
+*ngIf="this.account !== undefined && this.account.walletAddress !== undefined && this.account.avatarUri !== undefined && this.account.borderUri !== undefined && this.account.accessoryUri !== undefined"
 [extralarge]="true"
 [view]="true"
-[address]="this.user.walletAddress"
-[avatarUri]="this.user.avatarUri"
-[borderUri]="this.user.borderUri"
-[accessoryUri]="this.user.accessoryUri"
-></app-user>
+[address]="this.account.walletAddress"
+[avatarUri]="this.account.avatarUri"
+[borderUri]="this.account.borderUri"
+[accessoryUri]="this.account.accessoryUri"
+></app-account>
 
 <section id="text">
-    <div *ngIf="this.user !== undefined && this.user.joinDate !== undefined">
-        Joined on <span>{{this.user.joinDate | date:'longDate'}}</span>
+    <div *ngIf="this.account !== undefined && this.account.joinDate !== undefined">
+        Joined on <span>{{this.account.joinDate | date:'longDate'}}</span>
     </div>
-    <b *ngIf="this.user !== undefined && this.user.followers !== undefined">{{((this.user.followers / 1000) | number:'1.1-1')}}k</b> Followers
+    <b *ngIf="this.account !== undefined && this.account.followers !== undefined">{{((this.account.followers / 1000) | number:'1.1-1')}}k</b> Followers
     <br>
-    <b *ngIf="this.user !== undefined && this.user.following !== undefined">{{((this.user.following / 1000) | number:'1.1-1')}}k</b> Following
+    <b *ngIf="this.account !== undefined && this.account.following !== undefined">{{((this.account.following / 1000) | number:'1.1-1')}}k</b> Following
 </section>
 
 <section id="actions">
-    <app-action icon="edit" description="Edit" *ngIf="this.user !== undefined && (this.myAddress | async) === this.user.walletAddress && this.user.walletAddress !== undefined" (click)="this.showEdit()"></app-action>
+    <app-action icon="edit" description="Edit" *ngIf="this.account !== undefined && (this.myAddress | async) === this.account.walletAddress && this.account.walletAddress !== undefined" (click)="this.showEdit()"></app-action>
     <app-action icon="following" description="Follow" *ngIf="this.isFollowing === true" (click)="this.unfollow()"></app-action>
     <app-action icon="notfollowing" description="Unfollow" *ngIf="this.isFollowing === false" (click)="this.follow()"></app-action>
 </section>

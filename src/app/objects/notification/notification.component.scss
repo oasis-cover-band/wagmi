@@ -14,8 +14,8 @@
         cursor: pointer;
         grid-template-areas:
         '. . . . . .'
-        ". user notification notification actions ."
-        ". user time . reputation ."
+        ". account notification notification actions ."
+        ". account time . reputation ."
         '. . . . . .';
         grid-template-columns: 20px 0.125fr 25px 1fr max-content 20px;
         grid-template-rows: 
@@ -24,8 +24,8 @@
         border-radius: $borderradius;
         row-gap:$mobilegap;
         justify-self: stretch;
-        app-user {
-            grid-area: user;
+        app-account {
+            grid-area: account;
         }
         b#price {
             text-decoration: underline;
@@ -141,8 +141,8 @@
             grid-template-areas:
             '. . . . . .'
             ". . . reputation reputation ."
-            ". user notification notification notification ."
-            ". user time . actions ."
+            ". account notification notification notification ."
+            ". account time . actions ."
             '. . . . . .';
             grid-template-columns: 20px 0.125fr 25px 1fr max-content 20px;
             grid-template-rows: 
@@ -166,7 +166,7 @@
         section#container {
             grid-template-areas:
             '. . . . . .'
-            ". user . . . ."
+            ". account . . . ."
             ". time reputation reputation reputation ."
             ". notification notification notification notification ."
             ". actions actions actions actions ."
