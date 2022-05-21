@@ -87,21 +87,44 @@ trigger(
       transition(
         ':enter', 
         [
-          style({ transform: 'translateY(-160px)'} ),
+          style({ height: '0px', maxHeight: '0px', minHeight: '0px', opacity: 0 } ),
           animate('0.25s ease-out', 
-                  style({ transform: 'translateY(0px)' }))
+                  style({ height: '48px', maxHeight: '48px', minHeight: '48px', opacity: 1 }))
         ]
       ),
       transition(
         ':leave', 
         [
-          style({ transform: 'translateY(0px)' }),
+          style({ height: '48px', maxHeight: '48px', minHeight: '48px', opacity: 1 }),
           animate('0.25s ease-out', 
-                  style({ transform: 'translateY(-160px)' }))
+                  style({ height: '0px', maxHeight: '0px', minHeight: '0px', opacity: 0 }))
         ]
       )
     ]
   );
+
+  export const ngIfConsoleAnimations =
+  trigger(
+    'ngIfConsoleAnimations',
+      [
+        transition(
+          ':enter', 
+          [
+            style({ transform: 'translateY(-160px)'} ),
+            animate('0.25s ease-out', 
+                    style({ transform: 'translateY(0px)' }))
+          ]
+        ),
+        transition(
+          ':leave', 
+          [
+            style({ transform: 'translateY(0px)' }),
+            animate('0.25s ease-out', 
+                    style({ transform: 'translateY(-160px)'}))
+          ]
+        )
+      ]
+    );
 
   export const ngIfBannerAnimations =
   trigger(

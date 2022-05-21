@@ -19,6 +19,6 @@
 
 <section id="actions">
     <app-action icon="edit" description="Edit" *ngIf="this.account !== undefined && (this.myAddress | async) === this.account.walletAddress && this.account.walletAddress !== undefined" (click)="this.showEdit()"></app-action>
-    <app-action icon="following" description="Follow" *ngIf="this.isFollowing === true" (click)="this.unfollow()"></app-action>
-    <app-action icon="notfollowing" description="Unfollow" *ngIf="this.isFollowing === false" (click)="this.follow()"></app-action>
+    <app-action icon="follow" description="Follow" *ngIf="this.isFollowing === true" (click)="this.unfollow()"></app-action>
+    <app-action icon="follownot" description="Unfollow" *ngIf="this.isFollowing === false" (click)="this.follow()"></app-action>
 </section>

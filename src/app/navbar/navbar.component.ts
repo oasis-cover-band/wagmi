@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { ngIfAnimations } from '../animations';
+import { ngIfConsoleAnimations } from '../animations';
 import { AccountInfo } from '../classes/accountInfo';
 import { Web3Service } from '../services/web3.service';
 import { SiteService } from '../services/site.service';
@@ -12,7 +12,7 @@ import { ApiService } from '../services/api.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   animations: [
-    ngIfAnimations
+    ngIfConsoleAnimations
   ]
 })
 export class NavbarComponent implements OnInit {

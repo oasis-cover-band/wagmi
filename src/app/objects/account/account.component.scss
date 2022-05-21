@@ -131,9 +131,11 @@
         align-self: center;
         color:$black;
         z-index:100;
-        font-weight:100;
+        font-weight:900;
+        font-family: 'Nunito';
         font-size:0em;
         overflow:hidden;
+        font-variant-caps: all-small-caps;
     }
     div#inner {
         z-index:1;
@@ -203,7 +205,7 @@
         }
         span#action {
             opacity:1;
-            font-size:1em;
+            font-size:0.75em;
         }
         &.large {
             span#action {

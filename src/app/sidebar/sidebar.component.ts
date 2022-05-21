@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { ngIfAnimations } from '../animations';
 import { AccountInfo } from '../classes/accountInfo';
 import { IsAccountService } from '../is-account.service';
 import { SiteService } from '../services/site.service';
@@ -9,7 +10,8 @@ import { Web3Service } from '../services/web3.service';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  styleUrls: ['./sidebar.component.scss'],
+  animations: [ngIfAnimations]
 })
 export class SidebarComponent implements OnInit {
   friends: AccountInfo[] = [

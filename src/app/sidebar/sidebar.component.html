@@ -10,38 +10,46 @@ description="Home"
 </app-action>
     
 <app-action #basic
-icon="home"
+icon="details"
 description="Basic"
 (click)="showBasic()"
 (mouseover)="onOver('basic_info')"
 (mouseleave)="onLeave('')"
+*ngIf="(this.currentRoute | async)?.substr(0, 7) === 'profile'"
+[@ngIfAnimations]
 >
 </app-action>
     
 <app-action #transactions
-icon="home"
+icon="transfers"
 description="Tx Info"
 (click)="showBasic()"
 (mouseover)="onOver('transaction_info')"
 (mouseleave)="onLeave('')"
+*ngIf="(this.currentRoute | async)?.substr(0, 7) === 'profile'"
+[@ngIfAnimations]
 >
 </app-action>
     
 <app-action #followers
-icon="home"
+icon="followers"
 description="F..ers"
 (click)="showBasic()"
 (mouseover)="onOver('followers_info')"
 (mouseleave)="onLeave('')"
+*ngIf="(this.currentRoute | async)?.substr(0, 7) === 'profile'"
+[@ngIfAnimations]
 >
 </app-action>
     
 <app-action #following
-icon="home"
+icon="following"
 description="F..ing"
 (click)="showBasic()"
 (mouseover)="onOver('following_info')"
 (mouseleave)="onLeave('')"
+*ngIf="(this.currentRoute | async)?.substr(0, 7) === 'profile'"
+[@ngIfAnimations]
 >
 </app-action>
 
