@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { User } from '../classes/user';
-import { LoggedInService } from '../logged-in.service';
-import { SiteService } from '../site.service';
+import { IsUserService } from '../is-user.service';
+import { SiteService } from '../services/site.service';
+import { Web3Service } from '../services/web3.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,21 +15,27 @@ export class SidebarComponent implements OnInit {
   friends: User[] = [
 
   ];
-  user!: User;
-  myAddress: BehaviorSubject<string> = this.LIservice.myAddress;
+  user!: User | number;
+  myAddress: BehaviorSubject<string> = this.WEB3service.loggedIn.walletAddress;
   constructor(
     private router: Router,
     private SITEservice: SiteService,
-    private LIservice: LoggedInService
+    private WEB3service: Web3Service,
+    private isUser: IsUserService
     ) { }
 
   async ngOnInit(): Promise<void> {
   
       this.myAddress.subscribe(async newAddress => {
         this.user = await this.SITEservice.getUser(newAddress);
-        this.user.friends.forEach(async friend => {
-          this.friends.push(await this.SITEservice.getUser(friend));
-        });
+        if (this.isUser.isUser(this.user)) {
+          this.user.friends.forEach(async friend => {
+            const response = await this.SITEservice.getUser(friend);
+            if (this.isUser.isUser(response)) {
+              this.friends.push(response);
+            }
+          });
+        }
       });
   }
 

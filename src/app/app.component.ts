@@ -2,10 +2,11 @@ import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ngIfBannerAnimations, centerRouterAnimations, leftRouterAnimations, rightRouterAnimations, popupRouterAnimations } from './animations';
-import { ApiService } from './api.service';
+import { ApiService } from './services/api.service';
 import { User } from './classes/user';
-import { SiteService } from './site.service';
-import { TimeService } from './time.service';
+import { SiteService } from './services/site.service';
+import { TimeService } from './services/time.service';
+import { IsUserService } from './is-user.service';
 
 @Component({
   selector: 'app-root',
@@ -28,12 +29,17 @@ export class AppComponent implements OnDestroy {
     private TIMEservice: TimeService,
     private APIservice: ApiService,
     private route: ActivatedRoute,
-    private SITEservice: SiteService
+    private SITEservice: SiteService,
+    private isUser: IsUserService
   ) {
     this.TIMEservice.start();
     this.SITEservice.viewing.subscribe(async viewing => {
       this.viewing = viewing;
-      this.user = await this.SITEservice.getUser(viewing);
+      
+    const response = await this.SITEservice.getUser(viewing);
+    if (this.isUser.isUser(response)) {
+      this.user = response;
+    }
       if (this.user.bannerUri === '') {
         this.user.bannerUri = `../assets/textures/` + Number(this.viewing) % 340 + `.png`
       }

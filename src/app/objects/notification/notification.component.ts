@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/classes/user';
-import { SiteService } from 'src/app/site.service';
-import { TimeService } from 'src/app/time.service';
+import { IsUserService } from 'src/app/is-user.service';
+import { SiteService } from '../../services/site.service';
+import { TimeService } from '../../services/time.service';
 
 @Component({
   selector: 'app-notification',
@@ -24,10 +25,11 @@ export class NotificationComponent implements OnInit {
   user!: User;
   constructor(
     public TIMEservice: TimeService,
-    private SITEservice: SiteService
+    private SITEservice: SiteService,
+    private isUser: IsUserService
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     setInterval(() => {
       const msDifference = 
       this.data.timestamp - this.TIMEservice.time.getValue();
@@ -47,9 +49,11 @@ export class NotificationComponent implements OnInit {
         amountOfUnits + timeUnit
       )
     }, 1000);
-    this.SITEservice.getUser(this.data.address).then(user => {
-      this.user = user;
-    });
+    
+    const response = await this.SITEservice.getUser(this.data.address);
+    if (this.isUser.isUser(response)) {
+      this.user = response;
+    }
   }
 
 }

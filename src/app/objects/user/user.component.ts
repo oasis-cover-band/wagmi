@@ -1,8 +1,9 @@
 import { Component, HostBinding, HostListener, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { ApiService } from 'src/app/api.service';
-import { SiteService } from 'src/app/site.service';
+import { IsUserService } from 'src/app/is-user.service';
+import { ApiService } from '../../services/api.service';
+import { SiteService } from '../../services/site.service';
 
 @Component({
   selector: 'app-user',
@@ -54,11 +55,19 @@ export class UserComponent implements OnInit {
   constructor(
     public APIservice: ApiService,
     private router: Router,
-    private SITEservice: SiteService
+    private SITEservice: SiteService,
+    private isUser: IsUserService
   ) { }
 
   async ngOnInit(): Promise<void> {
     console.log(this.avatarUri);
+    const response = await this.SITEservice.getUser(this.address);
+    let user;
+    if (this.isUser.isUser(response)) {
+      user = response;
+    } else {
+      return;
+    }
     if (this.avatarUri === '' || this.avatarUri === undefined || this.avatarUri === null || this.avatarUri === "") {
       this.avatarUri = `../assets/textures/` + (Math.floor(Number(this.address) * 420 / 3)) % 340 + `.png`;
     }
@@ -66,7 +75,6 @@ export class UserComponent implements OnInit {
       this.borderUri = `../assets/textures/` + (Math.floor(Number(this.address) * 42069 / 3)) % 340 + `.png`;
     }
     if (this.accessoryUri === '' || this.accessoryUri === undefined || this.accessoryUri === null || this.accessoryUri === "") {
-      const user = await this.SITEservice.getUser(this.address);
       this.defaultAccessory = true;
       // ***********************
       // START FULL USE OF GIFS

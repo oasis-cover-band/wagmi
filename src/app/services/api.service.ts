@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from './classes/user';
+import { User } from '../classes/user';
 import axios from 'axios';
 
 @Injectable({
@@ -19,7 +19,7 @@ export class ApiService {
   // 
   // GETS
   // 
-  async getUser(address: string, force: boolean = false): Promise<User | any> {
+  async getUser(address: string, force: boolean = false): Promise<User | number> {
     if (force || (this.users[address] === null || this.users[address] === undefined)) {
       return await axios({
         url: 'account/'.concat(String(address)),
@@ -33,20 +33,37 @@ export class ApiService {
       })
       .catch(async (error: any) => {
         // handle error
-        // console.log(error);
-        return await error;
+        console.log(error);
+        return await error.response.status;
       })
     } else {
       return this.users[address];
     }
   }
-  getAddressBanner(address: string ): string {
-    console.log(Number(address));
-    return String(Number(address) % this.maximumTextures);
+  // 
+  // PUTS
+  // 
+  async setUser(address: string, force: boolean = false): Promise<User | number> {
+    if (force || (this.users[address] === null || this.users[address] === undefined)) {
+      return await axios({
+        url: 'account/'.concat(String(address)),
+        baseURL: this.baseURL,
+        method: 'put' 
+      }).then(async (response: any) => {
+        // handle success
+        console.log(response.data);
+        this.users[address] = response.data;
+        return await response.data;
+      })
+      .catch(async (error: any) => {
+        // handle error
+        console.log(error);
+        return await error.response.status;
+      })
+    } else {
+      return this.users[address];
+    }
   }
-  // 
-  // POSTS
-  // 
   edit(address: string , edit: {
     userId: '',
     avatarUri: '',

@@ -3,8 +3,9 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ngIfBannerAnimations } from 'src/app/animations';
 import { User } from 'src/app/classes/user';
-import { LoggedInService } from 'src/app/logged-in.service';
-import { SiteService } from 'src/app/site.service';
+import { IsUserService } from 'src/app/is-user.service';
+import { Web3Service } from 'src/app/services/web3.service';
+import { SiteService } from '../../services/site.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -16,7 +17,7 @@ import { SiteService } from 'src/app/site.service';
 })
 export class EditProfileComponent implements OnInit {
 
-  myAddress: BehaviorSubject<string> = this.LIservice.myAddress;
+  myAddress: BehaviorSubject<string> = this.WEB3service.loggedIn.walletAddress;
   user!: User;
   @ViewChild('name') name!: ElementRef<any>;
   @ViewChild('bio') bio!: ElementRef<any>;
@@ -26,12 +27,16 @@ export class EditProfileComponent implements OnInit {
   accessoryChanged: boolean = false;
   constructor(
     private router: Router,
-    private LIservice: LoggedInService,
-    private SITEservice: SiteService
+    private WEB3service: Web3Service,
+    private SITEservice: SiteService,
+    private isUser: IsUserService
   ) { }
 
   async ngOnInit(): Promise<void> {
-    this.user = await this.SITEservice.getUser(this.myAddress.getValue());
+    const response = await this.SITEservice.getUser(this.myAddress.getValue());
+    if (this.isUser.isUser(response)) {
+      this.user = response;
+    }
     if (this.user.bannerUri === '') {
       this.user.bannerUri = `../assets/textures/` + Number(this.myAddress.getValue()) % 340 + `.png`;
     }

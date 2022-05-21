@@ -26,7 +26,28 @@
 ></app-user>
 
 <app-action
+class="wallet"
 icon="wallet"
-description="Wallet"
+description="Login"
+(click)="login()"
+*ngIf="(this.myAddress | async) === ''"
+>
+</app-action>
+
+<app-action
+class="wallet"
+icon="logout"
+description="Logout"
+(click)="logout()"
+*ngIf="(this.myAddress | async) !== ''"
+>
+</app-action>
+
+<app-action
+class="user"
+icon="create"
+description="New"
+(click)="createAccount()"
+*ngIf="(this.myAddress | async) !== '' && this.user === undefined"
 >
 </app-action>

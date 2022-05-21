@@ -26,9 +26,12 @@
         color:$white;
         grid-template-areas:
         "user route delimiter mouseover";
-        grid-template-columns: max-content;
+        grid-template-columns: max-content max-content max-content max-content;
         grid-template-rows: 1fr;
         font-weight:900;
+        max-width:100%;
+        overflow: hidden;
+        text-overflow: hidden;
         b#user {
             grid-area:user;
             color:$tertiary;
@@ -44,10 +47,10 @@
             position: relative;
         }
     }
-    app-user {
+    app-user, app-action.user {
         grid-area: user;
     }
-    app-action {
+    app-action.wallet {
         grid-area:wallet;
     }
     @media (max-width:1100px) {

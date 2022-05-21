@@ -1,6 +1,6 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/api.service';
-import { LoggedInService } from 'src/app/logged-in.service';
+import { ApiService } from '../../services/api.service';
+import { Web3Service } from '../../services/web3.service';
 
 @Component({
   selector: 'app-alert',
@@ -15,11 +15,11 @@ export class AlertComponent implements OnInit {
   alert0!: string;
   alert1!: string;
   // @HostListener('click') onClick(){
-  //   this.APIservice.closeAlert(this.LIservice.myAddress.getValue(), this.index);
+  //   this.APIservice.closeAlert(this.WEB3service.loggedIn.walletAddress.getValue(), this.index);
   // }
   constructor(
     private APIservice: ApiService,
-    private LIservice: LoggedInService
+    private WEB3service: Web3Service
   ) { }
 
   ngOnInit(): void {
@@ -100,12 +100,12 @@ export class AlertComponent implements OnInit {
   }
 
   close() {
-      this.APIservice.closeAlert(this.LIservice.myAddress.getValue(), this.index);
+      this.APIservice.closeAlert(this.WEB3service.loggedIn.walletAddress.getValue(), this.index);
   }
 
   view() {
     // go to notification details
-      // this.APIservice.closeAlert(this.LIservice.myAddress.getValue(), this.index);
+      // this.APIservice.closeAlert(this.WEB3service.loggedIn.walletAddress.getValue(), this.index);
   }
 
 }

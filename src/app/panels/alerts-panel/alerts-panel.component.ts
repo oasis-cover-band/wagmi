@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoggedInService } from 'src/app/logged-in.service';
+import { Web3Service } from '../../services/web3.service';
 
 @Component({
   selector: 'app-alerts-panel',
@@ -8,9 +8,9 @@ import { LoggedInService } from 'src/app/logged-in.service';
 })
 export class AlertsPanelComponent implements OnInit {
 
-  alerts = this.LIservice.alerts;
+  // alerts = this.WEB3service.alerts;
   constructor(
-    private LIservice: LoggedInService
+    private WEB3service: Web3Service
   ) { }
 
   ngOnInit(): void {

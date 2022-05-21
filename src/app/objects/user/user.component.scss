@@ -132,6 +132,8 @@
         color:$black;
         z-index:100;
         font-weight:600;
+        font-size:0em;
+        overflow:hidden;
     }
     div#inner {
         z-index:1;
@@ -201,6 +203,7 @@
         }
         span#address {
             opacity:1;
+            font-size:1em;
         }
         &.large {
             span#address {
@@ -227,7 +230,7 @@
         }
         &.small {
             span#address {
-                transform:translate(0px, 0px);
+                transform:translate(-100%, 0px);
             }
         }
     }
