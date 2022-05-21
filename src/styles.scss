@@ -17,6 +17,12 @@ html {
       background: rgba(0,0,0,0);        /* color of the tracking area */
     }
     
+
+    ::selection {
+        color: $black;
+        background: $tertiary;
+      }
+    
     ::-webkit-scrollbar-thumb {
         background: $tertiary; /* Old browsers */
         // background: -moz-linear-gradient(top,  $dark-primary 0%, $primary 100%); /* FF3.6-15 */
@@ -54,9 +60,10 @@ html, body {
     margin:0px;
     padding:0px;
     min-height:100vh;
-    max-height:fit-content;
+    max-height: 100vh;
     min-width:100vw;
     max-width:100vw;
+    overflow:hidden;
 }
 body {
     grid-area:body;
@@ -131,6 +138,27 @@ button {
         overflow:hidden;
         text-overflow: ellipsis;
     }
+    
+    input::placeholder {
+        color: $lightestgrey;
+        opacity: 0.4;
+    }
+      
+    input:-ms-input-placeholder {
+        color: $lightestgrey;
+        opacity: 0.4;
+    }
+    
+    input::-ms-input-placeholder {
+        color: $lightestgrey;
+        opacity: 0.4;
+    }
+
+    input::-webkit-input-placeholder {
+        color: $lightestgrey;
+        opacity: 0.4;
+    }
+      
     input:not(:placeholder-shown),
     textarea:not(:placeholder-shown) {
         border:2px dashed $tertiary;
