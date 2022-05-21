@@ -74,6 +74,9 @@ img {
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
+    &.regular {
+        image-rendering: auto;
+    }
 }
 * {
     font-family: 'Istok Web';

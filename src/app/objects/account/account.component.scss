@@ -8,11 +8,33 @@
     border-radius:320px;
     align-self: center;
     justify-self: center;
+    img {
+        overflow:hidden;
+    }
     section#accessory {
         grid-area:content;
         z-index:100;
         justify-self: end;
         pointer-events: none;
+    }
+    div#inner {
+        display:grid;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        justify-items: center;
+        grid-template-areas: 'content';
+        position: relative;
+        overflow: hidden;
+        * {
+            grid-area:content;
+        }
+        img {
+            z-index:1;
+        }
+        &:before, &:after {
+            z-index:2;
+        }
     }
     &.extralarge {
         min-height:176px;
@@ -28,9 +50,16 @@
                 min-height:160px;
                 max-height:160px;
                 min-width:160px;
+                // max-width:160px;
+            }
+            div#inner {
                 max-width:160px;
             }
             div#outer {
+                min-height:176px;
+                max-height:176px;
+                min-width:176px;
+                max-width:176px;
                 img {
                     min-height:176px;
                     max-height:176px;
@@ -54,9 +83,16 @@
                 min-height:80px;
                 max-height:80px;
                 min-width:80px;
+                // max-width:80px;
+            }
+            div#inner {
                 max-width:80px;
             }
             div#outer {
+                min-height:88px;
+                max-height:88px;
+                min-width:88px;
+                max-width:88px;
                 img {
                     min-height:88px;
                     max-height:88px;
@@ -80,10 +116,17 @@
                 min-height:64px;
                 max-height:64px;
                 min-width:64px;
-                max-width:64px;
+                // max-width:64px;
             }
         }
+        div#inner {
+            max-width:64px;
+        }
         div#outer {
+            min-height:70.4px;
+            max-height:70.4px;
+            min-width:70.4px;
+            max-width:70.4px;
             img {
                 min-height:70.4px;
                 max-height:70.4px;
@@ -106,10 +149,17 @@
                 min-height:32px;
                 max-height:32px;
                 min-width:32px;
-                max-width:32px;
+                // max-width:32px;
             }
         }
+        div#inner {
+            max-width:32px;
+        }
         div#outer {
+            min-height:35.2px;
+            max-height:35.2px;
+            min-width:35.2px;
+            max-width:35.2px;
             img {
                 min-height:35.2px;
                 max-height:35.2px;
@@ -165,14 +215,11 @@
         grid-area: content;
         pointer-events: none;
     }
-    img {
-        overflow:hidden;
-    }
     cursor: pointer;
     div#inner:after {
         border-radius:100px;
         content: "";
-        position:0px;
+        position:absolute;
         top:0px;
         left:0px;
         right:0px;
@@ -185,7 +232,7 @@
     div#inner:before {
         border-radius:100px;
         content: "";
-        position:0px;
+        position:absolute;
         top:0px;
         left:0px;
         right:0px;
