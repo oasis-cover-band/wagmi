@@ -67,7 +67,7 @@ export class SidebarComponent implements OnInit {
       right: ['profile-stats',  this.SITEservice.viewing.getValue()]
     }}])
     this.SITEservice.mouseover.next('');
-    this.SITEservice.currentRoute.next('profile/transaction_info/'.concat(this.SITEservice.viewing.getValue()));
+    this.SITEservice.currentRoute.next('profile/transactions_info/'.concat(this.SITEservice.viewing.getValue()));
   }
 
   showFollowers(): void {

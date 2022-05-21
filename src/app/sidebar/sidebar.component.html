@@ -6,6 +6,9 @@ description="Home"
 (click)="goHome()"
 (mouseover)="onOver('home')"
 (mouseleave)="onLeave('')"
+[ngClass]="{
+    'active': (this.currentRoute | async)?.substr(0, 4) === 'home'
+}"
 >
 </app-action>
     
@@ -16,6 +19,9 @@ description="Basic"
 (mouseover)="onOver('basic_info')"
 (mouseleave)="onLeave('')"
 *ngIf="(this.currentRoute | async)?.substr(0, 7) === 'profile'"
+[ngClass]="{
+    'active': (this.currentRoute | async)?.substr(0, 18) === 'profile/basic_info'
+}"
 [@ngIfAnimations]
 >
 </app-action>
@@ -24,9 +30,12 @@ description="Basic"
 icon="transfers"
 description="Tx Info"
 (click)="showTransactions()"
-(mouseover)="onOver('transaction_info')"
+(mouseover)="onOver('transactions_info')"
 (mouseleave)="onLeave('')"
 *ngIf="(this.currentRoute | async)?.substr(0, 7) === 'profile'"
+[ngClass]="{
+    'active': (this.currentRoute | async)?.substr(0, 25) === 'profile/transactions_info'
+}"
 [@ngIfAnimations]
 >
 </app-action>
@@ -38,6 +47,9 @@ description="F..ers"
 (mouseover)="onOver('followers_info')"
 (mouseleave)="onLeave('')"
 *ngIf="(this.currentRoute | async)?.substr(0, 7) === 'profile'"
+[ngClass]="{
+    'active': (this.currentRoute | async)?.substr(0, 22) === 'profile/followers_info'
+}"
 [@ngIfAnimations]
 >
 </app-action>
@@ -49,6 +61,9 @@ description="F..ing"
 (mouseover)="onOver('following_info')"
 (mouseleave)="onLeave('')"
 *ngIf="(this.currentRoute | async)?.substr(0, 7) === 'profile'"
+[ngClass]="{
+    'active': (this.currentRoute | async)?.substr(0, 22) === 'profile/following_info'
+}"
 [@ngIfAnimations]
 >
 </app-action>

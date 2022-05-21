@@ -13,6 +13,16 @@
     max-width:48px;
     height:48px;
     width:48px;
+    &.active {
+        &:before {
+            opacity:1;
+            background: $tertiary;
+            z-index:-1;
+        }
+        img {
+            transform:scale(0.8);
+        }
+    }
     img {
         grid-area:content;
         justify-self: center;
@@ -20,6 +30,7 @@
         pointer-events: none;
         // transform:scale(0.5);
         transition:$transition;
+        overflow:hidden;
     }
     span#description {
         grid-area: content;
