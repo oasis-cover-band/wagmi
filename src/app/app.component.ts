@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ngIfBannerAnimations, centerRouterAnimations, leftRouterAnimations, rightRouterAnimations, popupRouterAnimations } from './animations';
 import { ApiService } from './services/api.service';
@@ -30,7 +30,8 @@ export class AppComponent implements OnDestroy {
     private APIservice: ApiService,
     private route: ActivatedRoute,
     private SITEservice: SiteService,
-    private isAccount: IsAccountService
+    private isAccount: IsAccountService,
+    private router: Router
   ) {
     this.TIMEservice.start();
     this.SITEservice.viewing.subscribe(async viewing => {
@@ -45,6 +46,12 @@ export class AppComponent implements OnDestroy {
     }
     });
     this.SITEservice.currentRoute.next('home');
+    this.router.navigate([{outlets: {
+      left: ['empty'],
+      center: ['notifications'],
+      right: ['alerts'],
+      popup: ['empty']
+    }}])
 
   }
 

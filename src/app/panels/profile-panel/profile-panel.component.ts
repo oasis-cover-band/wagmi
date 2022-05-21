@@ -31,7 +31,6 @@ export class ProfilePanelComponent implements OnInit, OnDestroy {
       this.account = response;
     }
     this.SITEservice.viewing.next(this.requestedAddress.getValue());
-    this.SITEservice.currentRoute.next('profile/'.concat(this.requestedAddress.getValue()));
   }
 
   ngOnDestroy(): void {

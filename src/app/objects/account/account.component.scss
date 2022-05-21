@@ -118,7 +118,7 @@
             }
         }
     }
-    span#address {
+    span#action {
         position:absolute;
         background:$tertiary;
         border-radius:$borderradius;
@@ -131,7 +131,7 @@
         align-self: center;
         color:$black;
         z-index:100;
-        font-weight:600;
+        font-weight:100;
         font-size:0em;
         overflow:hidden;
     }
@@ -201,17 +201,17 @@
         div#inner:before {
             opacity:0.33;
         }
-        span#address {
+        span#action {
             opacity:1;
             font-size:1em;
         }
         &.large {
-            span#address {
+            span#action {
                 transform:translate(0px, 0px);
             }
         }
         &.extralarge {
-            span#address {
+            span#action {
                 transform:translate(0px, 0px);
             }
         }
@@ -219,18 +219,18 @@
             span#addres {
                 transform:translate(0px, 0px);
             }
-            // span#address {
+            // span#action {
             //     transform:translate(calc(32px + 100%), 0px);
             // }
             // @media (max-width:1100px) {
-            //     span#address {
+            //     span#action {
             //         transform:translate(0px, 32px);
             //     }
             // }
         }
         &.small {
-            span#address {
-                transform:translate(-100%, 0px);
+            span#action {
+                transform:translate(0px, 0px);
             }
         }
     }

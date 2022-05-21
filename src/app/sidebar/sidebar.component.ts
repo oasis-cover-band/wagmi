@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { AccountInfo } from '../classes/accountInfo';
 import { IsAccountService } from '../is-account.service';
@@ -17,11 +17,13 @@ export class SidebarComponent implements OnInit {
   ];
   account!: AccountInfo | number;
   myAddress: BehaviorSubject<string> = this.WEB3service.loggedIn.walletAddress;
+  currentRoute: BehaviorSubject<string> = this.SITEservice.currentRoute;
   constructor(
     private router: Router,
     private SITEservice: SiteService,
     private WEB3service: Web3Service,
-    private isAccount: IsAccountService
+    private isAccount: IsAccountService,
+    private route: ActivatedRoute
     ) { }
 
   async ngOnInit(): Promise<void> {
@@ -39,17 +41,24 @@ export class SidebarComponent implements OnInit {
       });
   }
 
-  goHome() {
+  goHome(): void {
     this.router.navigate([{outlets: {left: ['empty'], center: ['notifications'], right: ['alerts']}}])
     this.SITEservice.currentRoute.next('home');
   }
 
-  onOver() {
-    this.SITEservice.mouseover.next('home');
+  showBasic(): void {
+    // ROUTER CENTER TO BASIC INFO, ROUTE LEFT TO PROFILE PIC, ROUTE RIGHT TO REPUTATION
+    // this.router.navigate([{outlets: {left: ['empty'], center: ['notifications'], right: ['alerts']}}])
+    // this.SITEservice.currentRoute.next('home');
   }
 
-  onLeave() {
-    this.SITEservice.mouseover.next('');
+
+  onOver(value: string): void {
+    this.SITEservice.mouseover.next(value);
+  }
+
+  onLeave(value: string): void {
+    this.SITEservice.mouseover.next(value);
   }
 
 }

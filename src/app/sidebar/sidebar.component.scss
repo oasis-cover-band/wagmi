@@ -15,6 +15,12 @@
     '. content .'
     '. . .';
     overflow:visible;
+    span#friend-seperator {
+        color:$tertiary;
+        text-align: center;
+        justify-self: center;
+        align-self: center;
+    }
     section#content {
         min-height:100%;
         max-height:100%;

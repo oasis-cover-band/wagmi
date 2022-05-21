@@ -4,11 +4,48 @@
 icon="home"
 description="Home"
 (click)="goHome()"
-(mouseover)="onOver()"
-(mouseleave)="onLeave()"
+(mouseover)="onOver('home')"
+(mouseleave)="onLeave('')"
+>
+</app-action>
+    
+<app-action #basic
+icon="home"
+description="Basic"
+(click)="showBasic()"
+(mouseover)="onOver('basic_info')"
+(mouseleave)="onLeave('')"
+>
+</app-action>
+    
+<app-action #transactions
+icon="home"
+description="Tx Info"
+(click)="showBasic()"
+(mouseover)="onOver('transaction_info')"
+(mouseleave)="onLeave('')"
+>
+</app-action>
+    
+<app-action #followers
+icon="home"
+description="F..ers"
+(click)="showBasic()"
+(mouseover)="onOver('followers_info')"
+(mouseleave)="onLeave('')"
+>
+</app-action>
+    
+<app-action #following
+icon="home"
+description="F..ing"
+(click)="showBasic()"
+(mouseover)="onOver('following_info')"
+(mouseleave)="onLeave('')"
 >
 </app-action>
 
+<span id="friend-seperator">FRIENDS</span>
 <ng-container  *ngFor="let friend of friends">
 <app-account *ngIf="friend !== undefined && friend.walletAddress !== undefined && friend.avatarUri !== undefined && friend.borderUri !== undefined && friend.accessoryUri !== undefined"
 [address]="friend.walletAddress"

@@ -33,6 +33,7 @@ export class AccountComponent implements OnInit {
         right: ['profile-stats',  this.address]
       }}])
       this.SITEservice.mouseover.next('');
+      this.SITEservice.currentRoute.next('profile/'.concat(this.address));
     }
   }
   @HostListener('mouseleave') onLeave(){

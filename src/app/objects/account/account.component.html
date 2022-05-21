@@ -8,8 +8,11 @@
         [src]="this.avatarUri" />
     </div>
 </section>
-<span id="address">
-    {{address}}
+<span id="action" *ngIf="this.view">
+    {{"View"}}
+</span>
+<span id="action" *ngIf="this.chat">
+    {{"Chat"}}
 </span>
 <section id="accessory" *ngIf="this.small === false">
     <img
