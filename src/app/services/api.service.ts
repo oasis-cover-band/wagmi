@@ -41,23 +41,49 @@ export class ApiService {
     }
   }
   // 
-  // PUTS
+  // PUT
   // 
-  async setUser(address: string, force: boolean = false): Promise<User | number> {
+  async updateAccount(address: string, force: boolean = false): Promise<User | number> {
     if (force || (this.users[address] === null || this.users[address] === undefined)) {
+      console.log(address);
       return await axios({
         url: 'account/'.concat(String(address)),
         baseURL: this.baseURL,
-        method: 'put' 
+        method: 'post' 
       }).then(async (response: any) => {
         // handle success
-        console.log(response.data);
+        console.log(response);
         this.users[address] = response.data;
         return await response.data;
       })
       .catch(async (error: any) => {
         // handle error
-        console.log(error);
+        console.log(error.response);
+        return await error.response.status;
+      })
+    } else {
+      return this.users[address];
+    }
+  }
+  // 
+  // POST
+  // 
+  async createAccount(address: string, force: boolean = false): Promise<User | number> {
+    if (force || (this.users[address] === null || this.users[address] === undefined)) {
+      console.log(address);
+      return await axios({
+        url: 'account/'.concat(String(address)),
+        baseURL: this.baseURL,
+        method: 'post' 
+      }).then(async (response: any) => {
+        // handle success
+        console.log(response);
+        this.users[address] = response.data;
+        return await response.data;
+      })
+      .catch(async (error: any) => {
+        // handle error
+        console.log(error.response);
         return await error.response.status;
       })
     } else {

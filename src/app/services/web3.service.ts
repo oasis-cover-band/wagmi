@@ -21,16 +21,17 @@ export class Web3Service {
     // this.connectWallet();
   }
 
-  disconnectWallet(): void {
+  async disconnectWallet(): Promise<string> {
     // this.notificationsService.notify({
-    //   title: 'Logging In',
+    //   title: 'Logging Out',
     //   icon: 'alarm',
-    //   text: 'You are attempting to login.',
+    //   text: 'You are attempting to logout.',
     //   date: new Date()
-    // });
-    // this.tryProvider().then(tryProviderResult => {
-    //   this.loginProcedure();
-    // });
+    // }); 
+    const walletAddress = this.loggedIn.walletAddress.getValue();
+    this.web3.eth.defaultAccount = "";
+    this.loggedIn.walletAddress.next("");
+    return walletAddress;
   }
 
   async connectWallet(): Promise<string> {

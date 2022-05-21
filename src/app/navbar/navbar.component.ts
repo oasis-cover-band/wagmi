@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
 
   myAddress: BehaviorSubject<string> = this.WEB3service.loggedIn.walletAddress;
   currentRoute: BehaviorSubject<string> = this.SITEservice.currentRoute;
-  user!: User;
+  user?: User;
   constructor(
     private WEB3service: Web3Service,
     public SITEservice: SiteService,
@@ -39,20 +39,23 @@ export class NavbarComponent implements OnInit {
   }
 
   async logout(): Promise<void> {
-
+    this.WEB3service.disconnectWallet().then(async loggedOutWalletAddress => {
+      console.log('Logged out as: ', loggedOutWalletAddress);
+      delete this.user;
+    });
   }
 
   async createAccount(): Promise<void> {
     console.log(this.user);
     if (this.user === undefined && this.myAddress.getValue() !== "") {
-      this.APIservice.setUser(this.myAddress.getValue());
+      this.APIservice.createAccount(this.myAddress.getValue());
     }
   }
 
   async login(): Promise<void> {
     if (this.myAddress.getValue() === '') {
       this.WEB3service.connectWallet().then(async loggedInWalletAddress => {
-        console.log(loggedInWalletAddress, 'loggedInWalletAddress');
+        console.log('Logged in as: ', loggedInWalletAddress);
         if (loggedInWalletAddress !== "") {
           const response = await this.SITEservice.getUser(loggedInWalletAddress);
           if (this.isUser.isUser(response)) {
