@@ -45,13 +45,49 @@ export class SidebarComponent implements OnInit {
 
   goHome(): void {
     this.router.navigate([{outlets: {left: ['empty'], center: ['notifications'], right: ['alerts']}}])
+    this.SITEservice.mouseover.next('');
     this.SITEservice.currentRoute.next('home');
+    this.SITEservice.viewing.next('');
   }
 
   showBasic(): void {
-    // ROUTER CENTER TO BASIC INFO, ROUTE LEFT TO PROFILE PIC, ROUTE RIGHT TO REPUTATION
-    // this.router.navigate([{outlets: {left: ['empty'], center: ['notifications'], right: ['alerts']}}])
-    // this.SITEservice.currentRoute.next('home');
+    this.router.navigate([{outlets: {
+      left: ['profile-picture',  this.SITEservice.viewing.getValue()],
+      center: ['profile',  this.SITEservice.viewing.getValue()],
+      right: ['profile-stats',  this.SITEservice.viewing.getValue()]
+    }}])
+    this.SITEservice.mouseover.next('');
+    this.SITEservice.currentRoute.next('profile/basic_info/'.concat(this.SITEservice.viewing.getValue()));
+  }
+
+  showTransactions(): void {
+    this.router.navigate([{outlets: {
+      left: ['profile-picture',  this.SITEservice.viewing.getValue()],
+      center: ['notifications',  this.SITEservice.viewing.getValue()],
+      right: ['profile-stats',  this.SITEservice.viewing.getValue()]
+    }}])
+    this.SITEservice.mouseover.next('');
+    this.SITEservice.currentRoute.next('profile/transaction_info/'.concat(this.SITEservice.viewing.getValue()));
+  }
+
+  showFollowers(): void {
+    this.router.navigate([{outlets: {
+      left: ['profile-picture',  this.SITEservice.viewing.getValue()],
+      center: ['followers',  this.SITEservice.viewing.getValue()],
+      right: ['profile-stats',  this.SITEservice.viewing.getValue()]
+    }}])
+    this.SITEservice.mouseover.next('');
+    this.SITEservice.currentRoute.next('profile/followers_info/'.concat(this.SITEservice.viewing.getValue()));
+  }
+
+  showFollowing(): void {
+    this.router.navigate([{outlets: {
+      left: ['profile-picture',  this.SITEservice.viewing.getValue()],
+      center: ['following',  this.SITEservice.viewing.getValue()],
+      right: ['profile-stats',  this.SITEservice.viewing.getValue()]
+    }}])
+    this.SITEservice.mouseover.next('');
+    this.SITEservice.currentRoute.next('profile/following_info/'.concat(this.SITEservice.viewing.getValue()));
   }
 
 

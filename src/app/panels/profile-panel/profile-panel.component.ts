@@ -30,14 +30,12 @@ export class ProfilePanelComponent implements OnInit, OnDestroy {
     if (this.isAccount.isAccount(response)) {
       this.account = response;
     }
-    this.SITEservice.viewing.next(this.requestedAddress.getValue());
   }
 
   ngOnDestroy(): void {
     if (this.listener) {
       this.listener.unsubscribe();
     }
-    this.SITEservice.viewing.next('');
   }
 
 }

@@ -13,12 +13,10 @@
   [@ngIfBannerAnimations]
   *ngIf="this.viewing !== '' && this.viewingAccount !== undefined && this.viewingAccount.bannerUri !== undefined"
   [ngStyle]="{
-  'background': 'url(' + this.viewingAccount.bannerUri + ')',
-  'background-size': '100% 100%',
-  'background-repeat': 'repeat'
+  'background': 'url(' + this.viewingAccount.bannerUri + ')'
   }">
   </section>
-
+{{this.viewing}}
   <app-navbar></app-navbar>
 
   <app-sidebar></app-sidebar>

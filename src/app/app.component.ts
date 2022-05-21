@@ -35,6 +35,7 @@ export class AppComponent implements OnDestroy {
   ) {
     this.TIMEservice.start();
     this.SITEservice.viewing.subscribe(async viewing => {
+      console.log(viewing);
       this.viewing = viewing;
       
       const response = await this.SITEservice.getAccount(viewing);

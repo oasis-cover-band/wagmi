@@ -72,6 +72,8 @@
             image-rendering: pixelated;
             image-rendering: -moz-crisp-edges;
             image-rendering: crisp-edges;
+            background-size: 100% 100%!important;
+            background-repeat: repeat!important;
         }
     }
     main#popup {

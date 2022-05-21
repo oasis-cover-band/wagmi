@@ -14,6 +14,8 @@ import { ProfileStatsPanelComponent } from './panels/profile-stats-panel/profile
 import { ProfileStatsPanelModule } from './panels/profile-stats-panel/profile-stats-panel.module';
 import { EditProfileModule } from './popups/edit-profile/edit-profile.module';
 import { EditProfileComponent } from './popups/edit-profile/edit-profile.component';
+import { AccountsPanelModule } from './panels/accounts-panel/accounts-panel.module';
+import { AccountsPanelComponent } from './panels/accounts-panel/accounts-panel.component';
 
 const routes: Routes = [
   // ***************************
@@ -36,6 +38,9 @@ const routes: Routes = [
   {path: 'profile/:address', component: ProfilePanelComponent, outlet: "center"},
   {path: 'profile-picture/:address', component: ProfilePicturePanelComponent, outlet: "left"},
   {path: 'profile-stats/:address', component: ProfileStatsPanelComponent, outlet: "right"},
+  {path: 'notifications/:address', component: NotificationsPanelComponent, outlet: "center"},
+  {path: 'followers/:address', component: AccountsPanelComponent, outlet: "center"},
+  {path: 'following/:address', component: AccountsPanelComponent, outlet: "center"},
   
   // ***************************
   // EDIT PROFILE
@@ -63,6 +68,7 @@ const routes: Routes = [
     ProfilePicturePanelModule,
     ProfileStatsPanelModule,
     EditProfileModule,
+    AccountsPanelModule,
     EmptyModule
   ],
   exports: [RouterModule]
