@@ -23,28 +23,39 @@
         color:$white;
         margin:$margin;
         padding:$margin;
+        min-width:160px;
+        max-width:160px;
+        width:160px;
+        text-align: center;
+        z-index:1;
         &.terrible {
-            background:$red;
+            border-color:$red;
+            color:$red;
         }
         &.bad {
-            background:$orange;
+            border-color:$orange;
+            color:$orange;
         }
         &.okay {
-            background:$yellow;
+            border-color:$yellow;
+            color:$yellow;
         }
         &.good {
-            background:$blue;
+            border-color:$blue;
+            color:$blue;
         }
         &.great {
-            background:$green;
+            border-color:$green;
+            color:$green;
         }
         border-radius:$borderradius;
+        border:6px solid;
         max-height:fit-content;
         height:fit-content;
         position:relative;
         overflow:hidden;
         text-overflow: ellipsis;
-        &:after {
+        &:before {
             content:'';
             position:absolute;
             top:0px;
@@ -56,12 +67,13 @@
             background-size: 16px 16px;
             opacity:0.5;
             animation: move 5s infinite linear;
+            z-index:-1;
             @keyframes move {
                 0% {
                     background-position: 0% 0%;
                 }
                 100% {
-                    background-position: -100% -100%;
+                    background-position: -160px -160px;
                 }
             }
         }
@@ -70,12 +82,18 @@
     @media (max-width:1500px) {
         b#score {
             font-size:3rem;
+            min-width:120px;
+            max-width:120px;
+            width:120px;
         }
     }
 
     @media (max-width:1300px) {
         b#score {
             font-size:2rem;
+            min-width:80px;
+            max-width:80px;
+            width:80px;
         }
     }
 

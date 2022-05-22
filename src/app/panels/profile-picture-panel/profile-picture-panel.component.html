@@ -1,14 +1,17 @@
 <app-account
-*ngIf="this.account !== undefined && this.account.walletAddress !== undefined && this.account.avatarUri !== undefined && this.account.borderUri !== undefined && this.account.accessoryUri !== undefined"
+*ngIf="!this.forceProfileChange && this.account !== undefined && this.account.walletAddress !== undefined && this.account.avatarUri !== undefined && this.account.borderUri !== undefined && this.account.accessoryUri !== undefined"
 [extralarge]="true"
 [view]="true"
 [address]="this.account.walletAddress"
 [avatarUri]="this.account.avatarUri"
 [borderUri]="this.account.borderUri"
 [accessoryUri]="this.account.accessoryUri"
+[@ngIfProfileAnimations]
 ></app-account>
 
-<section id="text">
+<section id="text"
+*ngIf="!this.forceProfileChange"
+[@ngIfProfileAnimations]>
     <div *ngIf="this.account !== undefined && this.account.joinDate !== undefined">
         Joined on <span>{{this.account.joinDate | date:'longDate'}}</span>
     </div>
@@ -17,7 +20,9 @@
     <b *ngIf="this.account !== undefined && this.account.following !== undefined">{{((this.account.following / 1000) | number:'1.1-1')}}k</b> Following
 </section>
 
-<section id="actions">
+<section id="actions"
+*ngIf="!this.forceProfileChange"
+[@ngIfProfileAnimations]>
     <app-action icon="edit" description="Edit" *ngIf="this.account !== undefined && (this.myAddress | async) === this.account.walletAddress && this.account.walletAddress !== undefined" (click)="this.showEdit()"></app-action>
     <app-action icon="follow" description="Follow" *ngIf="this.isFollowing === true" (click)="this.unfollow()"></app-action>
     <app-action icon="follownot" description="Unfollow" *ngIf="this.isFollowing === false" (click)="this.follow()"></app-action>

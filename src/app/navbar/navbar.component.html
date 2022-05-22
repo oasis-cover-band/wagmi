@@ -3,8 +3,7 @@
     <b id="account" *ngIf="this.account !== undefined && this.account.walletAddress !== undefined">
         {{this.account.walletAddress}}:
     </b>
-    <span id="route">~/
-        {{(this.currentRoute | async)}}
+    <span id="route">~/{{(this.currentRoute | async)}}
     </span>
     <b id="delimiter">
         $
@@ -23,6 +22,7 @@
 [avatarUri]="this.account.avatarUri"
 [borderUri]="this.account.borderUri"
 [accessoryUri]="this.account.accessoryUri"
+[@ngIfProfileAnimations]
 ></app-account>
 
 <app-action
@@ -31,6 +31,7 @@ icon="wallet"
 description="Login"
 (click)="login()"
 *ngIf="(this.myAddress | async) === ''"
+[@ngIfAnimations]
 >
 </app-action>
 
@@ -40,6 +41,7 @@ icon="logout"
 description="Logout"
 (click)="logout()"
 *ngIf="(this.myAddress | async) !== ''"
+[@ngIfAnimations]
 >
 </app-action>
 
@@ -48,6 +50,7 @@ class="account"
 icon="create"
 description="New"
 (click)="createAccount()"
-*ngIf="(this.myAddress | async) !== '' && this.account === undefined"
+*ngIf="!this.loggingIn && (this.myAddress | async) !== '' && this.account === undefined"
+[@ngIfAnimations]
 >
 </app-action>

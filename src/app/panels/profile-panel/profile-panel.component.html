@@ -1,16 +1,25 @@
-<h1 *ngIf="this.account !== undefined && this.account.accountId !== undefined" id="name">
-    {{this.account.accountId}}
+<h1 *ngIf="!this.forceProfileChange && this.account !== undefined && this.account.accountId !== undefined" id="name"
+    [@ngIfProfileAnimations]>
+    <ng-container *ngIf="this.account.accountId !== ''">
+        {{this.account.accountId}}
+    </ng-container>
+    <ng-container *ngIf="this.account.accountId === ''">
+        Unnamed Account
+    </ng-container>
 </h1>
 
-<h3 *ngIf="this.account !== undefined && this.account.walletAddress !== undefined" id="address">
+<h3 *ngIf="!this.forceProfileChange && this.account !== undefined && this.account.walletAddress !== undefined" id="address"
+    [@ngIfProfileAnimations]>
     {{this.account.walletAddress}}
 </h3>
 
-<span *ngIf="this.account !== undefined && this.account.bio !== undefined" id="tagline">
+<span *ngIf="!this.forceProfileChange && this.account !== undefined && this.account.bio !== undefined" id="tagline"
+    [@ngIfProfileAnimations]>
     {{this.account.bio}}
 </span>
 
-<section id="badges" *ngIf="this.account !== undefined && this.account.record !== undefined" >
+<section id="badges" *ngIf="!this.forceProfileChange && this.account !== undefined && this.account.record !== undefined" 
+    [@ngIfProfileAnimations]>
     <app-badge *ngFor="let accolade of this.account.record"
     [data]="accolade">
         

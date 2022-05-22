@@ -89,10 +89,9 @@ export class ApiService {
         url: 'account/'.concat(String(address)),
         baseURL: this.baseURL,
         method: 'POST',
-        params: newAccount
+        data: newAccount
       }).then(async (response: any) => {
-        // handle success
-        console.log(response);
+        
         this.accounts[address] = response.data;
         return await response.data;
       })

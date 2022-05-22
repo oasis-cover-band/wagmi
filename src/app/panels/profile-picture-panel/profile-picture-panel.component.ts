@@ -6,11 +6,15 @@ import { AccountInfo } from 'src/app/classes/accountInfo';
 import { SiteService } from '../../services/site.service';
 import { Web3Service } from 'src/app/services/web3.service';
 import { IsAccountService } from 'src/app/is-account.service';
+import { ngIfProfileAnimations } from 'src/app/animations';
 
 @Component({
   selector: 'app-profile-picture-panel',
   templateUrl: './profile-picture-panel.component.html',
-  styleUrls: ['./profile-picture-panel.component.scss']
+  styleUrls: ['./profile-picture-panel.component.scss'],
+  animations: [
+    ngIfProfileAnimations
+  ]
 })
 export class ProfilePicturePanelComponent implements OnInit, OnDestroy {
 
@@ -19,6 +23,7 @@ export class ProfilePicturePanelComponent implements OnInit, OnDestroy {
   listener!: Subscription;
   isFollowing!: boolean;
   account!: AccountInfo;
+  forceProfileChange: boolean = false;
   constructor(
     private route: ActivatedRoute,
     private APIservice: ApiService,
@@ -29,13 +34,15 @@ export class ProfilePicturePanelComponent implements OnInit, OnDestroy {
     ) { }
 
   async ngOnInit(): Promise<void> {
-    this.listener = this.route.params.subscribe(params => {
+    this.listener = this.route.params.subscribe(async params => {
+      this.forceProfileChange = true;
       this.requestedAddress.next(params['address']);
+      const response = await this.SITEservice.getAccount(this.requestedAddress.getValue());
+      if (this.isAccount.isAccount(response)) {
+        this.account = response;
+      }
+      this.forceProfileChange = false;
     });
-    const response = await this.SITEservice.getAccount(this.requestedAddress.getValue());
-    if (this.isAccount.isAccount(response)) {
-      this.account = response;
-    }
     this.myAddress = this.WEB3service.loggedIn.walletAddress;
     this.isFollowing = this.APIservice.isAddressFollowingAddress(this.myAddress.getValue(), this.requestedAddress.getValue());
   }

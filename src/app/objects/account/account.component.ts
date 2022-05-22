@@ -55,6 +55,7 @@ export class AccountComponent implements OnInit {
   }
   showingAddress: boolean = false;
   defaultAccessory: boolean = false;
+  defaultAvatar: boolean = false;
   constructor(
     public APIservice: ApiService,
     private router: Router,
@@ -73,6 +74,7 @@ export class AccountComponent implements OnInit {
     }
     if (this.avatarUri === '' || this.avatarUri === undefined || this.avatarUri === null || this.avatarUri === "") {
       this.avatarUri = `../assets/textures/` + (Math.floor(Number(this.address) * 420 / 3)) % 340 + `.png`;
+      this.defaultAvatar = true;
     }
     if (this.borderUri === '' || this.borderUri === undefined || this.borderUri === null || this.borderUri === "") {
       this.borderUri = `../assets/textures/` + (Math.floor(Number(this.address) * 42069 / 3)) % 340 + `.png`;

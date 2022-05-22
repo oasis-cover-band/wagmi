@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { ngIfConsoleAnimations } from '../animations';
+import { ngIfAnimations, ngIfConsoleAnimations, ngIfProfileAnimations } from '../animations';
 import { AccountInfo } from '../classes/accountInfo';
 import { Web3Service } from '../services/web3.service';
 import { SiteService } from '../services/site.service';
@@ -12,7 +12,9 @@ import { ApiService } from '../services/api.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   animations: [
-    ngIfConsoleAnimations
+    ngIfConsoleAnimations,
+    ngIfAnimations,
+    ngIfProfileAnimations
   ]
 })
 export class NavbarComponent implements OnInit {
@@ -20,6 +22,7 @@ export class NavbarComponent implements OnInit {
   myAddress: BehaviorSubject<string> = this.WEB3service.loggedIn.walletAddress;
   currentRoute: BehaviorSubject<string> = this.SITEservice.currentRoute;
   account?: AccountInfo;
+  loggingIn: boolean = false;
   constructor(
     private WEB3service: Web3Service,
     public SITEservice: SiteService,
@@ -48,11 +51,17 @@ export class NavbarComponent implements OnInit {
   async createAccount(): Promise<void> {
     console.log(this.account);
     if (this.account === undefined && this.myAddress.getValue() !== "") {
-      this.APIservice.createAccount(this.myAddress.getValue());
+      this.APIservice.createAccount(this.myAddress.getValue())
+      .then(response => {
+        if (this.isAccount.isAccount(response)) {
+          this.account = response;
+        }
+      });
     }
   }
 
   async login(): Promise<void> {
+    this.loggingIn = true;
     if (this.myAddress.getValue() === '') {
       this.WEB3service.connectWallet().then(async loggedInWalletAddress => {
         console.log('Logged in as: ', loggedInWalletAddress);
@@ -63,9 +72,11 @@ export class NavbarComponent implements OnInit {
             this.account = response;
           }
         }
+        this.loggingIn = false;
       })
     } else {
       this.WEB3service.disconnectWallet();
+      this.loggingIn = false;
     }
   }
 

@@ -3,9 +3,15 @@
         <img
         [src]="this.borderUri" />
     </div>
-    <div id="inner">
-        <img class="regular"
-        [src]="this.avatarUri" />
+    <div id="inner">        
+        <ng-container *ngIf="!this.defaultAvatar">
+            <img class="regular"
+            [src]="this.avatarUri" />
+        </ng-container>
+        <ng-container *ngIf="this.defaultAvatar">
+            <img
+            [src]="this.avatarUri" />
+        </ng-container>
     </div>
 </section>
 <span id="action" *ngIf="this.view">

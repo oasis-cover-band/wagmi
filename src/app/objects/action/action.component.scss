@@ -16,11 +16,12 @@
     &.active {
         &:before {
             opacity:1;
-            background: $tertiary;
             z-index:-1;
+            border-color: $tertiary;
         }
         img {
             transform:scale(0.8);
+            // filter: invert(1);
         }
     }
     img {
@@ -80,6 +81,7 @@
         &:before {
             opacity:1;
             background: rgba(0, 0, 0, 0.5)!important;
+            border-color: $white!important;
         }
         img {
             transform:scale(0.5);
