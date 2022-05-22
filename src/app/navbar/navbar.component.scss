@@ -11,10 +11,11 @@
     background:$black;
     display:grid;
     grid-template-areas:
-    ". console account wallet .";
+    ". console . account wallet .";
     grid-template-rows: 1fr;
-    grid-template-columns: $margin 0.9fr 0.05fr 0.05fr $margin;
+    grid-template-columns: $margin 0.9fr 0.05fr 0.05fr 0.05fr $margin;
     align-content: center;
+    column-gap:$mobilegap;
     span#console {
         align-self: center;
         justify-self: start;
@@ -47,8 +48,27 @@
             position: relative;
         }
     }
-    app-account, app-action.account {
+    span#account-wrapper, app-action.account {
         grid-area: account;
+    }
+    span#account-wrapper {
+        min-width: 48px;
+        max-width: 48px;
+        width: 48px;
+        min-height: 48px;
+        max-height: 48px;
+        height: 48px;
+        display:grid;
+        grid-template-areas:'account';
+        justify-self: center;
+        align-self: center;
+        justify-content: center;
+        align-content: center;
+        justify-items: center;
+        align-items: center;
+        app-account {
+            grid-area:account;
+        }
     }
     app-action.wallet {
         grid-area:wallet;

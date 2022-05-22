@@ -1,0 +1,121 @@
+@import '../../../colors.scss';
+
+:host {
+    grid-area:popupActions;
+    min-width:100vw;
+    max-width:100vw;
+    width:100vw;
+    min-height:100vh;
+    max-height:100vh;
+    height:100vh;
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: $borderradius;
+    display:grid;
+    grid-template-areas: 
+    '. . . . . . .'
+    '. images images images images images .'
+    '. . . . . . .'
+    '. . cancel . save . .'
+    '. . . . . . .';
+    grid-template-columns: 0.25fr 1fr max-content $mobilegap max-content 1fr 0.25fr;
+    grid-template-rows: 0.25fr  1fr $mobilegap max-content 0.25fr;
+    justify-self: center;
+    align-self: center;
+    button#save {
+        grid-area:save;
+    }
+    button#cancel {
+        grid-area:cancel;
+    }
+    section.images {
+        grid-area:images;
+        display:grid;
+        overflow-y: scroll;
+        row-gap: $mobilegap;
+        column-gap: $mobilegap;
+        img {
+            transition: $transition;
+            cursor: pointer;
+        }
+        &#borders {
+            grid-template-columns: repeat(auto-fit, minmax(160px, 160px));
+            img {
+                border-radius:$borderradius;
+                min-width: 160px;
+                max-width: 160px;
+                width: 160px;
+                min-height: 160px;
+                max-height: 160px;
+                height: 160px;
+            }
+        }
+        &#accessories {
+            grid-template-columns: repeat(auto-fit, minmax(160px, 160px));
+            img {
+                min-width: 160px;
+                max-width: 160px;
+                width: 160px;
+                min-height: 160px;
+                max-height: 160px;
+                height: 160px;
+            }
+        }
+        span.image-wrapper {
+            position:relative;
+            display:grid;
+            justify-content: center;
+            align-content: center;
+            justify-items: center;
+            align-items: center;
+            grid-template-areas: 'images';
+            img {
+                grid-area:images;
+            }
+            &:before, &:after {
+                content:'';
+                grid-area:images;
+                position:absolute;
+                top:8px;
+                right:0px;
+                left:8px;
+                bottom:0px;
+                opacity:0;
+                min-width: 48px;
+                max-width: 48px;
+                width: 48px;
+                min-height: 48px;
+                max-height: 48px;
+                height: 48px;
+                // background:$tertiary;
+                border:8px solid rgba(0,0,0,0);
+                transition: $transition;
+                z-index:2;
+                pointer-events: none;
+            }
+            &:before {
+                border-color:$tertiary;
+                border-radius: 360px;
+                background: $black;
+            }
+            &:after {
+                border:none;
+                background: url('../../../assets/icons/check.png');
+                // filter: invert(1);
+                transform: scale(0.5);
+                top:16px;
+                left:16px;
+            }
+            &.selected {
+                &:before, &:after {
+                    opacity:1;
+                }
+            }
+            &:hover {
+                img {
+                    opacity:0.25;
+                }
+            }
+        }
+        justify-content: center;
+    }
+}

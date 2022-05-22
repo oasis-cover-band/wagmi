@@ -32,13 +32,13 @@ export class AccountComponent implements OnInit {
         center: ['profile',  this.address],
         right: ['profile-stats',  this.address]
       }}])
-      this.SITEservice.mouseover.next('');
-      this.SITEservice.currentRoute.next('profile/basic_info/'.concat(this.address));
-      this.SITEservice.viewing.next(this.address);
+      this.hideAddress();
+      this.setConsole();
+      this.setSiteServiceView();
     }
   }
   @HostListener('mouseleave') onLeave(){
-    if (this.showingAddress === true) {
+    if (this.showingAddress) {
       this.showingAddress = false;
       this.hideAddress();
     } else {
@@ -46,7 +46,7 @@ export class AccountComponent implements OnInit {
     }
   }
   @HostListener('mouseenter') onEnter(){
-    if (this.showingAddress === false) {
+    if (!this.showingAddress) {
       this.showingAddress = true;
       this.showAddress();
     } else {
@@ -169,11 +169,19 @@ export class AccountComponent implements OnInit {
     }
   }
 
-  showAddress() {
-    this.SITEservice.mouseover.next('profile/'.concat(this.address));
+  setConsole(): void {
+    this.SITEservice.currentRoute.next('profile/basic_info/'.concat(this.address));
   }
 
-  hideAddress() {
+  setSiteServiceView(): void {
+    this.SITEservice.viewing.next(this.address);
+  }
+
+  showAddress(): void {
+    this.SITEservice.mouseover.next('profile/basic_info/'.concat(this.address));
+  }
+
+  hideAddress(): void {
     this.SITEservice.mouseover.next('');
   }
 

@@ -1,7 +1,6 @@
 <span id="close" (click)="this.close()">
     <img id="close" src="../../../assets/icons/close.png"/>
 </span>
->
   <!-- <section id="banner"
   [@ngIfBannerAnimations]
   *ngIf="this.viewing !== ''"
@@ -11,12 +10,12 @@
   'background-repeat': 'repeat'
   }">
   </section> -->
-<section id="edit-panel">
+<section id="edit-panel" *ngIf="this.account | async as account">
     <section id="banner"
     [@ngIfBannerAnimations]
-    *ngIf="this.account !== undefined && this.account.bannerUri !== undefined"
+    *ngIf="account !== undefined && account.bannerUri !== undefined"
     [ngStyle]="{
-    'background': 'url(' + this.account.bannerUri + ')',
+    'background': 'url(' + account.bannerUri + ')',
     'background-size': '100% 100%',
     'background-repeat': 'repeat'
     }">
@@ -26,18 +25,19 @@
     description="Banner"
     [ngClass]="{
         'changed': this.bannerChanged
-    }">
+    }"
+    type="file">
 
     </app-action>
     </section>
     <app-account
-    *ngIf="this.account !== undefined && this.account.walletAddress !== undefined && this.account.avatarUri !== undefined && this.account.borderUri !== undefined && this.account.accessoryUri !== undefined"
+    *ngIf="account !== undefined && account.walletAddress !== undefined && account.avatarUri !== undefined && account.borderUri !== undefined && account.accessoryUri !== undefined"
     [extralarge]="true"
     [view]="true"
-    [address]="this.account.walletAddress"
-    [avatarUri]="this.account.avatarUri"
-    [borderUri]="this.account.borderUri"
-    [accessoryUri]="this.account.accessoryUri"
+    [address]="account.walletAddress"
+    [avatarUri]="account.avatarUri"
+    [borderUri]="account.borderUri"
+    [accessoryUri]="account.accessoryUri"
     ></app-account>
 
     <app-action
@@ -46,7 +46,8 @@
     description="Avatar"
     [ngClass]="{
         'changed': this.avatarChanged
-    }">
+    }"
+    type="file">
 
     </app-action>
 
@@ -56,7 +57,8 @@
     description="Border"
     [ngClass]="{
         'changed': this.borderChanged
-    }">
+    }"
+    (click)="chooseBorderPicture()">
 
     </app-action>
 
@@ -66,28 +68,29 @@
     description="Extra"
     [ngClass]="{
         'changed': this.accessoryChanged
-    }">
+    }"
+    (click)="chooseAccessoryPicture()">
 
     </app-action>
 
     <section id="name" class="input">
         <span>Name</span>
-        <ng-container *ngIf="this.account.accountId !== ''">
-            <input #name id="name" *ngIf="this.account !== undefined && this.account.accountId !== undefined" [placeholder]="this.account.accountId"/>
+        <ng-container *ngIf="account.accountId !== ''">
+            <input #name id="name" *ngIf="account !== undefined && account.accountId !== undefined" [placeholder]="account.accountId"/>
         </ng-container>
-        <ng-container *ngIf="this.account.accountId === ''">
-            <input #name id="name" *ngIf="this.account !== undefined && this.account.accountId !== undefined" placeholder="Unnamed Account"/>
+        <ng-container *ngIf="account.accountId === ''">
+            <input #name id="name" *ngIf="account !== undefined && account.accountId !== undefined" placeholder="Unnamed Account"/>
         </ng-container>
     </section>
     <section id="bio" class="input">
         <span>Bio</span>
-        <textarea #bio cols="10" rows="5" id="bio" *ngIf="this.account !== undefined && this.account.bio !== undefined" [placeholder]="this.account.bio"></textarea>
+        <textarea #bio cols="10" rows="5" id="bio" *ngIf="account !== undefined && account.bio !== undefined" [placeholder]="account.bio"></textarea>
     </section>
 
     <button 
     *ngIf="this.name !== undefined && this.bio !== undefined"
     [ngClass]="{
-        'disabled': !this.avatarChanged && !this.bannerChanged && this.name.nativeElement.value === '' && this.bio.nativeElement.value === ''
+        'disabled': !this.avatarChanged && !this.bannerChanged && !this.borderChanged && !this.accessoryChanged && this.name.nativeElement.value === '' && this.bio.nativeElement.value === ''
     }"
     id="save" (click)="this.edit()">
         <span>

@@ -16,6 +16,8 @@ import { EditProfileModule } from './popups/edit-profile/edit-profile.module';
 import { EditProfileComponent } from './popups/edit-profile/edit-profile.component';
 import { AccountsPanelModule } from './panels/accounts-panel/accounts-panel.module';
 import { AccountsPanelComponent } from './panels/accounts-panel/accounts-panel.component';
+import { ImagePickerModule } from './popup-actions/image-picker/image-picker.module';
+import { ImagePickerComponent } from './popup-actions/image-picker/image-picker.component';
 
 const routes: Routes = [
   // ***************************
@@ -31,6 +33,8 @@ const routes: Routes = [
   {path: '', component: EmptyComponent, outlet: "popup"},
   // INIT LEFT (EMPTY)
   {path: '', component: EmptyComponent, outlet: "left"},
+  // INIT POPUP ACTION (EMPTY)
+  {path: '', component: EmptyComponent, outlet: "popupAction"},
   
   // ***************************
   // PROFILE
@@ -45,7 +49,10 @@ const routes: Routes = [
   // ***************************
   // EDIT PROFILE
   // ***************************
-  {path: 'edit-profile/:address', component: EditProfileComponent, outlet: "popup"},
+  // POPUP
+  {path: 'edit-profile', component: EditProfileComponent, outlet: "popup"},
+  // INIT POPUP ACTION (EMPTY)
+  {path: 'edit-profile/:type', component: ImagePickerComponent, outlet: "popupAction"},
   // ***************************
   // EMPTIES
   // ***************************
@@ -57,6 +64,8 @@ const routes: Routes = [
   {path: 'empty', component: EmptyComponent, outlet: "right"},
   // EMPTY POPUP
   {path: 'empty', component: EmptyComponent, outlet: "popup"},
+  // EMPTY POPUP
+  {path: 'empty', component: EmptyComponent, outlet: "popupAction"},
 ];
 
 @NgModule({
@@ -69,7 +78,8 @@ const routes: Routes = [
     ProfileStatsPanelModule,
     EditProfileModule,
     AccountsPanelModule,
-    EmptyModule
+    EmptyModule,
+    ImagePickerModule
   ],
   exports: [RouterModule]
 })

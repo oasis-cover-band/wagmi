@@ -51,7 +51,8 @@ export class AppComponent implements OnDestroy {
       left: ['empty'],
       center: ['notifications'],
       right: ['alerts'],
-      popup: ['empty']
+      popup: ['empty'],
+      popupAction: ['empty']
     }}])
 
   }

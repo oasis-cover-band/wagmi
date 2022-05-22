@@ -41,3 +41,9 @@
 
   </router-outlet>
 </main>
+
+<main id="popupAction" [@popupRouterAnimations]="popupAction.isActivated ? popupAction.activatedRoute : ''">
+  <router-outlet [@popupRouterAnimations]="popupAction.isActivated ? popupAction.activatedRoute : ''" #popupAction="outlet" id="popupAction" name="popupAction">
+
+  </router-outlet>
+</main>

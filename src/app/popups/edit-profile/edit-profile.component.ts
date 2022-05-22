@@ -18,7 +18,7 @@ import { SiteService } from '../../services/site.service';
 export class EditProfileComponent implements OnInit {
 
   myAddress: BehaviorSubject<string> = this.WEB3service.loggedIn.walletAddress;
-  account!: AccountInfo;
+  public account!: BehaviorSubject<AccountInfo>;
   @ViewChild('name') name!: ElementRef<any>;
   @ViewChild('bio') bio!: ElementRef<any>;
   avatarChanged: boolean = false;
@@ -35,10 +35,11 @@ export class EditProfileComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     const response = await this.SITEservice.getAccount(this.myAddress.getValue());
     if (this.isAccount.isAccount(response)) {
-      this.account = response;
+      this.SITEservice.editedUser.next(response);
+      this.account = this.SITEservice.editedUser;
     }
-    if (this.account.bannerUri === '') {
-      this.account.bannerUri = `../assets/textures/` + Number(this.myAddress.getValue()) % 340 + `.png`;
+    if (this.account.getValue().bannerUri === '') {
+      this.account.getValue().bannerUri = `../assets/textures/` + Number(this.myAddress.getValue()) % 340 + `.png`;
     }
   }
 
@@ -54,12 +55,16 @@ export class EditProfileComponent implements OnInit {
 
   }
 
-  uploadBorderPicture() {
-
+  chooseBorderPicture() {
+    this.router.navigate([{outlets: {
+      popupAction: ['edit-profile', 'border']
+    }}]);
   }
 
-  uploadAccessoryPicture() {
-
+  chooseAccessoryPicture() {
+    this.router.navigate([{outlets: {
+      popupAction: ['edit-profile', 'accessory']
+    }}]);
   }
 
   close() {

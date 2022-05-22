@@ -80,6 +80,29 @@ trigger('rightRouterAnimations', [
     ])
 ]);
 
+export const ngIfImageAnimations =
+trigger(
+  'ngIfImageAnimations',
+    [
+      transition(
+        ':enter', 
+        [
+          style({ transform: 'scale(0)', opacity: 0 } ),
+          animate('0.25s ease-out', 
+                  style({ transform: 'scale(1)', opacity: 1 }))
+        ]
+      ),
+      transition(
+        ':leave', 
+        [
+          style({transform: 'scale(1)', opacity: 1}),
+          animate('0.25s ease-out', 
+                  style({  transform: 'scale(0)', opacity: 0 }))
+        ]
+      )
+    ]
+  );
+
 export const ngIfProfileAnimations =
 trigger(
   'ngIfProfileAnimations',

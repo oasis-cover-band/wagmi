@@ -110,7 +110,10 @@
             background:$lightestgrey;
         }
     }
-    h5#type {
+    // 
+    // WIDGET/IDENTIFIER
+    // 
+    h5#type-widget {
         // z-index:-1;
         // transform:translateY(-16px);
         justify-self:start;
@@ -138,6 +141,46 @@
         font-weight:900;
         font-family: 'Istok Web';
     }
+    
+    // 
+    // UNDERLAY
+    // 
+    section#underlay-wrapper {
+        display:grid;
+        grid-area:notification;
+        grid-template-areas: 'notification';
+        overflow:hidden;
+        max-height:100%;
+        max-width: 100%;
+        padding:25px;
+        margin:-25px;
+        justify-self: end;
+        align-self: end;
+        transform:translateY(25%);
+    }
+    h5#type-underlay {
+        // z-index:-1;
+        transform:translateY(-50%);
+        justify-self:end;
+        align-self: end;
+        grid-area:notification;
+        color:$tertiary;
+        font-size:5rem;
+        margin:$margin;
+        padding:$margin;
+        border-radius: $borderradius;
+        font-variant-caps: all-small-caps;
+        display:grid;
+        justify-content: center;
+        align-content: center;
+        justify-items: center;
+        align-items: center;
+        text-align: center;
+        font-weight:100;
+        font-family: 'Nunito';
+        z-index:0;
+        opacity:0.4;
+    }
     @media (max-width:1100px) {
         section#container {
             grid-template-areas:
@@ -159,12 +202,6 @@
         }
     }
     @media (max-width:500px) {
-        section#container {
-            grid-template-rows: 
-            20px 20px max-content 45px 20px;
-        }
-    }
-    @media (max-width:400px) {
         section#container {
             grid-template-areas:
             '. . . . . .'

@@ -55,7 +55,7 @@ export class ProfilePicturePanelComponent implements OnInit, OnDestroy {
 
   showEdit(): void {
     this.router.navigate([{outlets: {
-      popup: ['edit-profile', this.requestedAddress.getValue()]
+      popup: ['edit-profile']
     }}]);
   }
 

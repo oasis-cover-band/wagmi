@@ -100,6 +100,23 @@ button {
     span {
         grid-area:content;
     }
+    border-radius: $borderradius;
+    &.save, &#save {
+        background:$green;
+    }
+    &.cancel, &#cancel {
+        background:$red;
+    }
+    color: $black;
+    font-size:2rem;
+    cursor:pointer;
+    transition:$transition;
+    &.disabled {
+        opacity:0.25;
+        cursor:not-allowed;
+    }
+    justify-self: end;
+    align-self: end;
 }
 .input {
     border-radius: $borderradius;

@@ -1,0 +1,44 @@
+<section class="images" id="borders" *ngIf="this.type === 'border'">
+    <span class="image-wrapper" *ngFor="let border of borders; let index = index"
+    [ngClass]="{
+    'selected': index === this.selectedImage
+    }"
+    [@ngIfImageAnimations]="index">
+        <img
+        [src]="'../../../assets/textures/' + index + '.png'"
+        (click)="selectBorder(index)" />
+    </span>
+</section>
+<section class="images" id="accessories" *ngIf="this.type === 'accessory'">
+    <span class="image-wrapper" *ngFor="let accessory of accessories; let index = index"
+    [ngClass]="{
+    'selected': index === this.selectedImage
+    }"
+    [@ngIfImageAnimations]="index">
+        <img
+        [src]="'../../../assets/accessories/png/' + index + '.png'"
+        (click)="selectAccessory(index)" />
+    </span>
+</section>
+
+<button 
+[ngClass]="{
+    'disabled': ((!this.accessoryChanged && this.type === 'accessory') || (!this.borderChanged && this.type === 'border'))
+}"
+id="save" (click)="this.save()">
+    <span>
+        Save
+    </span>
+</button>
+
+
+
+<button 
+[ngClass]="{
+    'disabled': ((!this.accessoryChanged && this.type === 'accessory') || (!this.borderChanged && this.type === 'border'))
+}"
+id="cancel" (click)="this.cancel()">
+    <span>
+        Cancel
+    </span>
+</button>

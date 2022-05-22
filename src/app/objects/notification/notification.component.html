@@ -1,4 +1,11 @@
 <section id="container">
+    <section id="underlay-wrapper">
+    
+        <h5 id="type-underlay">
+            {{this.data.notificationType}}
+        </h5>
+    </section>
+
     <app-account
     *ngIf="this.account !== undefined && this.account.avatarUri !== undefined && this.account.borderUri !== undefined && this.account.accessoryUri !== undefined"
     [large]="true"
@@ -41,6 +48,6 @@
     </section>
 </section>
 
-<h5 id="type">
+<h5 id="type-widget">
     {{this.data.notificationType}}
 </h5>

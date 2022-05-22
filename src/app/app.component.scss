@@ -76,7 +76,7 @@
             background-repeat: repeat!important;
         }
     }
-    main#popup {
+    main#popup, main#popupAction {
         display:grid;
         grid-template-areas:"popup";
         grid-template-columns: 1fr;
@@ -89,6 +89,10 @@
             pointer-events: none;
             z-index:-10000;
         }
+    }
+    main#popupAction {
+        display:grid;
+        grid-template-areas:"popupAction";
     }
     @media (max-width:1100px) {
         main#main {

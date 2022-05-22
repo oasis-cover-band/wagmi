@@ -14,6 +14,12 @@
     </span>
 </span>
 
+
+
+<span
+id="account-wrapper"
+[@ngIfProfileAnimations]
+>
 <app-account
 *ngIf="this.account !== undefined && this.account.walletAddress !== undefined && this.account.avatarUri !== undefined && this.account.borderUri !== undefined && this.account.accessoryUri !== undefined"
 [small]="true"
@@ -24,6 +30,7 @@
 [accessoryUri]="this.account.accessoryUri"
 [@ngIfProfileAnimations]
 ></app-account>
+</span>
 
 <app-action
 class="wallet"

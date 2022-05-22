@@ -1,4 +1,5 @@
 <img [src]="'../../../assets/icons/' + this.icon + '.png'" />
+<input type="file" id="file-upload" #fileUpload *ngIf="this.type === 'file'" onchange="console.log(event.target.files)"/>
 <span id="description">
     {{this.description}}
 </span>

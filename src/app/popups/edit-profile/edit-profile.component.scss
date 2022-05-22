@@ -125,18 +125,6 @@
         }
         button#save {
             grid-area:save;
-            border-radius: $borderradius;
-            background:$tertiary;
-            color: $black;
-            font-size:2rem;
-            cursor:pointer;
-            transition:$transition;
-            &.disabled {
-                opacity:0.25;
-                cursor:not-allowed;
-            }
-            justify-self: end;
-            align-self: end;
         }
         app-action#avatar-picture, app-action#border-picture, app-action#accessory-picture {
             grid-area:account;

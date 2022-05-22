@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-action',
@@ -9,6 +9,8 @@ export class ActionComponent implements OnInit {
 
   @Input() icon: string = "home";
   @Input() description: string = "Home";
+  @Input() type: string = '';
+  @ViewChild('fileUpload') fileUpload!: ElementRef; // SHOULD BE ELEMENT REF
   constructor() { }
 
   ngOnInit(): void {
