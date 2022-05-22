@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarModule } from './navbar/navbar.module';
+import { SiteService } from './services/site.service';
 import { SidebarModule } from './sidebar/sidebar.module';
 
 @NgModule({
@@ -18,7 +19,9 @@ import { SidebarModule } from './sidebar/sidebar.module';
     NavbarModule,
     SidebarModule
   ],
-  providers: [],
+  providers: [
+    SiteService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

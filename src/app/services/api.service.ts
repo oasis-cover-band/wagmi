@@ -43,32 +43,30 @@ export class ApiService {
   // 
   // PUT
   // 
-  async updateAccount(address: string, force: boolean = false): Promise<AccountInfo | number> {
-    if (force || (this.accounts[address] === null || this.accounts[address] === undefined)) {
-      console.log(address);
-      return await axios({
-        url: 'account/'.concat(String(address)),
-        baseURL: this.baseURL,
-        method: 'PUT' 
-      }).then(async (response: any) => {
-        // handle success
-        console.log(response);
-        this.accounts[address] = response.data;
-        return await response.data;
-      })
-      .catch(async (error: any) => {
-        // handle error
-        console.log(error.response);
-        return await error.response.status;
-      })
-    } else {
-      return this.accounts[address];
-    }
+  async updateAccount(account: AccountInfo): Promise<AccountInfo | number> {
+    console.log(account.walletAddress);
+    console.log(account);
+    return await axios({
+      url: 'account/'.concat(String(account.walletAddress)),
+      baseURL: this.baseURL,
+      method: 'PUT',
+      data: account
+    }).then(async (response: any) => {
+      
+      if (account.walletAddress !== undefined) {
+        this.accounts[account.walletAddress] = response.data;
+      }
+      return await response.data;
+    })
+    .catch(async (error: any) => {
+      // handle error
+      return await error.response.status;
+    })
   }
   // 
   // POST
   // 
-  async createAccount(address: string, force: boolean = false): Promise<AccountInfo | number> {
+  async createAccount(address: string): Promise<AccountInfo | number> {
     const newAccount: AccountInfo = {
       accountId: '',
       walletAddress: address,
@@ -84,24 +82,20 @@ export class ApiService {
       reputation: 0,
       friends: []
     }
-    if (force || (this.accounts[address] === null || this.accounts[address] === undefined)) {
-      return await axios({
-        url: 'account/'.concat(String(address)),
-        baseURL: this.baseURL,
-        method: 'POST',
-        data: newAccount
-      }).then(async (response: any) => {
-        
-        this.accounts[address] = response.data;
-        return await response.data;
-      })
-      .catch(async (error: any) => {
-        // handle error
-        return await error.response.status;
-      })
-    } else {
-      return this.accounts[address];
-    }
+    return await axios({
+      url: 'account/'.concat(String(address)),
+      baseURL: this.baseURL,
+      method: 'POST',
+      data: newAccount
+    }).then(async (response: any) => {
+      
+      this.accounts[address] = response.data;
+      return await response.data;
+    })
+    .catch(async (error: any) => {
+      // handle error
+      return await error.response.status;
+    })
   }
   edit(address: string , edit: {
     accountId: '',

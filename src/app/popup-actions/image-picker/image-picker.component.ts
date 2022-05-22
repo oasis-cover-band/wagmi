@@ -76,19 +76,25 @@ export class ImagePickerComponent implements OnInit, OnDestroy {
   }
 
   cancel() {
+    let temporary = this.SITEservice.editedUser.getValue();
     if (this.type === 'border') {
       if (this.originalImage !== '') {
-        this.SITEservice.editedUser.getValue().borderUri = this.originalImage;
+        temporary.borderUri = this.originalImage;
+        this.SITEservice.editedUser.next(temporary);
       } else {
-        this.SITEservice.editedUser.getValue().borderUri = '';
+        temporary.borderUri = '';
+        this.SITEservice.editedUser.next(temporary);
       }
     } else if (this.type === 'accessory') {
       if (this.originalImage !== '') {
-        this.SITEservice.editedUser.getValue().accessoryUri = this.originalImage;
+        temporary.accessoryUri = this.originalImage;
+        this.SITEservice.editedUser.next(temporary);
       } else {
-        this.SITEservice.editedUser.getValue().accessoryUri = '';
+        temporary.accessoryUri = '';
+        this.SITEservice.editedUser.next(temporary);
       }
     }
+    this.SITEservice.editedUser.next(temporary);
     this.router.navigate([{outlets: {
       popupAction: ['empty']
     }}]);
