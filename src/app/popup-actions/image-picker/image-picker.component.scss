@@ -95,7 +95,7 @@
             &:before {
                 border-color:$tertiary;
                 border-radius: 360px;
-                background: $black;
+                background: rgba(0, 0, 0, 0.25);
             }
             &:after {
                 border:none;

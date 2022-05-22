@@ -38,6 +38,7 @@ export class ImagePickerComponent implements OnInit, OnDestroy {
       } else if (this.type === 'accessory') {
         this.originalImage = this.SITEservice.editedUser.getValue().accessoryUri;
       }
+      console.log(this.originalImage);
     });
   }
 
@@ -67,18 +68,26 @@ export class ImagePickerComponent implements OnInit, OnDestroy {
   }
 
   save() {
-    this.router.navigate([{outlets: {
-      popupAction: ['empty']
-    }}]);
+    if((this.accessoryChanged && this.type === 'accessory') || (this.borderChanged && this.type === 'border')) {
+      this.router.navigate([{outlets: {
+        popupAction: ['empty']
+      }}]);
+    }
   }
 
   cancel() {
     if (this.type === 'border') {
-      this.updatedImage = this.originalImage;
-      this.SITEservice.editedUser.getValue().borderUri = this.updatedImage;
+      if (this.originalImage !== '') {
+        this.SITEservice.editedUser.getValue().borderUri = this.originalImage;
+      } else {
+        this.SITEservice.editedUser.getValue().borderUri = '';
+      }
     } else if (this.type === 'accessory') {
-      this.updatedImage = this.originalImage;
-      this.SITEservice.editedUser.getValue().accessoryUri = this.updatedImage;
+      if (this.originalImage !== '') {
+        this.SITEservice.editedUser.getValue().accessoryUri = this.originalImage;
+      } else {
+        this.SITEservice.editedUser.getValue().accessoryUri = '';
+      }
     }
     this.router.navigate([{outlets: {
       popupAction: ['empty']

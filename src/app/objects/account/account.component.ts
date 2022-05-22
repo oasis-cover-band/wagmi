@@ -1,4 +1,4 @@
-import { Component, HostBinding, HostListener, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, HostListener, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { AccountInfo } from 'src/app/classes/accountInfo';
@@ -11,7 +11,7 @@ import { SiteService } from '../../services/site.service';
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss']
 })
-export class AccountComponent implements OnInit {
+export class AccountComponent implements OnInit, OnChanges {
 
   @Input() address!: string;
   @Input() avatarUri!: string;
@@ -55,7 +55,9 @@ export class AccountComponent implements OnInit {
   }
   showingAddress: boolean = false;
   defaultAccessory: boolean = false;
+  defaultBorder: boolean = false;
   defaultAvatar: boolean = false;
+  account!: AccountInfo;
   constructor(
     public APIservice: ApiService,
     private router: Router,
@@ -66,18 +68,22 @@ export class AccountComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     console.log(this.avatarUri);
     const response = await this.SITEservice.getAccount(this.address);
-    let account!: AccountInfo;
     if (this.isAccount.isAccount(response)) {
-      account = response;
+      this.account = response;
     } else {
       return;
     }
+    this.setDefaults(this.account);
+  }
+
+  setDefaults(account: AccountInfo): void {
     if (this.avatarUri === '' || this.avatarUri === undefined || this.avatarUri === null || this.avatarUri === "") {
       this.avatarUri = `../assets/textures/` + (Math.floor(Number(this.address) * 420 / 3)) % 340 + `.png`;
       this.defaultAvatar = true;
     }
     if (this.borderUri === '' || this.borderUri === undefined || this.borderUri === null || this.borderUri === "") {
       this.borderUri = `../assets/textures/` + (Math.floor(Number(this.address) * 42069 / 3)) % 340 + `.png`;
+      this.defaultBorder = true;
     }
     if (this.accessoryUri === '' || this.accessoryUri === undefined || this.accessoryUri === null || this.accessoryUri === "") {
       this.defaultAccessory = true;
@@ -167,6 +173,11 @@ export class AccountComponent implements OnInit {
         // END SHIELDS ONLY USE OF GIFS
         // ***********************
     }
+  }
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+    this.setDefaults(this.account);
   }
 
   setConsole(): void {

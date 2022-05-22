@@ -34,9 +34,6 @@ id="save" (click)="this.save()">
 
 
 <button 
-[ngClass]="{
-    'disabled': ((!this.accessoryChanged && this.type === 'accessory') || (!this.borderChanged && this.type === 'border'))
-}"
 id="cancel" (click)="this.cancel()">
     <span>
         Cancel

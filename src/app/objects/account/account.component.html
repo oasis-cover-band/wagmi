@@ -1,7 +1,13 @@
 <section id="wrapper">
     <div id="outer">
-        <img
-        [src]="this.borderUri" />
+        <ng-container *ngIf="!this.defaultBorder">
+            <img
+            [src]="this.borderUri" />
+        </ng-container>
+        <ng-container *ngIf="this.defaultBorder">
+            <img
+            [src]="this.borderUri" />
+        </ng-container>
     </div>
     <div id="inner">        
         <ng-container *ngIf="!this.defaultAvatar">
