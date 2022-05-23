@@ -8,53 +8,79 @@
     height:100%;
     grid-area: center;
     display:grid;
-    grid-template-rows:0px max-content max-content $margin;
-    grid-auto-columns: $margin 1fr $margin;
+    grid-template-rows:1fr max-content;
+    grid-template-columns: $margin 1fr $margin;
     grid-template-areas:
-    '. . .'
-    '. heading .'
     '. chat .'
-    '. . .';
+    '. user-input .';
     position:relative;
-    row-gap:$gap;
-    overflow-y: scroll;
-    h1#heading {
-        grid-area:heading;
-        font-size:3rem;
-        color:$white;
-        margin:0px;
-        overflow:hidden;
-        text-overflow: ellipsis;
-        text-decoration: underline;
-        text-decoration-color: $tertiary;
-        text-decoration-thickness: 4px;
-    }
-    @media (max-width: 1100px) {
-        h1#heading {
-            font-size:1.5rem;
+    overflow:hidden;
+    section#user-input {
+        grid-area:user-input;
+        min-height:100%;
+        max-height: 100%;
+        height:100%;
+        min-width:100%;
+        max-width: 100%;
+        width: 100%;
+        margin: 0px;
+        input {
+            z-index:1;
+            font-size: 1rem;
+            min-width:100%;
         }
-        @media (max-width: 500px) {
-            h1#heading {
-                font-size:1rem;
-            }
+        span#title {
+            z-index:2;
+            font-size:0.75em;
+            font-variant-caps: all-small-caps;
+            transform:translate(0px, -16px);
+            background:$black;
+            border:5px solid $tertiary;
+            border-radius: $borderradius;
+            color:$tertiary;
+            padding:$margin;
+            filter:drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $black);
         }
     }
     section#chat {
         display:grid;
         grid-area:chat;
+        grid-template-areas:
+        '. . .'
+        '. messages .'
+        '. . .';
+        grid-template-columns: $margin 1fr $margin;
+        grid-template-rows: 0px 1fr 0px;
+
+        min-width:100%;
+        max-width:100%;
+        width:100%;
+        min-height: 100%;
+        max-height: 100%;
+        height: 100%;
+        overflow-x:hidden;
+        overflow-y: scroll;
+    }
+    section#messages {
+        display:grid;
+        grid-area:messages;
         grid-auto-columns: 1fr;
         grid-auto-rows: max-content;
-        overflow-y:scroll;
         row-gap:$gap;
         min-width:100%;
         max-width:100%;
         width:100%;
-        overflow-x:hidden;  
+        min-height: 100%;
+    max-height: 100%;
+    height: 100%;
         // border-radius: $borderradius;
         // ^ CAN'T FIGURE OUT HOW TO MAKE THE TOP RIGHT/BOTTOM RIGHT BORDER RADIUS SHOW - DUE TO SCROLLBAR
         // BUG FIX REQUIRED
         justify-content: center;
         justify-items: center;
+        
+    }
+    @media (max-width: 1100px) {
     }
     background:$lightestblack;
     border-radius:$borderradius $borderradius 0px 0px;

@@ -76,15 +76,15 @@
     <section id="name" class="input">
         <span>Name</span>
         <ng-container *ngIf="account.accountId !== ''">
-            <input (change)="updateName($event)" #name id="name" *ngIf="account !== undefined && account.accountId !== undefined" [placeholder]="this.originalName"/>
+            <input (keyup)="updateName($event)" (change)="updateName($event)" #name id="name" *ngIf="account !== undefined && account.accountId !== undefined" [placeholder]="this.originalName"/>
         </ng-container>
         <ng-container *ngIf="account.accountId === ''">
-            <input (change)="updateName($event)" #name id="name" *ngIf="account !== undefined && account.accountId !== undefined" placeholder="Unnamed Account"/>
+            <input (keyup)="updateName($event)" (change)="updateName($event)" #name id="name" *ngIf="account !== undefined && account.accountId !== undefined" placeholder="Unnamed Account"/>
         </ng-container>
     </section>
     <section id="bio" class="input">
         <span>Bio</span>
-        <textarea (change)="updateBio($event)" #bio cols="10" rows="5" id="bio" *ngIf="account !== undefined && account.bio !== undefined" [placeholder]="this.originalBio"></textarea>
+        <textarea (keyup)="updateBio($event)" (change)="updateBio($event)" #bio cols="10" rows="5" id="bio" *ngIf="account !== undefined && account.bio !== undefined" [placeholder]="this.originalBio"></textarea>
     </section>
 
     <button 

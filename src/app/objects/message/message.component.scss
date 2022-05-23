@@ -53,8 +53,9 @@
             bottom:0px;
             left:0px;
             right:0px;
-            background:rgba(255, 255, 255, 0.5);
+            background:$lightestgrey;
             border-radius:$borderradius;
+            opacity: 0.8;
             
         }
     }

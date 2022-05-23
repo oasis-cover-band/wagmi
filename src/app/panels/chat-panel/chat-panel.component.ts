@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { AccountInfo } from 'src/app/classes/accountInfo';
@@ -21,6 +21,8 @@ export class ChatPanelComponent implements OnInit, OnDestroy {
   myAddress!: BehaviorSubject<string>;
   forceProfileChange: boolean = false;
   chat!: Chat;
+  @ViewChild('chatInput') chatInput!: ElementRef;
+  typing: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(
     private APIservice: ApiService,
@@ -114,6 +116,14 @@ export class ChatPanelComponent implements OnInit, OnDestroy {
       }
       this.forceProfileChange = false;
     });
+  }
+
+  updateChat(event: Event): void {
+    if (this.chatInput.nativeElement.value !== '') {
+      this.typing.next(true);
+    } else {
+      this.typing.next(false);
+    }
   }
 
   ngOnDestroy(): void {

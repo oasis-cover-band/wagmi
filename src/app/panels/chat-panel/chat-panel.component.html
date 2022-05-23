@@ -1,8 +1,23 @@
-<h1 id="heading" *ngIf="this.talkingTo !== undefined && this.talkingTo.accountId !== undefined">Chatting with {{this.talkingTo.accountId}}</h1>
 <section id="chat" *ngIf="this.chat !== undefined && this.chat.messages !== undefined">
-    <ng-container *ngFor="let message of this.chat.messages">
-        <app-message [data]="message" [sender]="(this.myAddress | async) === message.senderAddress">
+    <section id="messages">
+        <ng-container *ngFor="let message of this.chat.messages">
+            <app-message [data]="message" [sender]="(this.myAddress | async) === message.senderAddress">
+    
+            </app-message>
+        </ng-container>
+    </section>
+</section>
 
-        </app-message>
+<section id="user-input" class="input active">
+    <span id="title">
+        <ng-container *ngIf="(this.typing | async) === false">
+            Chatting with {{this.talkingTo.accountId}}
+        </ng-container>
+        <ng-container *ngIf="(this.typing | async) === true">
+            Send
+        </ng-container>
+    </span>
+    <ng-container>
+        <input (keyup)="updateChat($event)" (change)="updateChat($event)" #chatInput id="chat-input" placeholder=""/>
     </ng-container>
 </section>

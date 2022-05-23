@@ -153,7 +153,7 @@ button {
         color: $white;
         font-size:3rem;
         border-radius: $borderradius;
-        margin: $margin;
+        // margin: $margin;
         resize: none;
         overflow:hidden;
         text-overflow: ellipsis;
@@ -190,7 +190,7 @@ button {
     textarea {
         font-size:1.5rem;
     }
-    &:hover, &:focus, &:active {
+    &:hover, &:focus, &:active, &.active {
         span {
             opacity:1;
             color:$tertiary;
