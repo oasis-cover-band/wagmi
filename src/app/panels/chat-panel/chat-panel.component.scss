@@ -53,6 +53,12 @@
         // border-radius: $borderradius;
         // ^ CAN'T FIGURE OUT HOW TO MAKE THE TOP RIGHT/BOTTOM RIGHT BORDER RADIUS SHOW - DUE TO SCROLLBAR
         // BUG FIX REQUIRED
-        background:$lightestblack;
+        justify-content: center;
+        justify-items: center;
     }
+    background:$lightestblack;
+    border-radius:$borderradius $borderradius 0px 0px;
+    border-radius:$borderradius $borderradius 0px 0px;
+    -moz-border-radius:$borderradius $borderradius 0px 0px;
+    -webkit-border-radius:$borderradius $borderradius 0px 0px;
 }

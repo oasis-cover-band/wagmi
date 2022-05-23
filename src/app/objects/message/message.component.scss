@@ -18,6 +18,8 @@
         filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $black);
         text-align: left;
         padding: $margin;
+        margin:0px;
+        justify-self: stretch;
         span#text {
             overflow:hidden;
             text-overflow: ellipsis;
@@ -40,16 +42,34 @@
         justify-self: start;
         font-family: 0.75rem;
         color:$primary;
-
+        position:relative;
+        min-height:32px;
+        &:before {
+            position:absolute;
+            transform:translateY(22px);
+            content:'';
+            height:4px;
+            top:0px;
+            bottom:0px;
+            left:0px;
+            right:0px;
+            background:rgba(255, 255, 255, 0.5);
+            border-radius:$borderradius;
+            
+        }
     }
+    transform:translateX(-5%);
     &.sender {
+        transform:translateX(0%);
         span#who-sent {
             color:$tertiary;
             justify-self: end;
         }
         p#message {
             background:$tertiary;
-            justify-self: end;
+        }
+        span#timestamp {
+            text-align: left;
         }
         justify-self: end;
     }
