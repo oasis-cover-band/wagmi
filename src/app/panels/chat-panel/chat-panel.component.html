@@ -9,7 +9,9 @@
 </section>
 
 <section id="user-input" class="input active">
-    <span id="title">
+    <span id="title" [ngClass]="{
+    'typing': (this.typing | async) === true
+    }">
         <ng-container *ngIf="(this.typing | async) === false">
             Chatting with {{this.talkingTo.accountId}}
         </ng-container>
