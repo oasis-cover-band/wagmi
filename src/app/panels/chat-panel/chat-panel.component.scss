@@ -23,7 +23,6 @@
         min-width:100%;
         max-width: 100%;
         width: 100%;
-        margin: 0px;
         background:$grey;
         input {
             z-index:1;
@@ -31,10 +30,11 @@
             min-width:100%;
         }
         span#title {
+            position:absolute;
             z-index:2;
             font-size:0.75em;
             font-variant-caps: all-small-caps;
-            transform:translate(0px, -32px);
+            transform:translate(0px, -24px);
             background: rgba(0,0,0, 0.25);
             border:5px solid $tertiary;
             border-radius: $borderradius;

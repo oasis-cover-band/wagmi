@@ -15,7 +15,7 @@
         color:$black;
         background: $primary;
         border-radius: $borderradius;
-        filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $black);
+        filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $primary);
         text-align: left;
         padding: $margin;
         margin:0px;
@@ -68,6 +68,7 @@
         }
         p#message {
             background:$tertiary;
+            filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $tertiary);
         }
         span#timestamp {
             text-align: left;

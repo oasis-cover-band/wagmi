@@ -1,4 +1,7 @@
-<section id="container">
+<section id="container"
+[ngClass]="{
+    'list': this.data.notificationType === 'LIST'
+}">
     <section id="underlay-wrapper">
     
         <h5 id="type-underlay">
