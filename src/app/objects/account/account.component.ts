@@ -25,7 +25,13 @@ export class AccountComponent implements OnInit, OnChanges {
   @Input() view: boolean = false;
   @HostListener('click') onClick(){
     if (this.chat === true) {
-
+      this.router.navigate([{outlets: {
+        left: ['profile-picture',  this.address],
+        center: ['chat',  this.address],
+        right: ['profile-stats',  this.address]
+      }}])
+      this.hideAddress();
+      this.setConsole('chat/');
     } else if (this.view === true) {
       this.router.navigate([{outlets: {
         left: ['profile-picture',  this.address],
@@ -33,7 +39,7 @@ export class AccountComponent implements OnInit, OnChanges {
         right: ['profile-stats',  this.address]
       }}])
       this.hideAddress();
-      this.setConsole();
+      this.setConsole('profile/basic_info/');
       this.setSiteServiceView();
     }
   }
@@ -179,8 +185,8 @@ export class AccountComponent implements OnInit, OnChanges {
     this.setDefaults(this.account);
   }
 
-  setConsole(): void {
-    this.SITEservice.currentRoute.next('profile/basic_info/'.concat(this.address));
+  setConsole(consoleMessage: string): void {
+    this.SITEservice.currentRoute.next(consoleMessage.concat(this.address));
   }
 
   setSiteServiceView(): void {

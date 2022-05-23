@@ -16,7 +16,66 @@ import { ApiService } from '../services/api.service';
 })
 export class SidebarComponent implements OnInit, OnDestroy {
   friends: AccountInfo[] = [
-
+    {
+      accountId: '',
+      walletAddress: '0x7f17c6Ebe682cc3d2bAbF3e2416f632110D7eaD1',
+      bio: '',
+      followers: 0,
+      following: 0,
+      avatarUri: '',
+      bannerUri: '',
+      borderUri: '',
+      accessoryUri: '../../../assets/accessories/png/0.png',
+      record: [],
+      joinDate: '',
+      reputation: 0,
+      friends: []
+    },
+    {
+      accountId: '',
+      walletAddress: '0x7f17c6Ebe682cc3d2bAbF3e2416f632110D7eaD1',
+      bio: '',
+      followers: 0,
+      following: 0,
+      avatarUri: '',
+      bannerUri: '',
+      borderUri: '',
+      accessoryUri: '',
+      record: [],
+      joinDate: '',
+      reputation: 0,
+      friends: []
+    },
+    {
+      accountId: '',
+      walletAddress: '0x7f17c6Ebe682cc3d2bAbF3e2416f632110D7eaD1',
+      bio: '',
+      followers: 0,
+      following: 0,
+      avatarUri: '',
+      bannerUri: '',
+      borderUri: '',
+      accessoryUri: '',
+      record: [],
+      joinDate: '',
+      reputation: 0,
+      friends: []
+    },
+    {
+      accountId: '',
+      walletAddress: '0x7f17c6Ebe682cc3d2bAbF3e2416f632110D7eaD1',
+      bio: '',
+      followers: 0,
+      following: 0,
+      avatarUri: '',
+      bannerUri: '',
+      borderUri: '',
+      accessoryUri: '',
+      record: [],
+      joinDate: '',
+      reputation: 0,
+      friends: []
+    }
   ];
   account!: AccountInfo | number;
   myAddress: BehaviorSubject<string> = this.WEB3service.loggedIn.walletAddress;

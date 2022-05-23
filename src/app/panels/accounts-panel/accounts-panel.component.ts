@@ -99,7 +99,7 @@ export class AccountsPanelComponent implements OnInit {
       if (this.type === 'followers' || this.type === 'following') {
         const response = await this.APIservice.getAccount(await this.SITEservice.viewing.getValue());
         console.log(response);
-        if (this.isAccount.isAccount(response) && response.accountId) {
+        if (this.isAccount.isAccount(response) && response.accountId !== undefined) {
           console.log(response);
           this.viewing = response.accountId;
           this.account = response;

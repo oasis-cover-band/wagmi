@@ -18,6 +18,8 @@ import { AccountsPanelModule } from './panels/accounts-panel/accounts-panel.modu
 import { AccountsPanelComponent } from './panels/accounts-panel/accounts-panel.component';
 import { ImagePickerModule } from './popup-actions/image-picker/image-picker.module';
 import { ImagePickerComponent } from './popup-actions/image-picker/image-picker.component';
+import { ChatPanelModule } from './panels/chat-panel/chat-panel.module';
+import { ChatPanelComponent } from './panels/chat-panel/chat-panel.component';
 
 const routes: Routes = [
   // ***************************
@@ -45,6 +47,7 @@ const routes: Routes = [
   {path: 'notifications/:address', component: NotificationsPanelComponent, outlet: "center"},
   {path: 'accounts/:type', component: AccountsPanelComponent, outlet: "center"},
   {path: 'accounts/:type', component: AccountsPanelComponent, outlet: "center"},
+  {path: 'chat/:address', component: ChatPanelComponent, outlet: "center"},
   
   // ***************************
   // EDIT PROFILE
@@ -79,7 +82,8 @@ const routes: Routes = [
     EditProfileModule,
     AccountsPanelModule,
     EmptyModule,
-    ImagePickerModule
+    ImagePickerModule,
+    ChatPanelModule
   ],
   exports: [RouterModule]
 })

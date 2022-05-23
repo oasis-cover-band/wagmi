@@ -24,6 +24,7 @@ export class ProfilePicturePanelComponent implements OnInit, OnDestroy {
   isFollowing!: boolean;
   account!: AccountInfo;
   forceProfileChange: boolean = false;
+  joinDate!: number;
   constructor(
     private route: ActivatedRoute,
     private APIservice: ApiService,
@@ -40,6 +41,7 @@ export class ProfilePicturePanelComponent implements OnInit, OnDestroy {
       const response = await this.APIservice.getAccount(this.requestedAddress.getValue());
       if (this.isAccount.isAccount(response)) {
         this.account = response;
+        this.joinDate = new Date(String(this.account.joinDate)).getTime();
       }
       this.forceProfileChange = false;
     });

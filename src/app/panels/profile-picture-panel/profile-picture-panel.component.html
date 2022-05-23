@@ -12,8 +12,8 @@
 <section id="text"
 *ngIf="!this.forceProfileChange"
 [@ngIfProfileAnimations]>
-    <div *ngIf="this.account !== undefined && this.account.joinDate !== undefined">
-        Joined on <span>{{this.account.joinDate | date:'longDate'}}</span>
+    <div *ngIf="this.account !== undefined && this.account.joinDate !== undefined && this.joinDate !== undefined">
+        Joined on <span>{{this.joinDate | date:'longDate'}}</span>
     </div>
     <b *ngIf="this.account !== undefined && this.account.followers !== undefined">{{((this.account.followers / 1000) | number:'1.1-1')}}k</b> Followers
     <br>

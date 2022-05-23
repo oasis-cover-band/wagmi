@@ -1,6 +1,14 @@
 
     <h1 id="heading" *ngIf="!this.forcePageChange && this.viewing !== undefined"
-    [@ngIfProfileAnimations]>{{this.viewing + "'s " + this.type}}</h1>
+    [@ngIfProfileAnimations]>
+
+    <ng-container *ngIf="this.viewing !== ''">
+        {{this.viewing + "'s " + this.type}}
+    </ng-container>
+    <ng-container *ngIf="this.viewing === ''">
+        Unnamed Account's {{this.type}}
+    </ng-container>
+</h1>
     
     <h1 id="heading" *ngIf="!this.forcePageChange && this.viewing === undefined"
     [@ngIfProfileAnimations]>{{this.type}}</h1>
