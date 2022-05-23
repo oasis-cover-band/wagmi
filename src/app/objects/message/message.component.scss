@@ -16,13 +16,7 @@
         background: $primary;
         border-radius: $borderradius;
         filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $black);
-        display:grid;
         text-align: left;
-        justify-content: center;
-        align-content: center;
-        justify-items: center;
-        align-items: center;
-        justify-self: start;
         padding: $margin;
     }
     span#timestamp {
@@ -32,12 +26,7 @@
         // border-radius: $borderradius;
         // filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $black);
         display:grid;
-        text-align: center;
-        justify-content: center;
-        align-content: center;
-        justify-items: center;
-        align-items: center;
-        justify-self: end;
+        text-align: right;
         // padding: $margin;
         font-size:0.75rem;;
 
@@ -59,11 +48,5 @@
             justify-self: end;
         }
         justify-self: end;
-    }
-    transform:translateX(5%);
-    background:$lightestblack;
-    color:$white;
-    &.sender {
-        transform:translateX(-5%);
     }
 }

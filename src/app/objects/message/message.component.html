@@ -8,7 +8,9 @@
     </ng-container>
 </span>
 <p id="message">
-    {{this.data.messageContent}};
+    <span id="text">
+        {{this.data.messageContent}}
+    </span>
     <span id="timestamp" *ngIf="this.messageTime">
         Sent on {{this.messageTime | date:'longDate'}}
     </span>

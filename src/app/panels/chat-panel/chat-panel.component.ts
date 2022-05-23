@@ -59,49 +59,49 @@ export class ChatPanelComponent implements OnInit, OnDestroy {
           },
           {
             messageAttachments: [],
-            messageContent: 'We need to talk.',
+            messageContent: `Long String this is a very long string yes it's long as hell.`,
             senderAddress: this.requestedAddress.getValue(),
             recipientAddress: this.myAddress.getValue(),
             messageTime: String(new Date())
           },
           {
             messageAttachments: [],
-            messageContent: 'We need to talk.',
+            messageContent: `Long String this is a very long string yes it's long as hell. Long String this is a very long string yes it's long as hell. Long String this is a very long string yes it's long as hell.`,
             senderAddress: this.myAddress.getValue(),
             recipientAddress: this.requestedAddress.getValue(),
             messageTime: String(new Date())
           },
           {
             messageAttachments: [],
-            messageContent: 'We need to talk.',
+            messageContent: `Long String this is a very long string yes it's long as hell.Long String this is a very long string yes it's long as hell.Long String this is a very long string yes it's long as hell.`,
             senderAddress: this.myAddress.getValue(),
             recipientAddress: this.requestedAddress.getValue(),
             messageTime: String(new Date())
           },
           {
             messageAttachments: [],
-            messageContent: 'We need to talk.',
+            messageContent: 'This is a better lookign conversation then the same spam ser.',
             senderAddress: this.requestedAddress.getValue(),
             recipientAddress: this.myAddress.getValue(),
             messageTime: String(new Date())
           },
           {
             messageAttachments: [],
-            messageContent: 'We need to talk.',
+            messageContent: 'Okay more reandom wordsjiodadosid.',
             senderAddress: this.myAddress.getValue(),
             recipientAddress: this.requestedAddress.getValue(),
             messageTime: String(new Date())
           },
           {
             messageAttachments: [],
-            messageContent: 'We need to talk.',
+            messageContent: 'I LIKE FOOD.',
             senderAddress: this.myAddress.getValue(),
             recipientAddress: this.requestedAddress.getValue(),
             messageTime: String(new Date())
           },
           {
             messageAttachments: [],
-            messageContent: 'We need to talk.',
+            messageContent: 'Thanks me too.',
             senderAddress: this.requestedAddress.getValue(),
             recipientAddress: this.myAddress.getValue(),
             messageTime: String(new Date())
