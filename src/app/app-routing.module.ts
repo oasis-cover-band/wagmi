@@ -43,8 +43,8 @@ const routes: Routes = [
   {path: 'profile-picture/:address', component: ProfilePicturePanelComponent, outlet: "left"},
   {path: 'profile-stats/:address', component: ProfileStatsPanelComponent, outlet: "right"},
   {path: 'notifications/:address', component: NotificationsPanelComponent, outlet: "center"},
-  {path: 'followers/:address', component: AccountsPanelComponent, outlet: "center"},
-  {path: 'following/:address', component: AccountsPanelComponent, outlet: "center"},
+  {path: 'accounts/:type', component: AccountsPanelComponent, outlet: "center"},
+  {path: 'accounts/:type', component: AccountsPanelComponent, outlet: "center"},
   
   // ***************************
   // EDIT PROFILE

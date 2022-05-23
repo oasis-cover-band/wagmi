@@ -74,6 +74,7 @@
             image-rendering: crisp-edges;
             background-size: 100% 100%!important;
             background-repeat: repeat!important;
+            filter: brightness(0.9);
         }
     }
     main#popup, main#popupAction {

@@ -82,7 +82,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   showFollowers(): void {
     this.router.navigate([{outlets: {
       left: ['profile-picture',  this.SITEservice.viewing.getValue()],
-      center: ['followers',  this.SITEservice.viewing.getValue()],
+      center: ['accounts',  'followers'],
       right: ['profile-stats',  this.SITEservice.viewing.getValue()]
     }}])
     this.SITEservice.mouseover.next('');
@@ -92,7 +92,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   showFollowing(): void {
     this.router.navigate([{outlets: {
       left: ['profile-picture',  this.SITEservice.viewing.getValue()],
-      center: ['following',  this.SITEservice.viewing.getValue()],
+      center: ['accounts',  'following'],
       right: ['profile-stats',  this.SITEservice.viewing.getValue()]
     }}])
     this.SITEservice.mouseover.next('');

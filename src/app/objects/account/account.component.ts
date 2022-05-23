@@ -84,6 +84,7 @@ export class AccountComponent implements OnInit, OnChanges {
       this.borderUri = `../assets/textures/` + (Math.floor(Number(this.address) * 42069 / 3)) % 340 + `.png`;
       this.defaultBorder = true;
     }
+    console.log(this.accessoryUri);
     if (this.accessoryUri === '' || this.accessoryUri === undefined || this.accessoryUri === null || this.accessoryUri === "") {
       this.defaultAccessory = true;
       // ***********************

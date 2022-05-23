@@ -1,1 +1,22 @@
-<p>accounts-panel works!</p>
+
+    <h1 id="heading" *ngIf="!this.forcePageChange && this.viewing !== undefined"
+    [@ngIfProfileAnimations]>{{this.viewing + "'s " + this.type}}</h1>
+    
+    <h1 id="heading" *ngIf="!this.forcePageChange && this.viewing === undefined"
+    [@ngIfProfileAnimations]>{{this.type}}</h1>
+    <section id="accounts">
+    <ng-container
+    *ngFor="let account of this.accounts">
+        <app-account
+        *ngIf="!this.forcePageChange && account.walletAddress !== undefined && account.avatarUri !== undefined && account.borderUri !== undefined && account.accessoryUri !== undefined"
+        [large]="true"
+        [view]="true"
+        [address]="account.walletAddress"
+        [avatarUri]="account.avatarUri"
+        [borderUri]="account.borderUri"
+        [accessoryUri]="account.accessoryUri"
+        [@ngIfProfileAnimations]
+        ></app-account>
+    </ng-container>
+
+</section>

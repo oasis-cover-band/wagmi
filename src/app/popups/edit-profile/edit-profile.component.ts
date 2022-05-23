@@ -55,12 +55,12 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       this.originalBorder = this.account.getValue().borderUri;
       this.originalAccessory = this.account.getValue().accessoryUri;
       this.listener = this.SITEservice.editedAccount.subscribe(account => {
-        if (this.name.nativeElement.value !== '') {
+        if (this.name !== undefined && this.name.nativeElement.value !== '') {
           this.nameChanged = true;
         } else {
           this.nameChanged = false;
         }
-        if (this.bio.nativeElement.value !== '') {
+        if (this.bio !== undefined && this.bio.nativeElement.value !== '') {
           this.bioChanged = true;
         } else {
           this.bioChanged = false;
