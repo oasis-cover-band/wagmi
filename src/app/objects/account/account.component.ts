@@ -2,7 +2,7 @@ import { Component, HostBinding, HostListener, Input, OnChanges, OnInit, SimpleC
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { AccountInfo } from 'src/app/classes/accountInfo';
-import { IsAccountService } from 'src/app/is-account.service';
+import { IsAccountService } from 'src/app/services/is-account.service';
 import { ApiService } from '../../services/api.service';
 import { SiteService } from '../../services/site.service';
 

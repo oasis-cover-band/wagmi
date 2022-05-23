@@ -5,7 +5,7 @@ import { ApiService } from '../../services/api.service';
 import { AccountInfo } from 'src/app/classes/accountInfo';
 import { SiteService } from '../../services/site.service';
 import { Web3Service } from 'src/app/services/web3.service';
-import { IsAccountService } from 'src/app/is-account.service';
+import { IsAccountService } from 'src/app/services/is-account.service';
 import { ngIfProfileAnimations } from 'src/app/animations';
 
 @Component({

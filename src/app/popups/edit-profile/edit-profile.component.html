@@ -90,7 +90,7 @@
     <button 
     *ngIf="this.name !== undefined && this.bio !== undefined"
     [ngClass]="{
-        'disabled': !this.nameChanged && !this.bioChanged && !this.avatarChanged && !this.bannerChanged && !this.borderChanged && !this.accessoryChanged && this.name.nativeElement.value === '' && this.bio.nativeElement.value === ''
+        'disabled': !this.nameChanged && !this.bioChanged && !this.avatarChanged && !this.bannerChanged && !this.borderChanged && !this.accessoryChanged
     }"
     id="save" (click)="this.edit()">
         <span>

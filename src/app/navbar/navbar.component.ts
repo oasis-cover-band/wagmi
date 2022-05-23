@@ -4,7 +4,7 @@ import { ngIfAnimations, ngIfConsoleAnimations, ngIfProfileAnimations } from '..
 import { AccountInfo } from '../classes/accountInfo';
 import { Web3Service } from '../services/web3.service';
 import { SiteService } from '../services/site.service';
-import { IsAccountService } from '../is-account.service';
+import { IsAccountService } from '../../app/services/is-account.service';
 import { ApiService } from '../services/api.service';
 
 @Component({

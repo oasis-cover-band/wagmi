@@ -6,7 +6,7 @@ import { ApiService } from './services/api.service';
 import { AccountInfo } from './classes/accountInfo';
 import { SiteService } from './services/site.service';
 import { TimeService } from './services/time.service';
-import { IsAccountService } from './is-account.service';
+import { IsAccountService } from './services/is-account.service';
 
 @Component({
   selector: 'app-root',

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { ngIfAnimations } from '../animations';
 import { AccountInfo } from '../classes/accountInfo';
-import { IsAccountService } from '../is-account.service';
+import { IsAccountService } from '../../app/services/is-account.service';
 import { SiteService } from '../services/site.service';
 import { Web3Service } from '../services/web3.service';
 
