@@ -1,0 +1,15 @@
+
+<span id="who-sent">
+    <ng-container *ngIf="this.sender">
+        You Wrote
+    </ng-container>
+    <ng-container *ngIf="!this.sender && this.data.senderAddress">
+        You Received
+    </ng-container>
+</span>
+<p id="message">
+    {{this.data.messageContent}};
+    <span id="timestamp" *ngIf="this.messageTime">
+        Sent on {{this.messageTime | date:'longDate'}}
+    </span>
+</p>

@@ -1,0 +1,69 @@
+@import '../../../colors.scss';
+:host {
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content max-content max-content;
+    grid-template-areas: 
+    'who-sent'
+    'message'
+    'timestamp';
+    min-width: 90%;
+    max-width:90%;
+    width:90%;
+    p#message {
+        grid-area:message;
+        color:$black;
+        background: $primary;
+        border-radius: $borderradius;
+        filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $black);
+        display:grid;
+        text-align: left;
+        justify-content: center;
+        align-content: center;
+        justify-items: center;
+        align-items: center;
+        justify-self: start;
+        padding: $margin;
+    }
+    span#timestamp {
+        grid-area:timestamp;
+        color:$black;
+        // background: $primary;
+        // border-radius: $borderradius;
+        // filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $black);
+        display:grid;
+        text-align: center;
+        justify-content: center;
+        align-content: center;
+        justify-items: center;
+        align-items: center;
+        justify-self: end;
+        // padding: $margin;
+        font-size:0.75rem;;
+
+    }
+    span#who-sent {
+        grid-area:who-sent;
+        justify-self: start;
+        font-family: 0.75rem;
+        color:$primary;
+
+    }
+    &.sender {
+        span#who-sent {
+            color:$tertiary;
+            justify-self: end;
+        }
+        p#message {
+            background:$tertiary;
+            justify-self: end;
+        }
+        justify-self: end;
+    }
+    transform:translateX(5%);
+    background:$lightestblack;
+    color:$white;
+    &.sender {
+        transform:translateX(-5%);
+    }
+}

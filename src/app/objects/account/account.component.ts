@@ -32,6 +32,7 @@ export class AccountComponent implements OnInit, OnChanges {
       }}])
       this.hideAddress();
       this.setConsole('chat/');
+      this.setSiteServiceView();
     } else if (this.view === true) {
       this.router.navigate([{outlets: {
         left: ['profile-picture',  this.address],
@@ -54,7 +55,11 @@ export class AccountComponent implements OnInit, OnChanges {
   @HostListener('mouseenter') onEnter(){
     if (!this.showingAddress) {
       this.showingAddress = true;
-      this.showAddress();
+      if (this.view) {
+        this.showAddress('profile/basic_info/');
+      } else if (this.chat) {
+        this.showAddress('chat/')
+      }
     } else {
       
     }
@@ -193,8 +198,8 @@ export class AccountComponent implements OnInit, OnChanges {
     this.SITEservice.viewing.next(this.address);
   }
 
-  showAddress(): void {
-    this.SITEservice.mouseover.next('profile/basic_info/'.concat(this.address));
+  showAddress(consoleMessage: string): void {
+    this.SITEservice.mouseover.next(consoleMessage.concat(this.address));
   }
 
   hideAddress(): void {

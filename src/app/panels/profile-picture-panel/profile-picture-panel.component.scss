@@ -35,4 +35,20 @@
         display:grid;
         grid-auto-flow: column;
     }
+    @media (max-width: 1100px) {
+        grid-template-areas:
+        '. . . .'
+        '. account account .'
+        '. actions text .'
+        '. . . .';
+        row-gap:$gap;
+        column-gap:$gap;
+        grid-template-columns: $margin 0.5fr 1fr $margin;
+        grid-template-rows: $margin 1fr max-content $margin;
+        @media (max-width:500px) {
+            div#join-date {
+                font-size:0.75rem;
+            }
+        }
+    }
 }

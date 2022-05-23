@@ -5,6 +5,7 @@
     grid-template-rows: 1fr;
     background:$lightblack;
     border-radius:$borderradius;
+    filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $black);
     cursor: pointer;
     align-content: center;
     align-items: center;

@@ -29,6 +29,11 @@
         text-decoration-color: $tertiary;
         text-decoration-thickness: 4px;
     }
+    @media (max-width: 1100px) {
+        h1#heading {
+            font-size:1.5rem;
+        }
+    }
     section#accounts {
         grid-area:accounts;
         display:grid;

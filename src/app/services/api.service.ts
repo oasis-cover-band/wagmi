@@ -76,7 +76,7 @@ export class ApiService {
       borderUri: '',
       accessoryUri: '',
       record: [],
-      joinDate: String(new Date().getTime()),
+      joinDate: String(new Date()),
       reputation: 0,
       friends: []
     }

@@ -23,6 +23,7 @@
         background: $lightblack;
         border-radius: $borderradius;
         row-gap:$mobilegap;
+        filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $black);
         justify-self: stretch;
         app-account {
             grid-area: account;

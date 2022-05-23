@@ -1,1 +1,8 @@
-<p>chat-panel works!</p>
+<h1 id="heading" *ngIf="this.talkingTo !== undefined && this.talkingTo.accountId !== undefined">Chatting with {{this.talkingTo.accountId}}</h1>
+<section id="chat" *ngIf="this.chat !== undefined && this.chat.messages !== undefined">
+    <ng-container *ngFor="let message of this.chat.messages">
+        <app-message [data]="message" [sender]="(this.myAddress | async) === message.senderAddress">
+
+        </app-message>
+    </ng-container>
+</section>

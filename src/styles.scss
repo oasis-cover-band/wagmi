@@ -1,7 +1,6 @@
 @import './assets/fonts/stylesheet.css';
 @import './colors.scss';
 html {
-    background: $lightgrey;
     scrollbar-width: thin;          /* "auto" or "thin" */
     scrollbar-color: $tertiary rgba(0,0,0,0);   /* scroll thumb and track */
     ::-webkit-scrollbar {
@@ -69,6 +68,8 @@ body {
     grid-area:body;
     grid-template-areas:
     "app-root";
+    background: $lightgrey;
+    transition: $transition;
 }
 img {
     image-rendering: pixelated;
