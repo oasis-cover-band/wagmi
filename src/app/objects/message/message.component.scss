@@ -18,6 +18,10 @@
         filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $black);
         text-align: left;
         padding: $margin;
+        span#text {
+            overflow:hidden;
+            text-overflow: ellipsis;
+        }
     }
     span#timestamp {
         grid-area:timestamp;
