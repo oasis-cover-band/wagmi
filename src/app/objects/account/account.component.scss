@@ -172,7 +172,7 @@
         position:absolute;
         background:$tertiary;
         border-radius:$borderradius;
-        filter:drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $black);
+        filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $tertiary);
         padding:10px;
         transition:$transition;
         opacity:0;

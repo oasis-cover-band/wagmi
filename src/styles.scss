@@ -102,11 +102,27 @@ button {
         grid-area:content;
     }
     border-radius: $borderradius;
-    &.save, &#save {
+    &.save, &#save, &.send, &#send {
         background:$green;
+        border:5px solid $green;
+        &:hover {
+            filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $green);
+            background: rgba(0,0,0, 0.25);
+            border:5px solid $green;
+            margin:-10px 0px 0px -10px;
+            color:$white;
+        }
     }
     &.cancel, &#cancel {
         background:$red;
+        border:5px solid $red;
+        &:hover {
+            filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $red);
+            background: rgba(0,0,0, 0.25);
+            border:5px solid $red;
+            margin:-10px 0px 0px -10px;
+            color:$white;
+        }
     }
     color: $black;
     font-size:2rem;
@@ -181,7 +197,7 @@ button {
       
     input:not(:placeholder-shown),
     textarea:not(:placeholder-shown) {
-        border:2px dashed $tertiary;
+        filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $tertiary);
         box-sizing: border-box;
     }
     input:placeholder-shown,

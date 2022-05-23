@@ -31,15 +31,17 @@
             right:0px;
             left:0px;
             bottom:0px;
-            background: $lightblack;
+            border: 10px solid $lightblack;
             border-radius: $borderradius;
             filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $black);
             transition:$transition;
+            background:$lightestblack;
         }
         app-account {
             grid-area: account;
         }
         b#price {
+            font-size:0.75rem;
             text-decoration: underline;
             text-decoration-style: solid;
             text-decoration-color: $tertiary;
@@ -147,22 +149,24 @@
                 text-align: center;
                 font-weight:100;
                 font-family: 'Nunito';
-                z-index:0;
+                z-index:1;
                 opacity:0.4;
             }
         }
         &.list {
             section#underlay-wrapper {
                 h5#type-underlay {
-                    color:$black;
+                    color:$white;
                 }
             }
             &:before {
                 background:$tertiary;
+                border:10px solid $tertiary;
                 filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $tertiary);
+                opacity:0.4;
             }
             section#notification {
-                color:$black;
+                color:$white;
             }
             b#price {
                 padding:$margin;

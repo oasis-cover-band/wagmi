@@ -9,9 +9,10 @@
 </section>
 
 <section id="user-input" class="input active">
-    <span id="title" [ngClass]="{
+    <button id="send" [ngClass]="{
     'typing': (this.typing | async) === true
     }">
+    <span>
         <ng-container *ngIf="(this.typing | async) === false">
             Chatting with {{this.talkingTo.accountId}}
         </ng-container>
@@ -19,6 +20,7 @@
             Send
         </ng-container>
     </span>
+    </button>
     <ng-container>
         <input (keyup)="updateChat($event)" (change)="updateChat($event)" #chatInput id="chat-input" placeholder=""/>
     </ng-container>
