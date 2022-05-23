@@ -34,11 +34,10 @@ export class ImagePickerComponent implements OnInit, OnDestroy {
     this.listener = this.route.params.subscribe(async params => {
       this.type = params['type'];
       if (this.type === 'border') {
-        this.originalImage = this.SITEservice.editedUser.getValue().borderUri;
+        this.originalImage = this.SITEservice.editedAccount.getValue().borderUri;
       } else if (this.type === 'accessory') {
-        this.originalImage = this.SITEservice.editedUser.getValue().accessoryUri;
+        this.originalImage = this.SITEservice.editedAccount.getValue().accessoryUri;
       }
-      console.log(this.originalImage);
     });
   }
 
@@ -57,14 +56,20 @@ export class ImagePickerComponent implements OnInit, OnDestroy {
     this.borderChanged = true;
     this.selectedImage = index;
     this.updatedImage = '../assets/textures/' + this.selectedImage + '.png';
-    this.SITEservice.editedUser.getValue().borderUri = this.updatedImage;
+    const account = this.SITEservice.editedAccount.getValue();
+    console.log(account);
+    account.borderUri = this.updatedImage;
+    this.SITEservice.updateEditedAccount(account);
   }
 
   selectAccessory(index: number) {
     this.accessoryChanged = true;
     this.selectedImage = index;
     this.updatedImage = '../assets/accessories/png/' + this.selectedImage + '.png';
-    this.SITEservice.editedUser.getValue().accessoryUri = this.updatedImage;
+    const account = this.SITEservice.editedAccount.getValue();
+    console.log(account);
+    account.accessoryUri = this.updatedImage;
+    this.SITEservice.updateEditedAccount(account);
   }
 
   save() {
@@ -76,25 +81,26 @@ export class ImagePickerComponent implements OnInit, OnDestroy {
   }
 
   cancel() {
-    let temporary = this.SITEservice.editedUser.getValue();
+    let temporary = this.SITEservice.editedAccount.getValue();
+    console.log(temporary);
     if (this.type === 'border') {
       if (this.originalImage !== '') {
         temporary.borderUri = this.originalImage;
-        this.SITEservice.editedUser.next(temporary);
+        this.SITEservice.updateEditedAccount(temporary);
       } else {
         temporary.borderUri = '';
-        this.SITEservice.editedUser.next(temporary);
+        this.SITEservice.updateEditedAccount(temporary);
       }
     } else if (this.type === 'accessory') {
       if (this.originalImage !== '') {
         temporary.accessoryUri = this.originalImage;
-        this.SITEservice.editedUser.next(temporary);
+        this.SITEservice.updateEditedAccount(temporary);
       } else {
         temporary.accessoryUri = '';
-        this.SITEservice.editedUser.next(temporary);
+        this.SITEservice.updateEditedAccount(temporary);
       }
     }
-    this.SITEservice.editedUser.next(temporary);
+    // this.SITEservice.updateEditedAccount(temporary);
     this.router.navigate([{outlets: {
       popupAction: ['empty']
     }}]);

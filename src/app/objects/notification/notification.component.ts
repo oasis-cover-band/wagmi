@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { AccountInfo } from 'src/app/classes/accountInfo';
+import { ApiService } from 'src/app/services/api.service';
 import { IsAccountService } from 'src/app/services/is-account.service';
 import { SiteService } from '../../services/site.service';
 import { TimeService } from '../../services/time.service';
@@ -26,6 +27,7 @@ export class NotificationComponent implements OnInit {
   constructor(
     public TIMEservice: TimeService,
     private SITEservice: SiteService,
+    private APIservice: ApiService,
     private isAccount: IsAccountService
   ) { }
 
@@ -50,7 +52,7 @@ export class NotificationComponent implements OnInit {
       )
     }, 1000);
     
-    const response = await this.SITEservice.getAccount(this.data.address);
+    const response = await this.APIservice.getAccount(this.data.address);
     if (this.isAccount.isAccount(response)) {
       this.account = response;
     }

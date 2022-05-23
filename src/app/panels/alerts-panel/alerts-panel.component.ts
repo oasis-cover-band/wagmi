@@ -10,17 +10,6 @@ import { Web3Service } from '../../services/web3.service';
 export class AlertsPanelComponent implements OnInit {
 
   alerts = new BehaviorSubject<any>([
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    '',
-    ''
   ]);
   constructor(
     private WEB3service: Web3Service

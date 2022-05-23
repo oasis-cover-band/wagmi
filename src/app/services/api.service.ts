@@ -27,13 +27,11 @@ export class ApiService {
         method: 'GET' 
       }).then(async (response: any) => {
         // handle success
-        console.log(response.data);
         this.accounts[address] = response.data;
         return await response.data;
       })
       .catch(async (error: any) => {
         // handle error
-        console.log(error);
         return await error.response.status;
       })
     } else {
@@ -54,7 +52,7 @@ export class ApiService {
     }).then(async (response: any) => {
       
       if (account.walletAddress !== undefined) {
-        this.accounts[account.walletAddress] = response.data;
+        this.accounts[account.walletAddress] = await this.getAccount(account.walletAddress);
       }
       return await response.data;
     })

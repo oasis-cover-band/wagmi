@@ -76,21 +76,21 @@
     <section id="name" class="input">
         <span>Name</span>
         <ng-container *ngIf="account.accountId !== ''">
-            <input #name id="name" *ngIf="account !== undefined && account.accountId !== undefined" [placeholder]="account.accountId"/>
+            <input (change)="updateName($event)" #name id="name" *ngIf="account !== undefined && account.accountId !== undefined" [placeholder]="this.originalName"/>
         </ng-container>
         <ng-container *ngIf="account.accountId === ''">
-            <input #name id="name" *ngIf="account !== undefined && account.accountId !== undefined" placeholder="Unnamed Account"/>
+            <input (change)="updateName($event)" #name id="name" *ngIf="account !== undefined && account.accountId !== undefined" placeholder="Unnamed Account"/>
         </ng-container>
     </section>
     <section id="bio" class="input">
         <span>Bio</span>
-        <textarea #bio cols="10" rows="5" id="bio" *ngIf="account !== undefined && account.bio !== undefined" [placeholder]="account.bio"></textarea>
+        <textarea (change)="updateBio($event)" #bio cols="10" rows="5" id="bio" *ngIf="account !== undefined && account.bio !== undefined" [placeholder]="this.originalBio"></textarea>
     </section>
 
     <button 
     *ngIf="this.name !== undefined && this.bio !== undefined"
     [ngClass]="{
-        'disabled': !this.nameChanged && !this.bioChanged && !this.avatarChanged && !this.bannerChanged && !this.borderChanged && !this.accessoryChanged
+        'disabled': this.name.nativeElement.value === '' && this.bio.nativeElement.value === '' && !this.avatarChanged && !this.bannerChanged && !this.borderChanged && !this.accessoryChanged
     }"
     id="save" (click)="this.edit()">
         <span>

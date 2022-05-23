@@ -7,6 +7,7 @@ import { AccountInfo } from './classes/accountInfo';
 import { SiteService } from './services/site.service';
 import { TimeService } from './services/time.service';
 import { IsAccountService } from './services/is-account.service';
+import { timeStamp } from 'console';
 
 @Component({
   selector: 'app-root',
@@ -34,11 +35,10 @@ export class AppComponent implements OnDestroy {
     private router: Router
   ) {
     this.TIMEservice.start();
-    this.SITEservice.viewing.subscribe(async viewing => {
-      console.log(viewing);
+    this.listener = this.SITEservice.viewing.subscribe(async viewing => {
       this.viewing = viewing;
       
-      const response = await this.SITEservice.getAccount(viewing);
+      const response = await this.APIservice.getAccount(viewing);
       if (this.isAccount.isAccount(response)) {
         this.viewingAccount = response;
         if (this.viewingAccount.bannerUri === '') {
@@ -58,8 +58,8 @@ export class AppComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
-  
+    if (this.listener) {
+      this.listener.unsubscribe();
+    }
   }
 }

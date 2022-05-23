@@ -87,7 +87,7 @@
                 max-height: 48px;
                 height: 48px;
                 // background:$tertiary;
-                border:8px solid rgba(0,0,0,0);
+                border:2px solid rgba(0,0,0,0);
                 transition: $transition;
                 z-index:2;
                 pointer-events: none;
@@ -95,15 +95,14 @@
             &:before {
                 border-color:$tertiary;
                 border-radius: 360px;
-                background: rgba(0, 0, 0, 0.75);
+                background: $tertiary;
             }
             &:after {
-                border:none;
                 background: url('../../../assets/icons/check.png');
-                // filter: invert(1);
-                transform: scale(0.5);
-                top:16px;
-                left:16px;
+                transform:scale(0.5);
+                filter:invert(1);
+                top:8px;
+                left:8px;
             }
             &.selected {
                 &:before, &:after {

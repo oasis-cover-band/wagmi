@@ -66,8 +66,7 @@ export class AccountComponent implements OnInit, OnChanges {
   ) { }
 
   async ngOnInit(): Promise<void> {
-    console.log(this.avatarUri);
-    const response = await this.SITEservice.getAccount(this.address);
+    const response = await this.APIservice.getAccount(this.address);
     if (this.isAccount.isAccount(response)) {
       this.account = response;
     } else {
@@ -176,7 +175,6 @@ export class AccountComponent implements OnInit, OnChanges {
   }
   
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
     this.setDefaults(this.account);
   }
 

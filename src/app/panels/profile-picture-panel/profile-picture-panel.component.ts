@@ -37,7 +37,7 @@ export class ProfilePicturePanelComponent implements OnInit, OnDestroy {
     this.listener = this.route.params.subscribe(async params => {
       this.forceProfileChange = true;
       this.requestedAddress.next(params['address']);
-      const response = await this.SITEservice.getAccount(this.requestedAddress.getValue());
+      const response = await this.APIservice.getAccount(this.requestedAddress.getValue());
       if (this.isAccount.isAccount(response)) {
         this.account = response;
       }

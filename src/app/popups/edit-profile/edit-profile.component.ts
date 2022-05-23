@@ -44,35 +44,46 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   ) { }
 
   async ngOnInit(): Promise<void> {
-    const response = await this.SITEservice.getAccount(this.myAddress.getValue());
+    const response = await this.APIservice.getAccount(this.myAddress.getValue());
     if (this.isAccount.isAccount(response)) {
-      this.SITEservice.editedUser.next(response);
-      this.account = this.SITEservice.editedUser;
+      this.SITEservice.editedAccount.next(response);
+      this.account = this.SITEservice.editedAccount;
       this.originalName = this.account.getValue().accountId;
       this.originalBio = this.account.getValue().bio;
       this.originalAvatar = this.account.getValue().avatarUri;
       this.originalBanner = this.account.getValue().bannerUri;
       this.originalBorder = this.account.getValue().borderUri;
       this.originalAccessory = this.account.getValue().accessoryUri;
-      this.listener = this.SITEservice.editedUser.subscribe(account => {
-        console.log(account);
-        if (account.accountId !== this.originalName) {
+      this.listener = this.SITEservice.editedAccount.subscribe(account => {
+        if (this.name.nativeElement.value !== '') {
           this.nameChanged = true;
+        } else {
+          this.nameChanged = false;
         }
-        if (account.bio !== this.originalBio) {
+        if (this.bio.nativeElement.value !== '') {
           this.bioChanged = true;
+        } else {
+          this.bioChanged = false;
         }
         if (account.avatarUri !== this.originalAvatar) {
           this.avatarChanged = true;
+        } else {
+          this.avatarChanged = false;
         }
         if (account.bannerUri !== this.originalBanner) {
           this.bannerChanged = true;
+        } else {
+          this.bannerChanged = false;
         }
         if (account.borderUri !== this.originalBorder) {
           this.borderChanged = true;
+        } else {
+          this.borderChanged = false;
         }
         if (account.accessoryUri !== this.originalAccessory) {
           this.accessoryChanged = true;
+        } else {
+          this.accessoryChanged = false;
         }
       });
     }
@@ -86,24 +97,35 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       this.listener.unsubscribe();
     }
   }
-  
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
-  }
-
   edit() {
-    if (this.nameChanged || this.bioChanged || this.avatarChanged || this.bannerChanged || this.borderChanged || this.accessoryChanged) {
+    if (this.name.nativeElement.value !== '' || this.bio.nativeElement.value !== '' || this.avatarChanged || this.bannerChanged || this.borderChanged || this.accessoryChanged) {
       if (this.name.nativeElement.value !== '') {
-        this.SITEservice.editedUser.getValue().accountId = this.name.nativeElement.value;
+        const account = this.SITEservice.editedAccount.getValue();
+        account.accountId = this.name.nativeElement.value;
+        this.SITEservice.updateEditedAccount(account);
       }
       if (this.bio.nativeElement.value !== '') {
-        this.SITEservice.editedUser.getValue().bio = this.bio.nativeElement.value;
+        const account = this.SITEservice.editedAccount.getValue();
+        account.bio = this.bio.nativeElement.value;
+        this.SITEservice.updateEditedAccount(account);
       }
-      this.APIservice.updateAccount(this.SITEservice.editedUser.getValue());
+      this.APIservice.updateAccount(this.SITEservice.editedAccount.getValue());
       this.router.navigate([{outlets: {
         popup: ['empty']
       }}]);
     }
+  }
+
+  updateName(event: Event): void {
+      const account = this.SITEservice.editedAccount.getValue();
+      account.accountId = this.name.nativeElement.value;
+      this.SITEservice.updateEditedAccount(account);
+  }
+
+  updateBio(event: Event): void {
+      const account = this.SITEservice.editedAccount.getValue();
+      account.bio = this.bio.nativeElement.value;
+      this.SITEservice.updateEditedAccount(account);
   }
 
   uploadAvatarPicture() {
@@ -127,7 +149,6 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   close() {
-    console.log("close");
     this.router.navigate([{outlets: {
       popup: ['empty']
     }}]);

@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { ngIfAnimations } from '../animations';
 import { AccountInfo } from '../classes/accountInfo';
 import { IsAccountService } from '../../app/services/is-account.service';
 import { SiteService } from '../services/site.service';
 import { Web3Service } from '../services/web3.service';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,16 +14,18 @@ import { Web3Service } from '../services/web3.service';
   styleUrls: ['./sidebar.component.scss'],
   animations: [ngIfAnimations]
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnDestroy {
   friends: AccountInfo[] = [
 
   ];
   account!: AccountInfo | number;
   myAddress: BehaviorSubject<string> = this.WEB3service.loggedIn.walletAddress;
   currentRoute: BehaviorSubject<string> = this.SITEservice.currentRoute;
+  listener!: Subscription;
   constructor(
     private router: Router,
     private SITEservice: SiteService,
+    private APIservice: ApiService,
     private WEB3service: Web3Service,
     private isAccount: IsAccountService,
     private route: ActivatedRoute
@@ -30,17 +33,23 @@ export class SidebarComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
   
-      this.myAddress.subscribe(async newAddress => {
-        this.account = await this.SITEservice.getAccount(newAddress);
+      this.listener = this.myAddress.subscribe(async newAddress => {
+        this.account = await this.APIservice.getAccount(newAddress);
         if (this.isAccount.isAccount(this.account)) {
           this.account.friends.forEach(async friend => {
-            const response = await this.SITEservice.getAccount(friend);
+            const response = await this.APIservice.getAccount(friend);
             if (this.isAccount.isAccount(response)) {
               this.friends.push(response);
             }
           });
         }
       });
+  }
+
+  ngOnDestroy(): void {
+    if (this.listener) {
+      this.listener.unsubscribe();
+    }
   }
 
   goHome(): void {

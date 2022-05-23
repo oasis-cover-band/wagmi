@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { ApiService } from './api.service';
 import { AccountInfo } from '../classes/accountInfo';
 
 @Injectable({
@@ -11,7 +10,7 @@ export class SiteService {
   public viewing: BehaviorSubject<string> = new BehaviorSubject<string>('');
   public mouseover: BehaviorSubject<string> = new BehaviorSubject<string>('');
   public currentRoute: BehaviorSubject<string> = new BehaviorSubject<string>('');
-  public editedUser: BehaviorSubject<AccountInfo> = new BehaviorSubject<AccountInfo>({
+  public editedAccount: BehaviorSubject<AccountInfo> = new BehaviorSubject<AccountInfo>({
     accountId: '',
     walletAddress: '',
     bio: '',
@@ -27,10 +26,9 @@ export class SiteService {
     friends: []
   });
   constructor(
-    private APIservice: ApiService
   ) { }
 
-  async getAccount(address: string): Promise<AccountInfo | number> {
-    return await this.APIservice.getAccount(address, true);
+  async updateEditedAccount(editedAccount: AccountInfo) {
+    this.editedAccount.next(editedAccount);
   }
 }

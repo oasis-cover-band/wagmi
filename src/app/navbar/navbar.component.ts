@@ -34,7 +34,7 @@ export class NavbarComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     if (this.myAddress.getValue() !== "") {
-      const response = await this.SITEservice.getAccount(this.myAddress.getValue());
+      const response = await this.APIservice.getAccount(this.myAddress.getValue());
       if (this.isAccount.isAccount(response)) {
         this.account = response;
       }
@@ -49,7 +49,7 @@ export class NavbarComponent implements OnInit {
   }
 
   async createAccount(): Promise<void> {
-    console.log(this.account);
+    console.log('Account created as: ', this.myAddress.getValue());
     if (this.account === undefined && this.myAddress.getValue() !== "") {
       this.APIservice.createAccount(this.myAddress.getValue())
       .then(response => {
@@ -66,9 +66,8 @@ export class NavbarComponent implements OnInit {
       this.WEB3service.connectWallet().then(async loggedInWalletAddress => {
         console.log('Logged in as: ', loggedInWalletAddress);
         if (loggedInWalletAddress !== "") {
-          const response = await this.SITEservice.getAccount(loggedInWalletAddress);
+          const response = await this.APIservice.getAccount(loggedInWalletAddress);
           if (this.isAccount.isAccount(response)) {
-            console.log(response);
             this.account = response;
           }
         }
