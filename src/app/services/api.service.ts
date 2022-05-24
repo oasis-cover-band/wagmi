@@ -42,7 +42,32 @@ export class ApiService {
   // 
   // PUT
   // 
-  async updateAccount(account: AccountInfo): Promise<AccountInfo | number> {
+  async updateAccount(account: AccountInfo,
+    nameChanged: boolean,
+    bioChanged: boolean,
+    updatedAvatar: File | Blob | undefined,
+    updatedBanner: File | Blob | undefined,
+    borderChanged: boolean,
+    accessoryChanged: boolean
+    ): Promise<AccountInfo | number> {
+      if (!nameChanged) {
+        delete account.accountId;
+      }
+      if (!bioChanged) {
+        delete account.bio;
+      }
+      if (updatedAvatar === undefined) {
+        delete account.avatarUri;
+      }
+      if (updatedBanner === undefined) {
+        delete account.bannerUri;
+      }
+      if (!borderChanged) {
+        delete account.borderUri;
+      }
+      if (!accessoryChanged) {
+        delete account.accessoryUri;
+      }
     return await axios({
       url: 'account/'.concat(String(account.walletAddress)),
       baseURL: this.baseURL,
@@ -51,7 +76,8 @@ export class ApiService {
     }).then(async (response: any) => {
       
       if (account.walletAddress !== undefined) {
-        this.accounts[account.walletAddress] = await this.getAccount(account.walletAddress);
+        this.accounts[account.walletAddress] = await this.getAccount(account.walletAddress, true);
+        console.log(this.accounts[account.walletAddress]);
       }
       return await response.data;
     })
@@ -147,7 +173,7 @@ export class ApiService {
       method: 'GET',
     }).then(async (response: any) => {
       console.log(response.data);
-      return response.data;
+      return response.data.items;
     })
     .catch(async (error: any) => {
       // handle error

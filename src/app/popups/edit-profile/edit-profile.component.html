@@ -26,7 +26,8 @@
     [ngClass]="{
         'changed': this.bannerChanged
     }"
-    type="file">
+    (click)="bannerUpload.click()">
+    <input type="file" class="file-upload" id="banner-upload" #bannerUpload (change)="updateBannerPicture($event)"/>
 
     </app-action>
     </section>
@@ -47,9 +48,11 @@
     [ngClass]="{
         'changed': this.avatarChanged
     }"
-    type="file">
+    (click)="avatarUpload.click()">
 
     </app-action>
+    
+    <input type="file" class="file-upload" id="avatar-upload" #avatarUpload (change)="updateAvatarPicture($event)"/>
 
     <app-action
     id="border-picture"
@@ -58,7 +61,7 @@
     [ngClass]="{
         'changed': this.borderChanged
     }"
-    (click)="chooseBorderPicture()">
+    (click)="updateBorderPicture()">
 
     </app-action>
 
@@ -69,7 +72,7 @@
     [ngClass]="{
         'changed': this.accessoryChanged
     }"
-    (click)="chooseAccessoryPicture()">
+    (click)="updateAccessoryPicture()">
 
     </app-action>
 

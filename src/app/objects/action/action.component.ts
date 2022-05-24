@@ -9,7 +9,6 @@ export class ActionComponent implements OnInit {
 
   @Input() icon: string = "home";
   @Input() description: string = "Home";
-  @Input() type: string = '';
   @ViewChild('fileUpload') fileUpload!: ElementRef; // SHOULD BE ELEMENT REF
   constructor() { }
 

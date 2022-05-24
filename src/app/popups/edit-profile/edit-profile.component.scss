@@ -16,6 +16,29 @@
     '. . .';
     grid-template-columns: 0.125fr 1fr 0.125fr;
     grid-template-rows: 0.125fr 1fr 0.125fr;
+    input.file-upload {
+        grid-area:content;
+        min-height:48px;
+        min-width:48px;
+        max-height:48px;
+        max-width:48px;
+        height:48px;
+        width:48px;
+        margin:0px;
+        padding:0px;
+        opacity:0;
+        pointer-events: none;
+        &#avatar-upload {
+            grid-area:account;
+            justify-self:start;
+            align-self: start;
+        }
+        &#banner-upload {
+            grid-area:banner-picture;
+            justify-self:end;
+            align-self: end;
+        }
+    }
     app-action.changed {
         ::ng-deep {
             img {

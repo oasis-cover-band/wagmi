@@ -35,6 +35,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   originalBanner!: string | undefined;
   originalBorder!: string | undefined;
   originalAccessory!: string | undefined;
+  updatedAvatar!: File | Blob;
+  updatedBanner!: File | Blob;
   constructor(
     private router: Router,
     private WEB3service: Web3Service,
@@ -65,16 +67,17 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         } else {
           this.bioChanged = false;
         }
-        if (account.avatarUri !== this.originalAvatar) {
-          this.avatarChanged = true;
-        } else {
-          this.avatarChanged = false;
-        }
-        if (account.bannerUri !== this.originalBanner) {
-          this.bannerChanged = true;
-        } else {
-          this.bannerChanged = false;
-        }
+        // HANDLED WITHIN RESPECTIVE FUNCTIONS
+        // if (account.avatarUri !== this.originalAvatar) {
+        //   this.avatarChanged = true;
+        // } else {
+        //   this.avatarChanged = false;
+        // }
+        // if (account.bannerUri !== this.originalBanner) {
+        //   this.bannerChanged = true;
+        // } else {
+        //   this.bannerChanged = false;
+        // }
         if (account.borderUri !== this.originalBorder) {
           this.borderChanged = true;
         } else {
@@ -99,20 +102,31 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
   edit() {
     if (this.name.nativeElement.value !== '' || this.bio.nativeElement.value !== '' || this.avatarChanged || this.bannerChanged || this.borderChanged || this.accessoryChanged) {
+      const account = this.SITEservice.editedAccount.getValue();
       if (this.name.nativeElement.value !== '') {
-        const account = this.SITEservice.editedAccount.getValue();
         account.accountId = this.name.nativeElement.value;
-        this.SITEservice.updateEditedAccount(account);
       }
       if (this.bio.nativeElement.value !== '') {
-        const account = this.SITEservice.editedAccount.getValue();
         account.bio = this.bio.nativeElement.value;
-        this.SITEservice.updateEditedAccount(account);
       }
-      this.APIservice.updateAccount(this.SITEservice.editedAccount.getValue());
-      this.router.navigate([{outlets: {
-        popup: ['empty']
-      }}]);
+      this.SITEservice.updateEditedAccount(account).then(after => {
+        this.APIservice.updateAccount(
+          account,
+          this.nameChanged,
+          this.bioChanged,
+          this.updatedAvatar,
+          this.updatedBanner,
+          this.borderChanged,
+          this.accessoryChanged
+        ).then(after => {
+          this.router.navigate([{outlets: {
+            left: ['profile-picture',  account.walletAddress],
+            center: ['profile',  account.walletAddress],
+            right: ['profile-stats',  account.walletAddress],
+            popup: ['empty']
+          }}])
+        });
+      });
     }
   }
 
@@ -128,21 +142,33 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       this.SITEservice.updateEditedAccount(account);
   }
 
-  uploadAvatarPicture() {
-
+  updateAvatarPicture(event: any) {
+    if (event !== null && event.target !== null && event.target.files !== null) {
+      const file:File = event.target.files[0];
+      if (file) {
+        this.updatedAvatar = file;
+        this.avatarChanged = true;
+      }
+    }
   }
 
-  uploadBannerPicture() {
-
+  updateBannerPicture(event: any) {
+    if (event !== null && event.target !== null && event.target.files !== null) {
+      const file:File = event.target.files[0];
+      if (file) {
+        this.updatedBanner = file;
+        this.bannerChanged = true;
+      }
+    }
   }
 
-  chooseBorderPicture() {
+  updateBorderPicture() {
     this.router.navigate([{outlets: {
       popupAction: ['edit-profile', 'border']
     }}]);
   }
 
-  chooseAccessoryPicture() {
+  updateAccessoryPicture() {
     this.router.navigate([{outlets: {
       popupAction: ['edit-profile', 'accessory']
     }}]);
