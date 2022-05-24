@@ -92,7 +92,7 @@ export class AccountComponent implements OnInit, OnChanges {
   }
 
   setDefaults(account: AccountInfo): void {
-    if (this.avatarUri === '' || this.avatarUri === undefined || this.avatarUri === null || this.avatarUri === "") {
+    if (this.avatarUri.substr(3, 6) === 'assets' || this.avatarUri === '' || this.avatarUri === undefined || this.avatarUri === null || this.avatarUri === "") {
       this.avatarUri = `../assets/textures/` + (Math.floor(Number(this.address) * 420 / 3)) % 340 + `.png`;
       this.defaultAvatar = true;
     }
@@ -193,10 +193,12 @@ export class AccountComponent implements OnInit, OnChanges {
   
   ngOnChanges(changes: SimpleChanges): void {
     console.log("change");
+    console.log(changes);
     this.forceChange = !this.forceChange;
     setTimeout(() => {
       this.forceChange = !this.forceChange;
     }, 250);
+    console.log(this.avatarUri);
     this.setDefaults(this.account);
   }
 

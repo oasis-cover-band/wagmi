@@ -1,6 +1,6 @@
 
     <b id="score"
-    *ngIf="!this.forceProfileChange && this.account !== undefined && this.account.reputation !== undefined"
+    *ngIf="this.account !== undefined && this.account.reputation !== undefined"
     [@ngIfProfileAnimations]
     [ngClass]="{
         'terrible': this.account.reputation < 0,
@@ -10,5 +10,5 @@
         'great': this.account.reputation >= 5000
     }"
     >{{((this.account.reputation) | number:'1.0-0')}}</b>
-    <img *ngIf="!this.forceProfileChange" src="../../../assets/icons/score.png"
+    <img src="../../../assets/icons/score.png"
     [@ngIfProfileAnimations]>

@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostBinding, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ApiService } from '../../services/api.service';
@@ -12,7 +12,7 @@ import { IsAccountService } from 'src/app/services/is-account.service';
   templateUrl: './profile-picture-panel.component.html',
   styleUrls: ['./profile-picture-panel.component.scss']
 })
-export class ProfilePicturePanelComponent implements OnInit, OnDestroy {
+export class ProfilePicturePanelComponent implements OnInit, OnDestroy, OnChanges {
 
   requestedAddress: BehaviorSubject<string> = new BehaviorSubject<string>("");
   myAddress: BehaviorSubject<string> = this.WEB3service.loggedIn.walletAddress;
@@ -33,14 +33,17 @@ export class ProfilePicturePanelComponent implements OnInit, OnDestroy {
 
   async ngOnInit(): Promise<void> {
     this.listener = this.route.params.subscribe(async params => {
-      this.forceProfileChange = true;
+      console.log("yo");
+      this.hide = true;
+      setTimeout(() => {
+        this.hide = false;
+      }, 500);
       this.requestedAddress.next(params['address']);
       const response = await this.APIservice.getAccount(this.requestedAddress.getValue());
       if (this.isAccount.isAccount(response)) {
         this.account = response;
         this.joinDate = new Date(String(this.account.joinDate)).getTime();
       }
-      this.forceProfileChange = false;
     });
     this.isFollowing.next(await this.APIservice.isAddressFollowingAddress(this.myAddress.getValue(), this.requestedAddress.getValue()));
   }
@@ -49,6 +52,10 @@ export class ProfilePicturePanelComponent implements OnInit, OnDestroy {
     if (this.listener) {
       this.listener.unsubscribe();
     }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("channgged");
   }
 
   showEdit(): void {

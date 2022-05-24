@@ -1,5 +1,6 @@
+
 <app-account
-*ngIf="!this.forceProfileChange && this.account !== undefined && this.account.walletAddress !== undefined && this.account.avatarUri !== undefined && this.account.borderUri !== undefined && this.account.accessoryUri !== undefined"
+*ngIf="this.account !== undefined && this.account.walletAddress !== undefined && this.account.avatarUri !== undefined && this.account.borderUri !== undefined && this.account.accessoryUri !== undefined"
 [extralarge]="true"
 [view]="true"
 [address]="this.account.walletAddress"
@@ -7,7 +8,6 @@
 [borderUri]="this.account.borderUri"
 [accessoryUri]="this.account.accessoryUri"
 ></app-account>
-
 <section id="text"
 *ngIf="!this.forceProfileChange"
 >

@@ -59,7 +59,7 @@
         transition: $transition;
     }
     &.hide {
-        section#actions, section#text {
+        section#actions, section#text, app-account {
             opacity:0;
             transform:scale(0);
         }

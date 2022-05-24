@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ngIfProfileAnimations } from 'src/app/animations';
@@ -25,7 +25,7 @@ export class AccountsPanelComponent implements OnInit {
   accountsList!: FollowInfo[] | number;
   accounts: AccountInfo[] = [];
   viewing!: string;
-  forcePageChange: boolean = false;
+  @HostBinding('class.hide') hide: boolean = false;
   constructor(
     private route: ActivatedRoute,
     private APIservice: ApiService,
@@ -35,12 +35,13 @@ export class AccountsPanelComponent implements OnInit {
   ) {
     this.listener = this.route.params.subscribe(async params => {
       this.accounts = [];
-      this.forcePageChange = true;
+      this.hide = true;
+      setTimeout(() => {
+        this.hide = false;
+      }, 500);
       this.type = params['type'];
-      console.log(this.type);
       if (this.type === 'followers' || this.type === 'following') {
         const response = await this.APIservice.getAccount(await this.SITEservice.viewing.getValue());
-        console.log(response);
         if (this.isAccount.isAccount(response) && response.accountId !== undefined) {
           this.viewing = response.accountId;
           this.account = response;
@@ -56,7 +57,6 @@ export class AccountsPanelComponent implements OnInit {
             }
           } else if (this.type === 'followers') {
             this.accountsList = await this.APIservice.followers(String(response.walletAddress));
-            console.log(this.accountsList);
             if (this.accountsList !== undefined && this.accountsList instanceof Array) {
               this.accountsList.forEach(async (account: FollowInfo) => {
                 follower = await this.APIservice.getAccount(account.followerAddress);
@@ -67,7 +67,6 @@ export class AccountsPanelComponent implements OnInit {
           }
         }
       }
-      this.forcePageChange = false;
     });
   }
 

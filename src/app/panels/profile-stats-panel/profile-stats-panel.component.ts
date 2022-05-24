@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ApiService } from '../../services/api.service';
@@ -20,7 +20,7 @@ export class ProfileStatsPanelComponent implements OnInit, OnDestroy {
   requestedAddress: BehaviorSubject<string> = new BehaviorSubject<string>("");
   account!: AccountInfo;
   listener!: Subscription;
-  forceProfileChange: boolean = false;
+  @HostBinding('class.hide') hide: boolean = false;
   constructor(
     private route: ActivatedRoute,
     private APIservice: ApiService,
@@ -30,13 +30,15 @@ export class ProfileStatsPanelComponent implements OnInit, OnDestroy {
 
   async ngOnInit(): Promise<void> {
     this.listener = this.route.params.subscribe(async params => {
-      this.forceProfileChange = true;
+      this.hide = true;
+      setTimeout(() => {
+        this.hide = false;
+      }, 500);
       this.requestedAddress.next(params['address']);
       const response = await this.APIservice.getAccount(this.requestedAddress.getValue());
       if (this.isAccount.isAccount(response)) {
         this.account = response;
       }
-      this.forceProfileChange = false;
     });
   }
 
