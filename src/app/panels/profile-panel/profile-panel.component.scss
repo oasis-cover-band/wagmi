@@ -30,6 +30,7 @@
         text-decoration: underline;
         text-decoration-color: $tertiary;
         text-decoration-thickness: 4px;
+        white-space: nowrap;
     }
     h3#address {
         grid-area:address;
@@ -37,6 +38,7 @@
         margin:0px;
         overflow:hidden;
         text-overflow: ellipsis;
+        white-space: nowrap;
     }
     span#tagline {
         grid-area:tagline;

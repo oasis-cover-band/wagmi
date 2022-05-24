@@ -1,4 +1,4 @@
-<section id="wrapper">
+<section id="wrapper" *ngIf="!this.forceChange" [@ngIfProfileAnimations]>
     <div id="outer">
         <ng-container *ngIf="!this.defaultBorder">
             <img
@@ -26,7 +26,7 @@
 <span id="action" *ngIf="this.chat">
     {{"Chat"}}
 </span>
-<section id="accessory" *ngIf="this.small === false">
+<section id="accessory" *ngIf="this.small === false && !this.forceChange" [@ngIfProfileAnimations]>
     <img
     [src]="this.accessoryUri"
     [ngStyle]="{

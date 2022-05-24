@@ -25,6 +25,7 @@
         color:$white;
         display:grid;
         row-gap:$gap;
+        pointer-events: none;
         span#date {
             text-decoration: underline;
             text-decoration-color: $tertiary;
@@ -71,6 +72,9 @@
         section#actions, section#text {
             z-index:4;
             grid-area:account;
+        }
+        section#actions {
+            justify-self: center;
         }
         section#text {
             grid-auto-flow: column;

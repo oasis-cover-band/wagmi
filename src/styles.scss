@@ -174,24 +174,25 @@ button {
         resize: none;
         overflow:hidden;
         text-overflow: ellipsis;
+        color:$tertiary;
     }
     
-    input::placeholder {
+    input::placeholder, textarea::placeholder {
         color: $lightestgrey;
         opacity: 0.4;
     }
       
-    input:-ms-input-placeholder {
+    input:-ms-input-placeholder, textarea:-ms-input-placeholder {
         color: $lightestgrey;
         opacity: 0.4;
     }
     
-    input::-ms-input-placeholder {
+    input::-ms-input-placeholder, textarea::-ms-input-placeholder {
         color: $lightestgrey;
         opacity: 0.4;
     }
 
-    input::-webkit-input-placeholder {
+    input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
         color: $lightestgrey;
         opacity: 0.4;
     }

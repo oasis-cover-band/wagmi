@@ -1,6 +1,7 @@
 import { Component, HostBinding, HostListener, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { ngIfProfileAnimations } from 'src/app/animations';
 import { AccountInfo } from 'src/app/classes/accountInfo';
 import { IsAccountService } from 'src/app/services/is-account.service';
 import { ApiService } from '../../services/api.service';
@@ -9,7 +10,10 @@ import { SiteService } from '../../services/site.service';
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
-  styleUrls: ['./account.component.scss']
+  styleUrls: ['./account.component.scss'],
+  animations: [
+    ngIfProfileAnimations
+  ]
 })
 export class AccountComponent implements OnInit, OnChanges {
 
@@ -17,6 +21,7 @@ export class AccountComponent implements OnInit, OnChanges {
   @Input() avatarUri!: string;
   @Input() borderUri!: string;
   @Input() accessoryUri!: string;
+  @Input() forceChange: boolean | null = false;
   @HostBinding("class.extralarge") @Input() extralarge: boolean = false;
   @HostBinding("class.large") @Input() large: boolean = false;
   @HostBinding("class.medium") @Input() medium: boolean = false;

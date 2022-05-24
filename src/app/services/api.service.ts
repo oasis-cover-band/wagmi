@@ -50,24 +50,26 @@ export class ApiService {
     borderChanged: boolean,
     accessoryChanged: boolean
     ): Promise<AccountInfo | number> {
-      if (!nameChanged) {
-        delete account.accountId;
-      }
-      if (!bioChanged) {
-        delete account.bio;
-      }
-      if (updatedAvatar === undefined) {
-        delete account.avatarUri;
-      }
-      if (updatedBanner === undefined) {
-        delete account.bannerUri;
-      }
-      if (!borderChanged) {
-        delete account.borderUri;
-      }
-      if (!accessoryChanged) {
-        delete account.accessoryUri;
-      }
+      // THIS IS NOT YET READY
+      // FRONT END BUG FIX REQUIRED
+      // if (!nameChanged) {
+      //   delete account.accountId;
+      // }
+      // if (!bioChanged) {
+      //   delete account.bio;
+      // }
+      // if (updatedAvatar === undefined) {
+      //   delete account.avatarUri;
+      // }
+      // if (updatedBanner === undefined) {
+      //   delete account.bannerUri;
+      // }
+      // if (!borderChanged) {
+      //   delete account.borderUri;
+      // }
+      // if (!accessoryChanged) {
+      //   delete account.accessoryUri;
+      // }
     return await axios({
       url: 'account/'.concat(String(account.walletAddress)),
       baseURL: this.baseURL,
