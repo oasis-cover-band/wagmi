@@ -33,7 +33,7 @@
             bottom:0px;
             border: 10px solid $lightblack;
             border-radius: $borderradius;
-            filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $black);
+            filter: drop-shadow(0px 0px $dropshadow2 $black);
             transition:$transition;
             background:$lightestblack;
         }
@@ -162,7 +162,7 @@
             &:before {
                 background:$tertiary;
                 border:10px solid $tertiary;
-                filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $tertiary);
+                filter: drop-shadow(0px 0px $dropshadow2 $tertiary);
                 opacity:0.4;
             }
             section#notification {
@@ -176,6 +176,9 @@
                 text-decoration-color: $black;
                 filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $black);
                 color:$white;
+            }
+            section#time {
+                color: $black;
             }
         }
     }
