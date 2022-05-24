@@ -139,7 +139,8 @@ export class ApiService {
       baseURL: this.baseURL,
       method: 'POST',
       data: {
-        followingAddress: followingAddress
+        followingAddress: followingAddress,
+        followerAddress: followerAddress
       }
     }).then(async (response: any) => {
       
@@ -156,7 +157,8 @@ export class ApiService {
       baseURL: this.baseURL,
       method: 'DELETE',
       params: {
-        followingAddress: followingAddress
+        followingAddress: followingAddress,
+        followerAddress: followerAddress
       }
     }).then(async (response: any) => {
       
@@ -168,9 +170,23 @@ export class ApiService {
       return await error.response.status;
     })
   }
-  async following(followerAddress: string): Promise<FollowInfo[] | number> {
+  async following(address: string): Promise<FollowInfo[] | number> {
     return await axios({
-      url: 'account/'.concat(String(followerAddress)).concat('/following'),
+      url: 'account/'.concat(String(address)).concat('/following'),
+      baseURL: this.baseURL,
+      method: 'GET',
+    }).then(async (response: any) => {
+      console.log(response.data);
+      return response.data.items;
+    })
+    .catch(async (error: any) => {
+      // handle error
+      return await error.response.status;
+    })
+  }
+  async followers(address: string): Promise<FollowInfo[] | number> {
+    return await axios({
+      url: 'account/'.concat(String(address)).concat('/followers'),
       baseURL: this.baseURL,
       method: 'GET',
     }).then(async (response: any) => {

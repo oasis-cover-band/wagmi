@@ -44,16 +44,26 @@ export class AccountsPanelComponent implements OnInit {
         if (this.isAccount.isAccount(response) && response.accountId !== undefined) {
           this.viewing = response.accountId;
           this.account = response;
+          let follower;
           if (this.type === 'following') {
             this.accountsList = await this.APIservice.following(String(response.walletAddress));
-          }
-          let follower;
-          if (this.accountsList !== undefined && this.accountsList instanceof Array) {
-            this.accountsList.forEach(async (account: FollowInfo) => {
-              follower = await this.APIservice.getAccount(account.followingAddress);
-              if (this.isAccount.isAccount(follower))
-              this.accounts.push(follower);
-            });
+            if (this.accountsList !== undefined && this.accountsList instanceof Array) {
+              this.accountsList.forEach(async (account: FollowInfo) => {
+                follower = await this.APIservice.getAccount(account.followingAddress);
+                if (this.isAccount.isAccount(follower))
+                this.accounts.push(follower);
+              });
+            }
+          } else if (this.type === 'followers') {
+            this.accountsList = await this.APIservice.followers(String(response.walletAddress));
+            console.log(this.accountsList);
+            if (this.accountsList !== undefined && this.accountsList instanceof Array) {
+              this.accountsList.forEach(async (account: FollowInfo) => {
+                follower = await this.APIservice.getAccount(account.followerAddress);
+                if (this.isAccount.isAccount(follower))
+                this.accounts.push(follower);
+              });
+            }
           }
         }
       }
