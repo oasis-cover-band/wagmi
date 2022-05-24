@@ -19,6 +19,7 @@
     "@angular/platform-browser-dynamic": "~13.1.0",
     "@angular/router": "~13.1.0",
     "@types/axios": "^0.14.0",
+    "apollo-angular": "^3.0.1",
     "assert": "^2.0.0",
     "axios": "^0.27.2",
     "buffer": "^6.0.3",
@@ -31,7 +32,9 @@
     "stream-http": "^3.2.0",
     "tslib": "^2.3.0",
     "web3": "^1.7.3",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "@apollo/client": "^3.0.0",
+    "graphql": "^16"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~13.1.2",

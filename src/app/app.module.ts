@@ -8,6 +8,8 @@ import { NavbarModule } from './navbar/navbar.module';
 import { SplitModule } from './pipes/split/split.module';
 import { SiteService } from './services/site.service';
 import { SidebarModule } from './sidebar/sidebar.module';
+import { GraphQLModule } from './graphql.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { SidebarModule } from './sidebar/sidebar.module';
     AppRoutingModule,
     NavbarModule,
     SidebarModule,
-    SplitModule
+    SplitModule,
+    GraphQLModule,
+    HttpClientModule
   ],
   providers: [
     SiteService

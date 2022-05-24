@@ -8,6 +8,7 @@ import { SiteService } from './services/site.service';
 import { TimeService } from './services/time.service';
 import { IsAccountService } from './services/is-account.service';
 import { timeStamp } from 'console';
+import { SubgraphService } from './services/subgraph.service';
 
 @Component({
   selector: 'app-root',
@@ -32,6 +33,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private SITEservice: SiteService,
     private isAccount: IsAccountService,
+    private SUBGRAPHservice: SubgraphService,
     private router: Router
   ) {
     this.TIMEservice.start();
@@ -57,6 +59,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit(): Promise<void> {
+    this.SUBGRAPHservice.token("0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48");
   }
 
   ngOnDestroy(): void {
