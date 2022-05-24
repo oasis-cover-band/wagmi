@@ -1,0 +1,21 @@
+<h1 id="name">
+    <span *ngFor="let letter of (this.name | split)">
+        {{letter}}
+    </span>
+</h1>
+
+<h5 id="tagline">
+    <div class="row" *ngFor="let row of this.taglines[this.taglineIndex]; let rowIndex = index">
+        <br>
+        <ng-container *ngFor="let row of this.taglines[this.taglineIndex][rowIndex]; let letterIndex = index">
+            &nbsp;&nbsp;
+            <span *ngFor="let letter of (this.taglines[this.taglineIndex][rowIndex][letterIndex] | split)">
+                {{letter}}
+            </span>
+        </ng-container>
+    </div>
+</h5>
+
+<section id="logo-wrapper">
+    <img id="logo" class="regular" src="../../../assets/logo.png"/>
+</section>

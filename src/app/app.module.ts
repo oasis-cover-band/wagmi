@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarModule } from './navbar/navbar.module';
+import { SplitModule } from './pipes/split/split.module';
 import { SiteService } from './services/site.service';
 import { SidebarModule } from './sidebar/sidebar.module';
 
@@ -17,7 +18,8 @@ import { SidebarModule } from './sidebar/sidebar.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     NavbarModule,
-    SidebarModule
+    SidebarModule,
+    SplitModule
   ],
   providers: [
     SiteService

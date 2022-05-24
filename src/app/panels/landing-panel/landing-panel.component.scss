@@ -1,0 +1,284 @@
+@import '../../../colors.scss';
+:host {
+    min-width:100%;
+    max-width:100%;
+    width:100%;
+    min-height:100%;
+    max-height:100%;
+    height:100%;
+    grid-area: center;
+    display:grid;
+    grid-template-rows:$margin max-content max-content max-content $margin;
+    grid-template-columns: $margin 1fr $margin;
+    grid-template-areas:
+    '. . .'
+    '. logo .'
+    '. tagline .'
+    '. . .';
+    position:relative;
+    row-gap:$gap;
+    align-content: center;
+    align-items: center;
+    // align-self: center;
+    overflow:visible;
+    h1#name {
+        grid-area:logo;
+        font-size:8rem;
+        font-weight:100;
+        justify-self: center;
+        white-space: nowrap;
+        margin:0px;
+        padding:0px;
+        max-width: 100%;
+        overflow:hidden;
+        text-overflow: ellipsis;
+        color:$white;
+        // THIS EFFECT BELOW IN COMBINATION
+        // WITH THE SPAN EFFECT, IS TOO MUCH.
+        // filter: drop-shadow(0px 0px $dropshadow2 $white);
+    }
+    h5#tagline {
+        grid-area:tagline;
+        font-size:2rem;
+        font-weight:100;
+        justify-self: center;
+        white-space: nowrap;
+        margin:0px;
+        padding:0px;
+        max-width: 100%;
+        min-width: 100%;
+        color:$white;
+        // THIS EFFECT BELOW IN COMBINATION
+        // WITH THE SPAN EFFECT, IS TOO MUCH.
+        // filter: drop-shadow(0px 0px $dropshadow2 $white);
+        display:grid;
+        grid-auto-columns: 1fr;
+        grid-auto-flow: row;
+        justify-content: start;
+        justify-items: start;
+        div.row {
+            display:grid;
+            justify-self: start;
+            grid-auto-columns: min-content;
+            grid-auto-flow: column;
+            min-width: 100%;
+        }
+    }
+    span {
+        font-weight:100;
+        font-family: 'Nunito';
+        &:nth-of-type(1n) {
+            color:$white;
+            filter: drop-shadow(0px 0px 0px $white);
+            animation: flash 4s infinite;
+            @keyframes flash {
+                0% {
+            filter: drop-shadow(-4px -4px $dropshadow2 $white);
+                }
+                25% {
+            filter: drop-shadow(4px 4px $dropshadow2 $white);
+                }
+                50% {
+            filter: drop-shadow(0px 4px $dropshadow2 $white);
+                }
+                75% {
+            filter: drop-shadow(4px 0px $dropshadow2 $white);
+                }
+                100% {
+            filter: drop-shadow(-4px -4px $dropshadow2 $white);
+                }
+            }
+        }
+        &:nth-of-type(2n) {
+            color:$primary;
+            filter: drop-shadow(0px 0px 0px $primary);
+            animation: flash-4 8s infinite;
+            @keyframes flash-4 {
+                0% {
+            filter: drop-shadow(-4px -4px $dropshadow2 $primary);
+                }
+                25% {
+            filter: drop-shadow(4px 4px $dropshadow2 $primary);
+                }
+                50% {
+            filter: drop-shadow(0px 4px $dropshadow2 $primary);
+                }
+                75% {
+            filter: drop-shadow(4px 0px $dropshadow2 $primary);
+                }
+                100% {
+            filter: drop-shadow(-4px -4px $dropshadow2 $primary);
+                }
+            }
+        }
+        &:nth-of-type(3n) {
+            color:$secondary;
+            filter: drop-shadow(0px 0px 0px $secondary);
+            animation: flash-2 2s infinite;
+            @keyframes flash-2 {
+                0% {
+            filter: drop-shadow(-4px -4px $dropshadow2 $secondary);
+                }
+                25% {
+            filter: drop-shadow(4px 4px $dropshadow2 $secondary);
+                }
+                50% {
+            filter: drop-shadow(0px 4px $dropshadow2 $secondary);
+                }
+                75% {
+            filter: drop-shadow(4px 0px $dropshadow2 $secondary);
+                }
+                100% {
+            filter: drop-shadow(-4px -4px $dropshadow2 $secondary);
+                }
+            }
+        }
+        &:nth-of-type(4n) {
+            color:$tertiary;
+            filter: drop-shadow(0px 0px 0px $tertiary);
+            animation: flash-3 8s infinite;
+            @keyframes flash-3 {
+                0% {
+            filter: drop-shadow(-4px -4px $dropshadow2 $tertiary);
+                }
+                25% {
+            filter: drop-shadow(4px 4px $dropshadow2 $tertiary);
+                }
+                50% {
+            filter: drop-shadow(0px 4px $dropshadow2 $tertiary);
+                }
+                75% {
+            filter: drop-shadow(4px 0px $dropshadow2 $tertiary);
+                }
+                100% {
+            filter: drop-shadow(-4px -4px $dropshadow2 $tertiary);
+                }
+            }
+        }
+    }
+    section#logo-wrapper {
+        position: absolute;
+        display:grid;
+        grid-area:logo;
+        grid-template-areas: 'logo';
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        justify-self: center;
+        align-self: end;
+        &:before, &:after {
+            z-index:-1;
+            content:'';
+            position:absolute;
+            top:0px;
+            right:0px;
+            bottom:0px;
+            left:0px;
+            border:8px dashed $white;
+            animation: flash-logo-before 32s infinite;
+            max-height:300px;
+            max-width:300px;
+            min-height:300px;
+            min-width:300px;
+            height:300px;
+            width:300px;
+            border-radius:900px;
+            // THIS GIVES A COOL PATRTICLE LIKE EFFECT
+            // border-top-width:0px;
+            // border-right-width:0px;
+            @keyframes flash-logo-before {
+                0% {
+                    border-color:$white;
+            filter: drop-shadow(-4px -4px $dropshadow2 $white);
+            transform:rotate(-360deg);
+                }
+                25% {
+                    border-color:$tertiary;
+            filter: drop-shadow(4px 4px $dropshadow2 $tertiary);
+                }
+                50% {
+                    border-color:$secondary;
+            filter: drop-shadow(0px 4px $dropshadow2 $secondary);
+                }
+                75% {
+                    border-color:$primary;
+            filter: drop-shadow(4px 0px $dropshadow2 $primary);
+                }
+                100% {
+                    border-color:$white;
+            filter: drop-shadow(-4px -4px $dropshadow2 $white);
+            transform:rotate(0deg);
+                }
+            }
+        }
+        &:after {
+            animation: flash-logo-after 64s infinite;
+            border-top-color:rgba(0,0,0,0)!important;
+            // border-right-color:rgba(0,0,0,0)!important;
+            border-style:solid;
+            z-index:-2;
+            @keyframes flash-logo-after {
+                0% {
+                    border-color:$tertiary;
+            filter: drop-shadow(-4px -4px $dropshadow2 $tertiary);
+            transform:rotate(360deg);
+                }
+                25% {
+                    border-color:$secondary;
+            filter: drop-shadow(4px 4px $dropshadow2 $secondary);
+                }
+                50% {
+                    border-color:$primary;
+            filter: drop-shadow(0px 4px $dropshadow2 $primary);
+                }
+                75% {
+                    border-color:$white;
+            filter: drop-shadow(4px 0px $dropshadow2 $white);
+                }
+                100% {
+                    border-color:$tertiary;
+            filter: drop-shadow(-4px -4px $dropshadow2 $tertiary);
+            transform:rotate(0deg);
+                }
+            }
+        }
+        img#logo {
+            z-index:-1;
+            grid-area:logo;
+            max-width:240px;
+            min-width:240px;
+            width:240px;
+            height:auto;
+            animation: flash-logo 8s infinite;
+            @keyframes flash-logo {
+                0% {
+            filter: drop-shadow(-4px -4px $dropshadow2 $white);
+            transform:rotate(20deg) scale(0.75);
+                }
+                50% {
+            filter: drop-shadow(4px 4px $dropshadow2 $tertiary);
+            transform:rotate(-20deg) scale(2);
+                }
+                55% {
+            filter: drop-shadow(0px 4px $dropshadow2 $secondary);
+            transform:rotate(20deg) scale(2);
+                }
+                60% {
+            filter: drop-shadow(4px 0px $dropshadow2 $primary);
+            transform:rotate(-20deg) scale(2);
+                }
+                65% {
+            filter: drop-shadow(0px 4px $dropshadow2 $secondary);
+            transform:rotate(20deg) scale(2);
+                }
+                70% {
+            filter: drop-shadow(4px 0px $dropshadow2 $primary);
+            transform:rotate(-20deg) scale(2);
+                }
+                100% {
+            filter: drop-shadow(-4px -4px $dropshadow2 $white);
+            transform:rotate(20deg) scale(0.75);
+                }
+            }
+        }}
+
+}

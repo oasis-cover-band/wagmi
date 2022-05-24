@@ -20,24 +20,29 @@ import { ImagePickerModule } from './popup-actions/image-picker/image-picker.mod
 import { ImagePickerComponent } from './popup-actions/image-picker/image-picker.component';
 import { ChatPanelModule } from './panels/chat-panel/chat-panel.module';
 import { ChatPanelComponent } from './panels/chat-panel/chat-panel.component';
+import { LandingPanelModule } from './panels/landing-panel/landing-panel.module';
+import { LandingPanelComponent } from './panels/landing-panel/landing-panel.component';
 
 const routes: Routes = [
   // ***************************
   // INITS
   // ***************************
-  // INIT CENTER (NOTIFICATIONS)
-  {path: '', component: NotificationsPanelComponent, outlet: "center"},
-  {path: 'notifications', component: NotificationsPanelComponent, outlet: "center"},
-  // INIT RIGHT (ALERTS)
-  {path: '', component: AlertsPanelComponent, outlet: "right"},
-  {path: 'alerts', component: AlertsPanelComponent, outlet: "right"},
-  // INIT POPUP (EMPTY)
-  {path: '', component: EmptyComponent, outlet: "popup"},
+  // INIT CENTER (EMPTY)
+  {path: '', component: LandingPanelComponent, outlet: "center"},
+  // INIT RIGHT (EMPTY)
+  {path: '', component: EmptyComponent, outlet: "right"},
   // INIT LEFT (EMPTY)
   {path: '', component: EmptyComponent, outlet: "left"},
+  // INIT POPUP (EMPTY)
+  {path: '', component: EmptyComponent, outlet: "popup"},
   // INIT POPUP ACTION (EMPTY)
   {path: '', component: EmptyComponent, outlet: "popupAction"},
-  
+  // CENTER (LANDING)
+  {path: 'landing', component: LandingPanelComponent, outlet: "center"},
+  // CENTER (NOTIFICATIONS)
+  {path: 'notifications', component: NotificationsPanelComponent, outlet: "center"},
+  // RIGHT (ALERTS)
+  {path: 'alerts', component: AlertsPanelComponent, outlet: "right"},
   // ***************************
   // PROFILE
   // ***************************
@@ -83,7 +88,8 @@ const routes: Routes = [
     AccountsPanelModule,
     EmptyModule,
     ImagePickerModule,
-    ChatPanelModule
+    ChatPanelModule,
+    LandingPanelModule
   ],
   exports: [RouterModule]
 })

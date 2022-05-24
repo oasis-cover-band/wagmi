@@ -68,8 +68,8 @@ description="F..ing"
 >
 </app-action>
 
-<span id="friend-seperator">FRIENDS</span>
-<ng-container  *ngFor="let friend of friends">
+<span id="friend-seperator"  *ngIf="this.friends.length > 0">FRIENDS <small>(<b>{{this.friends.length}}</b>)</small></span>
+<ng-container  *ngFor="let friend of this.friends">
 <app-account *ngIf="friend !== undefined && friend.walletAddress !== undefined && friend.avatarUri !== undefined && friend.borderUri !== undefined && friend.accessoryUri !== undefined"
 [address]="friend.walletAddress"
 [medium]="true"

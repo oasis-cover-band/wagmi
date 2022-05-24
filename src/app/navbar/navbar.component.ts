@@ -6,6 +6,7 @@ import { Web3Service } from '../services/web3.service';
 import { SiteService } from '../services/site.service';
 import { IsAccountService } from '../../app/services/is-account.service';
 import { ApiService } from '../services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -27,7 +28,8 @@ export class NavbarComponent implements OnInit {
     private WEB3service: Web3Service,
     public SITEservice: SiteService,
     private APIservice: ApiService,
-    private isAccount: IsAccountService
+    private isAccount: IsAccountService,
+    private router: Router
   ) {
     this.myAddress = this.WEB3service.loggedIn.walletAddress;
   }
@@ -45,6 +47,14 @@ export class NavbarComponent implements OnInit {
     this.WEB3service.disconnectWallet().then(async loggedOutWalletAddress => {
       console.log('Logged out as: ', loggedOutWalletAddress);
       delete this.account;
+      this.SITEservice.currentRoute.next('home');
+      this.router.navigate([{outlets: {
+        left: ['empty'],
+        center: ['landing'],
+        right: ['empty'],
+        popup: ['empty'],
+        popupAction: ['empty']
+      }}])
     });
   }
 
@@ -69,6 +79,14 @@ export class NavbarComponent implements OnInit {
           const response = await this.APIservice.getAccount(loggedInWalletAddress);
           if (this.isAccount.isAccount(response)) {
             this.account = response;
+            if (this.myAddress.getValue() === '') {
+              this.router.navigate([{outlets: {left: ['empty'], center: ['landing'], right: ['empty']}}])
+            } else {
+              this.router.navigate([{outlets: {left: ['empty'], center: ['notifications'], right: ['alerts']}}])
+            }
+            this.SITEservice.mouseover.next('');
+            this.SITEservice.currentRoute.next('home');
+            this.SITEservice.viewing.next('');
           }
         }
         this.loggingIn = false;

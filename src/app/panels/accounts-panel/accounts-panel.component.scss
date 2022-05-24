@@ -9,7 +9,7 @@
     grid-area: center;
     display:grid;
     grid-template-rows:$margin max-content max-content $margin;
-    grid-auto-columns: $margin 1fr $margin;
+    grid-template-columns: $margin 1fr $margin;
     grid-template-areas:
     '. . .'
     '. heading .'

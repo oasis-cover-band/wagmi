@@ -112,7 +112,11 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   goHome(): void {
-    this.router.navigate([{outlets: {left: ['empty'], center: ['notifications'], right: ['alerts']}}])
+    if (this.myAddress.getValue() === '') {
+      this.router.navigate([{outlets: {left: ['empty'], center: ['landing'], right: ['empty']}}])
+    } else {
+      this.router.navigate([{outlets: {left: ['empty'], center: ['notifications'], right: ['alerts']}}])
+    }
     this.SITEservice.mouseover.next('');
     this.SITEservice.currentRoute.next('home');
     this.SITEservice.viewing.next('');

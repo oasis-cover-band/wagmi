@@ -49,8 +49,8 @@ export class AppComponent implements OnDestroy {
     this.SITEservice.currentRoute.next('home');
     this.router.navigate([{outlets: {
       left: ['empty'],
-      center: ['notifications'],
-      right: ['alerts'],
+      center: ['landing'],
+      right: ['empty'],
       popup: ['empty'],
       popupAction: ['empty']
     }}])

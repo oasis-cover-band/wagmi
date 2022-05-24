@@ -26,6 +26,14 @@
         text-align: center;
         justify-self: center;
         align-self: center;
+        filter: drop-shadow(0px 0px $dropshadow2 $tertiary);
+        small {
+            font-size:0.75rem;
+            b {
+                color:$white;
+                filter: drop-shadow(0px 0px $dropshadow2 $white);
+            }
+        }
     }
     section#content {
         min-height:100%;
