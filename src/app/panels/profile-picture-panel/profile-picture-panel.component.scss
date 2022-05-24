@@ -26,6 +26,7 @@
         display:grid;
         row-gap:$gap;
         pointer-events: none;
+        transition: $transition;
         span#date {
             text-decoration: underline;
             text-decoration-color: $tertiary;
@@ -55,6 +56,13 @@
         display:grid;
         grid-auto-flow: column;
         align-self: end;
+        transition: $transition;
+    }
+    &.hide {
+        section#actions, section#text {
+            opacity:0;
+            transform:scale(0);
+        }
     }
     @media (max-width: 1100px) {
         grid-template-areas:

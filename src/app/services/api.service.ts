@@ -16,6 +16,9 @@ export class ApiService {
   accounts: any = {
   };
   constructor() { }
+  // ********************
+  // START BACKEND
+  //  ********************
 
   // 
   // GETS
@@ -235,4 +238,8 @@ export class ApiService {
     // would be dope to have this as a stream that i can "subscribe/observe" to
     return [0]
   }
+
+  // ********************
+  // END BACKEND
+  //  ********************
 }

@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ngIfBannerAnimations, centerRouterAnimations, leftRouterAnimations, rightRouterAnimations, popupRouterAnimations } from './animations';
@@ -21,7 +21,7 @@ import { timeStamp } from 'console';
     popupRouterAnimations
   ]
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'wagmi';
   listener!: Subscription;
   viewingAccount!: AccountInfo;
@@ -54,7 +54,9 @@ export class AppComponent implements OnDestroy {
       popup: ['empty'],
       popupAction: ['empty']
     }}])
+  }
 
+  async ngOnInit(): Promise<void> {
   }
 
   ngOnDestroy(): void {

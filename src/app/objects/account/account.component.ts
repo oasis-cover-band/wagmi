@@ -21,7 +21,7 @@ export class AccountComponent implements OnInit, OnChanges {
   @Input() avatarUri!: string;
   @Input() borderUri!: string;
   @Input() accessoryUri!: string;
-  @Input() forceChange: boolean | null = false;
+  @HostBinding('class.hide') forceChange: boolean = false;
   @HostBinding("class.extralarge") @Input() extralarge: boolean = false;
   @HostBinding("class.large") @Input() large: boolean = false;
   @HostBinding("class.medium") @Input() medium: boolean = false;
@@ -192,6 +192,11 @@ export class AccountComponent implements OnInit, OnChanges {
   }
   
   ngOnChanges(changes: SimpleChanges): void {
+    console.log("change");
+    this.forceChange = !this.forceChange;
+    setTimeout(() => {
+      this.forceChange = !this.forceChange;
+    }, 250);
     this.setDefaults(this.account);
   }
 

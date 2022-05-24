@@ -8,6 +8,7 @@
     border-radius:320px;
     align-self: center;
     justify-self: center;
+    transition: $transition;
     img {
         overflow:hidden;
     }
@@ -282,5 +283,9 @@
                 transform:translate(0px, 0px);
             }
         }
+    }
+    &.hide {
+        opacity:0;
+        transform:scale(0);
     }
 }

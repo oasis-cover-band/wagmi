@@ -6,6 +6,7 @@ import { AccountInfo } from 'src/app/classes/accountInfo';
 import { SiteService } from '../../services/site.service';
 import { IsAccountService } from 'src/app/services/is-account.service';
 import { ngIfProfileAnimations } from 'src/app/animations';
+import { Record } from 'src/app/classes/record';
 
 @Component({
   selector: 'app-profile-panel',
