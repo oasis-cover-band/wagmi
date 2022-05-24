@@ -133,12 +133,18 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   updateName(event: Event): void {
       const account = this.SITEservice.editedAccount.getValue();
       account.accountId = this.name.nativeElement.value;
+      if (this.name.nativeElement.value === '') {
+        account.accountId = this.originalName;
+      }
       this.SITEservice.updateEditedAccount(account);
   }
 
   updateBio(event: Event): void {
       const account = this.SITEservice.editedAccount.getValue();
       account.bio = this.bio.nativeElement.value;
+      if (this.bio.nativeElement.value === '') {
+        account.bio = this.originalBio;
+      }
       this.SITEservice.updateEditedAccount(account);
   }
 
