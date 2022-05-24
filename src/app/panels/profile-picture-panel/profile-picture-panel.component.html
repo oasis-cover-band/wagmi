@@ -13,17 +13,35 @@
 *ngIf="!this.forceProfileChange"
 [@ngIfProfileAnimations]>
     <div id="join-date" *ngIf="this.account !== undefined && this.account.joinDate !== undefined && this.joinDate !== undefined">
-        Joined on <span>{{this.joinDate | date:'longDate'}}</span>
+        Joined on <span id="date">{{this.joinDate | date:'longDate'}}</span>
     </div>
-    <b *ngIf="this.account !== undefined && this.account.followers !== undefined">{{((this.account.followers / 1000) | number:'1.1-1')}}k</b> Followers
-    <br>
-    <b *ngIf="this.account !== undefined && this.account.following !== undefined">{{((this.account.following / 1000) | number:'1.1-1')}}k</b> Following
+    <span class="follow"><b *ngIf="this.account !== undefined && this.account.followers !== undefined">
+        <ng-container *ngIf="this.account.followers > 999">
+            {{((this.account.followers / 1000) | number:'1.1-1')}}k
+        </ng-container>
+        <ng-container *ngIf="this.account.followers <= 999">
+            {{this.account.followers | number}}
+        </ng-container>
+    </b>
+        <br>Followers <img class="icon" src="../../../assets/icons/followers.png"/>
+    </span>
+
+    <span class="follow"><b *ngIf="this.account !== undefined && this.account.following !== undefined">
+        <ng-container *ngIf="this.account.following > 999">
+            {{((this.account.following / 1000) | number:'1.1-1')}}k
+        </ng-container>
+        <ng-container *ngIf="this.account.following <= 999">
+            {{this.account.following | number}}
+        </ng-container>
+    </b>
+        <br>Following <img class="icon" src="../../../assets/icons/following.png"/>
+    </span>
 </section>
 
 <section id="actions"
 *ngIf="!this.forceProfileChange"
 [@ngIfProfileAnimations]>
     <app-action icon="edit" description="Edit" *ngIf="this.account !== undefined && (this.myAddress | async) === this.account.walletAddress && this.account.walletAddress !== undefined" (click)="this.showEdit()"></app-action>
-    <app-action icon="follow" description="Follow" *ngIf="this.isFollowing === true" (click)="this.unfollow()"></app-action>
-    <app-action icon="follownot" description="Unfollow" *ngIf="this.isFollowing === false" (click)="this.follow()"></app-action>
+    <app-action icon="follow" description="Follow" *ngIf="(this.isFollowing | async) !== true && (this.myAddress | async) !== ''" (click)="this.follow()"></app-action>
+    <app-action icon="follownot" description="Unfollow" *ngIf="(this.isFollowing | async) === true && (this.myAddress | async) !== ''" (click)="this.unfollow()"></app-action>
 </section>

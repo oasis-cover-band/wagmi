@@ -171,7 +171,9 @@
             b#price {
                 padding:$margin;
                 border-radius:360px;
-                background:$black;
+                border:2px solid $white;
+                background:rgba(0, 0, 0, 0.25);
+                text-decoration-color: $black;
                 filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $black);
                 color:$white;
             }

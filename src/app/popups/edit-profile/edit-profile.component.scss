@@ -25,6 +25,7 @@
         }
         &:before {
             border: 2px solid $tertiary;
+            filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $tertiary);
             background:$tertiary;
             opacity:1;
         }

@@ -108,6 +108,9 @@
                 &:before, &:after {
                     opacity:1;
                 }
+                &:before {
+                    filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $tertiary);
+                }
             }
             &:hover {
                 img {

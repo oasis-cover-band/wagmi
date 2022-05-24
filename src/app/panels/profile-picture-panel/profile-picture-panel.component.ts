@@ -19,9 +19,9 @@ import { ngIfProfileAnimations } from 'src/app/animations';
 export class ProfilePicturePanelComponent implements OnInit, OnDestroy {
 
   requestedAddress: BehaviorSubject<string> = new BehaviorSubject<string>("");
-  myAddress!: BehaviorSubject<string>;
+  myAddress: BehaviorSubject<string> = this.WEB3service.loggedIn.walletAddress;
   listener!: Subscription;
-  isFollowing!: boolean;
+  isFollowing: BehaviorSubject<boolean | number> = new BehaviorSubject<boolean | number>(0);
   account!: AccountInfo;
   forceProfileChange: boolean = false;
   joinDate!: number;
@@ -45,8 +45,7 @@ export class ProfilePicturePanelComponent implements OnInit, OnDestroy {
       }
       this.forceProfileChange = false;
     });
-    this.myAddress = this.WEB3service.loggedIn.walletAddress;
-    this.isFollowing = this.APIservice.isAddressFollowingAddress(this.myAddress.getValue(), this.requestedAddress.getValue());
+    this.isFollowing.next(await this.APIservice.isAddressFollowingAddress(this.myAddress.getValue(), this.requestedAddress.getValue()));
   }
 
   ngOnDestroy(): void {
@@ -71,12 +70,16 @@ export class ProfilePicturePanelComponent implements OnInit, OnDestroy {
     // });
   }
 
-  follow(): void {
-    this.APIservice.followAddress(this.myAddress.getValue(), this.requestedAddress.getValue());
+  async follow(): Promise<void> {
+    this.APIservice.followAddress(this.myAddress.getValue(), this.requestedAddress.getValue()).then(async after => {
+      this.isFollowing.next(await this.APIservice.isAddressFollowingAddress(this.myAddress.getValue(), this.requestedAddress.getValue()));
+    });
   }
 
-  unfollow(): void {
-    this.APIservice.unfollowAddress(this.myAddress.getValue(), this.requestedAddress.getValue());
+  async unfollow(): Promise<void> {
+    this.APIservice.unfollowAddress(this.myAddress.getValue(), this.requestedAddress.getValue()).then(async after => {
+      this.isFollowing.next(await this.APIservice.isAddressFollowingAddress(this.myAddress.getValue(), this.requestedAddress.getValue()));
+    })
   }
 
 }

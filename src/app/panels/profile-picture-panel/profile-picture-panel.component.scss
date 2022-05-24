@@ -9,7 +9,10 @@
     '. actions .'
     '. . .';
     grid-template-columns: $margin 1fr $margin;
-    grid-template-rows: $margin max-content 1fr max-content $margin;
+    grid-template-rows: $margin max-content max-content 1fr $margin;
+    min-height:100%;
+    max-height:100%;
+    height:100%;
     app-account {
         grid-area:account;
         justify-self: center;
@@ -20,7 +23,9 @@
         text-align: right;
         font-size:1rem;
         color:$white;
-        span {
+        display:grid;
+        row-gap:$gap;
+        span#date {
             text-decoration: underline;
             text-decoration-color: $tertiary;
             font-size:0.75rem;
@@ -28,21 +33,36 @@
         b {
             font-size:1.25rem;
             color:$tertiary;
+            text-decoration: underline;
+            text-decoration-color: $tertiary;
+            background:rgba(0, 0, 0, 0.25);
+            border-radius: $borderradius;
+            padding:$margin;
+            margin:$margin;
+        }
+        span.follow {
+            display:grid;
+            img.icon {
+                position:absolute;
+                transform:translate(-12px, -12px);
+                opacity:0.5;
+            }
         }
     }
     section#actions {
         grid-area:actions;
         display:grid;
         grid-auto-flow: column;
+        align-self: end;
     }
     @media (max-width: 1100px) {
         grid-template-areas:
-        '. . . . .'
-        '. actions account text .'
-        '. . . . .';
+        '. . .'
+        '. account .'
+        '. . .';
         row-gap:$gap;
         column-gap:$gap;
-        grid-template-columns: $margin 0px 1fr 0px $margin;
+        grid-template-columns: $margin 1fr $margin;
         grid-template-rows: $margin 1fr $margin;
         row-gap:0px;
         app-account {
@@ -50,9 +70,32 @@
         }
         section#actions, section#text {
             z-index:4;
+            grid-area:account;
+        }
+        section#text {
+            grid-auto-flow: column;
+            grid-template-areas: '. .';
+            grid-template-columns: 0.5fr 0.5fr;
+            justify-self: stretch;
+            div#join-date {
+                display:none;
+            }
+            span.follow {
+                justify-self: center;
+                text-align: center;
+                align-self: start;
+                img.icon {
+                    opacity:0.75;
+                }
+            }
+            b {
+                background:rgba(0, 0, 0, 0.5);
+                // border-radius: 0px 0px $borderradius $borderradius;
+            }
         }
         section#actions {
             grid-auto-flow: row;
+            align-self: center;
         }
         @media (max-width:500px) {
             div#join-date {
