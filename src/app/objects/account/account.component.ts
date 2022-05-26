@@ -100,7 +100,6 @@ export class AccountComponent implements OnInit, OnChanges {
       this.borderUri = `../assets/textures/` + (Math.floor(Number(this.address) * 42069 / 3)) % 340 + `.png`;
       this.defaultBorder = true;
     }
-    console.log(this.accessoryUri);
     if (this.accessoryUri === '' || this.accessoryUri === undefined || this.accessoryUri === null || this.accessoryUri === "") {
       this.defaultAccessory = true;
       // ***********************
@@ -192,13 +191,10 @@ export class AccountComponent implements OnInit, OnChanges {
   }
   
   ngOnChanges(changes: SimpleChanges): void {
-    console.log("change");
-    console.log(changes);
     this.forceChange = !this.forceChange;
     setTimeout(() => {
       this.forceChange = !this.forceChange;
     }, 250);
-    console.log(this.avatarUri);
     this.setDefaults(this.account);
   }
 

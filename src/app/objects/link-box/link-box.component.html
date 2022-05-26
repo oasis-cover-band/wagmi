@@ -1,0 +1,29 @@
+<h4 id="heading">{{this.data.heading}}</h4>
+<h6 id="rank">#{{this.rank + 1}}</h6>
+<span id="tagline"
+[ngClass]="{
+'amount': (this.data.amount !== undefined),
+'tagline': (this.data.tagline !== undefined)
+}">
+    <ng-container *ngIf="this.data.amount !== undefined && this.data.tagline === undefined">
+        <ng-container *ngIf="this.data.amount < 1000">
+            {{(this.data.amount | currency)}}
+        </ng-container>
+        <ng-container *ngIf="this.data.amount < 1000000 && this.data.amount >= 1000">
+            {{((this.data.amount / 1000) | currency)}}<b>K</b>
+        </ng-container>
+        <ng-container *ngIf="this.data.amount < 1000000000 && this.data.amount >= 1000000">
+            {{((this.data.amount / 1000000) | currency)}}<b>M</b>
+        </ng-container>
+        <ng-container *ngIf="this.data.amount < 1000000000000 && this.data.amount >= 1000000000">
+            {{((this.data.amount / 1000000000) | currency)}}<b>B</b>
+        </ng-container>
+    </ng-container>
+    <ng-container *ngIf="this.data.tagline !== undefined && this.data.amount === undefined">
+        <b>{{this.data.tagline.substring(0, this.data.tagline.indexOf(' '))}}</b>
+        {{this.data.tagline.substring(this.data.tagline.indexOf(' '))}}
+    </ng-container>
+</span>
+<app-action id="goto" icon="view" description="View" [outsideLink]="this.data.link">
+</app-action>
+<!-- <h4 id="footing">{{this.data.footing}}</h4> -->

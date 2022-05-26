@@ -1,0 +1,52 @@
+
+    <section id="search" class="input">
+        <span>Search</span>
+        <input (keyup)="updateSearch($event)" (change)="updateSearch($event)" #bio cols="10" rows="5" id="bio" placeholder="Address, Name or Symbol"/>
+    </section>
+
+<section class="slider-row" id="hottest">
+    <h5 class="heading third"><span id="text">Hottest</span><small id="description">$USD volume in a day</small></h5>
+    <section class="items-wrapper">
+        <section class="items">
+            <ng-container *ngFor="let object of (this.hottest | async); let index = index">
+                <app-link-box [data]="{
+                    heading: object.pool.token0.symbol + '/' + object.pool.token1.symbol,
+                    footing: object.pool.token1.symbol,
+                    tagline: undefined,
+                    amount: object.volumeUSD,
+                    link: '',
+                    image: index
+                }"
+                [rank]="index % 10"
+                type="hottest"
+                [@ngIfProfileAnimations]
+                >
+        
+                </app-link-box>
+            </ng-container>
+        </section>
+    </section>
+</section>
+<section class="slider-row" id="trending">
+    <h5 class="heading"><span id="text">Trending</span><small id="description"># of transactions in an hour</small></h5>
+    <section class="items-wrapper">
+        <section class="items">
+            <ng-container *ngFor="let object of (this.trending | async); let index = index">
+                <app-link-box [data]="{
+                    heading: object.pool.token0.symbol + '/' + object.pool.token1.symbol,
+                    footing: object.pool.token1.symbol,
+                    tagline: object.txCount + ' TXs',
+                    amount: undefined,
+                    link: '',
+                    image: index
+                }"
+                [rank]="index % 10"
+                type="trending"
+                [@ngIfProfileAnimations]
+                >
+        
+                </app-link-box>
+            </ng-container>
+        </section>
+    </section>
+</section>

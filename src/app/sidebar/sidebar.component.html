@@ -12,6 +12,18 @@ description="Home"
 >
 </app-action>
     
+<app-action #home
+icon="uniswap"
+description="Uniswap"
+(click)="goUniswap()"
+(mouseover)="onOver('uniswap')"
+(mouseleave)="onLeave('')"
+[ngClass]="{
+    'active': (this.currentRoute | async)?.substr(0, 7) === 'uniswap'
+}"
+>
+</app-action>
+    
 <app-action #basic
 icon="details"
 description="Basic"

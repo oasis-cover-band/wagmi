@@ -1,0 +1,22 @@
+<img id="logo" [src]="this.brand.avatarUri" />
+<h3 id="name">
+    <div class="shiny">
+        {{this.brand.name}}
+    </div>
+</h3>
+<h5 id="reputation" *ngIf="this.brand.reputation" [ngClass]="{
+    'positive': this.brand.reputation > 50,
+    'negative': this.brand.reputation <= 50
+}">
+    <div class="title">REP</div><b>{{this.brand.reputation}}%</b>
+</h5>
+<section id="socials-wrapper">
+    <section id="socials">
+        <app-action *ngFor="let social of this.socials"
+        [icon]="social.icon"
+        [description]="social.description"
+        [outsideLink]="social.uri">
+            
+        </app-action>
+    </section>
+</section>

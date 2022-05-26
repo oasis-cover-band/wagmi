@@ -25,15 +25,29 @@
         margin:0px;
         overflow:hidden;
         text-overflow: ellipsis;
-        text-decoration: underline;
-        text-decoration-color: $tertiary;
-        text-decoration-thickness: 4px;
         white-space: nowrap;
         transition: $transition;
+        &:before {
+            position:absolute;
+            transform:translateY(96px);
+            content:'';
+            height:4px;
+            top:0px;
+            bottom:0px;
+            left:32px;
+            right:32px;
+            background:$tertiary;
+            border-radius:$borderradius;
+            opacity: 0.8; 
+            filter: drop-shadow(0px 0px $dropshadow2 $tertiary);
+        }
     }
     @media (max-width: 1100px) {
         h1#heading {
             font-size:1.5rem;
+            &:before {
+                transform:translateY(64px);
+            }
         }
     }
     section#accounts {

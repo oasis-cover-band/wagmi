@@ -122,6 +122,13 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.SITEservice.viewing.next('');
   }
 
+  goUniswap(): void {
+    this.router.navigate([{outlets: {left: ['service-brand-bio', 'uniswap'], center: ['service-brand-landing', 'uniswap'], right: ['service-brand', 'uniswap']}}])
+    this.SITEservice.mouseover.next('');
+    this.SITEservice.currentRoute.next('uniswap');
+    this.SITEservice.viewing.next('');
+  }
+
   showBasic(): void {
     this.router.navigate([{outlets: {
       left: ['profile-picture',  this.SITEservice.viewing.getValue()],

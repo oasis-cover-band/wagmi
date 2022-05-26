@@ -1,0 +1,161 @@
+@import '../../../colors.scss';
+:host {
+    grid-area: right;
+    display:grid;
+    grid-template-columns: $margin 1fr $margin;
+    grid-template-rows:$margin max-content max-content max-content $margin;
+    grid-template-areas:
+    '. . .'
+    ". logo ."
+    ". reputation ."
+    ". socials ."
+    ". . .";
+    // align-self: center;
+    // // align-items: center;
+    // // align-content: center;
+    img#logo {
+        grid-area: logo;
+        filter: drop-shadow(0px 0px $dropshadow2 $white) opacity(0.2);
+        transform:scale(2) translateY(25%) translateX(-50%);
+    }
+    h3, h5 {
+        margin:0px;
+        padding: 0px;
+    }
+    h3#name {
+        grid-area:logo;
+        div.shiny {
+            font-size: 2rem;
+            color:$white;
+            filter: drop-shadow(0px 0px $dropshadow2 $white);
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-family: 'Nunito';
+            overflow:hidden;
+        }
+        font-variant-caps: all-small-caps;
+        position:relative;
+        &:before {
+            position:absolute;
+            transform:translateY(40px);
+            content:'';
+            height:4px;
+            top:0px;
+            bottom:0px;
+            left:4px;
+            right:4px;
+            background:$tertiary;
+            border-radius:$borderradius;
+            opacity: 0.8; 
+            filter: drop-shadow(0px 0px $dropshadow2 $tertiary);
+        }
+    }
+    h5#reputation {
+        grid-area:reputation;
+        font-size:1.5rem;
+        display:grid;
+        grid-auto-flow: column;
+        align-items: center;
+        align-content: center;
+        div.title, b {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow:hidden;
+        }
+        div.title {
+            color:$white;
+            filter: drop-shadow(0px 0px $dropshadow2 $white);
+            transition: $transition;
+        }
+        b {
+            font-size:2.5rem;
+            transition: $transition;
+            font-family: 'Nunito';
+        }
+        &.positive {
+            b {
+                color:$green;
+                filter: drop-shadow(0px 0px $dropshadow2 $green);
+            }
+        }
+        &.negative {
+            b {
+                color:$red;
+                filter: drop-shadow(0px 0px $dropshadow2 $red);
+            }
+        }
+    }
+    section#socials-wrapper {
+        grid-area:socials;
+        display:grid;
+        grid-template-areas: 
+        '. . .'
+        '. socials .'
+        '. . .';
+        grid-template-columns: $margin 1fr $margin;
+        grid-template-rows: $margin 1fr $margin;
+        min-width:100%;
+        overflow-y:hidden;
+        overflow-x:scroll;
+        section#socials {
+            grid-area:socials;
+            display:grid;
+            grid-template-columns: repeat(auto-fit, minmax(48px, 48px));
+            row-gap: $mobilegap;
+            column-gap: $mobilegap;
+            justify-content: center;
+        }
+    }
+    @media (max-width:1100px) {
+        h3#name {
+            grid-area:logo;
+            justify-self: start;
+            div.shiny {
+                font-size:1.5rem;
+                max-width:100vw;
+            }
+            &:before {
+                transform:translateY(28px);
+                opacity: 0.2;
+            }
+        }
+        h5#reputation {
+            grid-area:logo;
+            justify-self: start;
+            font-size:1.5rem;
+            div {
+                font-size:0rem;
+            }
+            b {
+                font-size:2rem;
+                max-width:100vw;
+            }
+        }
+        grid-template-columns: $margin 1fr $margin;
+        grid-template-areas:
+        '. . .'
+        ". logo ."
+        ". . .";
+        justify-content: end;
+        justify-items: end;
+        column-gap: $mobilegap;
+        img#logo {
+            transform:scale(1) translateY(25%);
+            justify-self: center;
+        }
+        section#socials-wrapper {
+            grid-area:logo;
+            justify-self: stretch;
+            grid-template-rows: $margin 48px $margin;
+            max-height:68px;
+            section#socials {
+                grid-template-columns: none;
+                grid-auto-columns: 48px;
+                grid-auto-flow: column;
+                justify-content: end;
+                justify-items: end;
+            }
+        }
+    }
+
+}

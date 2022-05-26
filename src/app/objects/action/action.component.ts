@@ -9,7 +9,7 @@ export class ActionComponent implements OnInit {
 
   @Input() icon: string = "home";
   @Input() description: string = "Home";
-  @ViewChild('fileUpload') fileUpload!: ElementRef; // SHOULD BE ELEMENT REF
+  @Input() outsideLink: string = '';
   constructor() { }
 
   ngOnInit(): void {

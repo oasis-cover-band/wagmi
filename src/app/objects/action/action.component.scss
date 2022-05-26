@@ -13,6 +13,16 @@
     max-width:48px;
     height:48px;
     width:48px;
+    a {
+        grid-area:content;
+        z-index:9999;
+        min-height:48px;
+        min-width:48px;
+        max-height:48px;
+        max-width:48px;
+        height:48px;
+        width:48px;
+    }
     &.active {
         &:before {
             opacity:1;

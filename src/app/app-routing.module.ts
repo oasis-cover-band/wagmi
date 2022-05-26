@@ -22,12 +22,24 @@ import { ChatPanelModule } from './panels/chat-panel/chat-panel.module';
 import { ChatPanelComponent } from './panels/chat-panel/chat-panel.component';
 import { LandingPanelModule } from './panels/landing-panel/landing-panel.module';
 import { LandingPanelComponent } from './panels/landing-panel/landing-panel.component';
+import { TokenPanelModule } from './panels/token-panel/token-panel.module';
+import { TokenPanelComponent } from './panels/token-panel/token-panel.component';
+import { ServiceBrandLandingPanelModule } from './panels/service-brand-landing-panel/service-brand-landing-panel.module';
+import { ServiceBrandLandingPanelComponent } from './panels/service-brand-landing-panel/service-brand-landing-panel.component';
+import { ServiceBrandPanelModule } from './panels/service-brand-panel/service-brand-panel.module';
+import { ServiceBrandPanelComponent } from './panels/service-brand-panel/service-brand-panel.component';
+import { GraphPanelModule } from './panels/graph-panel/graph-panel.module';
+import { GraphPanelComponent } from './panels/graph-panel/graph-panel.component';
+import { ServiceBrandBioPanelModule } from './panels/service-brand-bio-panel/service-brand-bio-panel.module';
+import { ServiceBrandBioPanelComponent } from './panels/service-brand-bio-panel/service-brand-bio-panel.component';
 
 const routes: Routes = [
   // ***************************
   // INITS
   // ***************************
   // INIT CENTER (EMPTY)
+      // this.router.navigate([{outlets: {left: ['empty'], center: ['service-brand-landing', 'uniswap'], right: ['service-brand', 'uniswap']}}])
+
   {path: '', component: LandingPanelComponent, outlet: "center"},
   // INIT RIGHT (EMPTY)
   {path: '', component: EmptyComponent, outlet: "right"},
@@ -43,6 +55,19 @@ const routes: Routes = [
   {path: 'notifications', component: NotificationsPanelComponent, outlet: "center"},
   // RIGHT (ALERTS)
   {path: 'alerts', component: AlertsPanelComponent, outlet: "right"},
+  // ***************************
+  // SERVICES
+  // ***************************
+  // CENTER (SERVICE BRAND: 'UNISWAP', 'MOONISWAP')
+  {path: 'service-brand-landing/:service', component: ServiceBrandLandingPanelComponent, outlet: "center"},
+  // CENTER (GRAPH: '0x0.../0')
+  {path: 'graph/:address/:type', component: GraphPanelComponent, outlet: "center"},
+  // RIGHT (SERVICE BRAND: 'UNISWAP', 'MOONISWAP')
+  {path: 'service-brand/:service', component: ServiceBrandPanelComponent, outlet: "right"},
+  // LEFT (SERVICE BRAND: 'UNISWAP', 'MOONISWAP')
+  {path: 'token/:address', component: TokenPanelComponent, outlet: "left"},
+  // CENTER (SERVICE BRAND: 'UNISWAP', 'MOONISWAP')
+  {path: 'service-brand-bio/:service', component: ServiceBrandBioPanelComponent, outlet: "left"},
   // ***************************
   // PROFILE
   // ***************************
@@ -89,7 +114,12 @@ const routes: Routes = [
     EmptyModule,
     ImagePickerModule,
     ChatPanelModule,
-    LandingPanelModule
+    LandingPanelModule,
+    TokenPanelModule,
+    ServiceBrandLandingPanelModule,
+    ServiceBrandPanelModule,
+    GraphPanelModule,
+    ServiceBrandBioPanelModule
   ],
   exports: [RouterModule]
 })

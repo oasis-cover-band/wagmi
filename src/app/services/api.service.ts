@@ -207,16 +207,8 @@ export class ApiService {
       baseURL: this.baseURI,
       method: 'GET',
     }).then(async (response: any) => {
-      console.log(response.data);
-      console.log(response.data.items.findIndex((followInfo: FollowInfo) => {
-        if (followInfo.followingAddress === followingAddress) {
-          return true;
-        } else {
-          return false;
-        }
-      }))
       const index = response.data.items.findIndex((followInfo: FollowInfo) => {
-        if (followInfo.followingAddress === followingAddress) {
+        if (Number(followInfo.followingAddress) === Number(followingAddress)) {
           return true;
         } else {
           return false;

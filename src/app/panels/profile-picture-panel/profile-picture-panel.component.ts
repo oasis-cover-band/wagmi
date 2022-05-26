@@ -43,9 +43,11 @@ export class ProfilePicturePanelComponent implements OnInit, OnDestroy, OnChange
       if (this.isAccount.isAccount(response)) {
         this.account = response;
         this.joinDate = new Date(String(this.account.joinDate)).getTime();
+        console.log(this.myAddress.getValue(), this.requestedAddress.getValue());
+        this.isFollowing.next(await this.APIservice.isAddressFollowingAddress(this.myAddress.getValue(), this.requestedAddress.getValue()));
+        console.log(this.isFollowing.getValue(), 'isfollowing')
       }
     });
-    this.isFollowing.next(await this.APIservice.isAddressFollowingAddress(this.myAddress.getValue(), this.requestedAddress.getValue()));
   }
 
   ngOnDestroy(): void {
@@ -76,13 +78,13 @@ export class ProfilePicturePanelComponent implements OnInit, OnDestroy, OnChange
 
   async follow(): Promise<void> {
     this.APIservice.followAddress(this.myAddress.getValue(), this.requestedAddress.getValue()).then(async after => {
-      this.isFollowing.next(await this.APIservice.isAddressFollowingAddress(this.myAddress.getValue(), this.requestedAddress.getValue()));
+    this.isFollowing.next(await this.APIservice.isAddressFollowingAddress(this.myAddress.getValue(), this.requestedAddress.getValue()));
     });
   }
 
   async unfollow(): Promise<void> {
     this.APIservice.unfollowAddress(this.myAddress.getValue(), this.requestedAddress.getValue()).then(async after => {
-      this.isFollowing.next(await this.APIservice.isAddressFollowingAddress(this.myAddress.getValue(), this.requestedAddress.getValue()));
+    this.isFollowing.next(await this.APIservice.isAddressFollowingAddress(this.myAddress.getValue(), this.requestedAddress.getValue()));
     })
   }
 
