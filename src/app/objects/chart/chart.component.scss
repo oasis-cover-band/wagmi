@@ -11,7 +11,7 @@
     '. . .';
     grid-template-columns: $margin 1fr $margin;
     grid-template-rows: $margin max-content 1fr $margin;
-
+    row-gap:$gap;
     $color-text-dark: $darkestgrey;
     $color-text-med-dark: $darkgrey;
     $color-text-med: $tertiary;
