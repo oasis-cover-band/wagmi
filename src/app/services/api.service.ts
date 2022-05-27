@@ -80,6 +80,8 @@ export class ApiService {
       //   delete account.accessoryUri;
       // }
       console.log(account);
+      console.log(avatarUri);
+      console.log(bannerUri);
     return await axios({
       url: 'account/'.concat(String(account.walletAddress)),
       baseURL: this.baseURI,
