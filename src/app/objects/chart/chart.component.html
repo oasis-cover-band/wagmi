@@ -18,10 +18,10 @@
         color: this.scheme.colorScheme.domain[chartFieldIndex % this.scheme.colorScheme.domain.length],
         filter: 'drop-shadow(0px 0px 4px' + this.scheme.colorScheme.domain[chartFieldIndex % this.scheme.colorScheme.domain.length] + ')'
       }">
-        {{chartField}}
+        {{chartField | subgraphName: this.chartDataNames}}
       </span>
       <span class="tool-tip">
-        {{chartField}}
+        {{chartField | subgraphName: this.chartDataNames}}
       </span>
     </div>
   </section>
