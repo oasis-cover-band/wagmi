@@ -11,12 +11,16 @@
       <span class="circle"
       [ngStyle]="{
         backgroundColor: this.scheme.colorScheme.domain[chartFieldIndex % this.scheme.colorScheme.domain.length]
-      }"></span>
+      }">
+      </span>
       <span class="text"
       [ngStyle]="{
         color: this.scheme.colorScheme.domain[chartFieldIndex % this.scheme.colorScheme.domain.length],
         filter: 'drop-shadow(0px 0px 4px' + this.scheme.colorScheme.domain[chartFieldIndex % this.scheme.colorScheme.domain.length] + ')'
       }">
+        {{chartField}}
+      </span>
+      <span class="tool-tip">
         {{chartField}}
       </span>
     </div>

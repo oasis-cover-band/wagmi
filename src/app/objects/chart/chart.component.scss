@@ -39,6 +39,8 @@
         grid-template-columns: $margin 1fr $margin;
         grid-template-rows: $margin 1fr $margin;
         transition:$transition;
+        justify-content: center;
+        justify-items: center;
         span {
           transition:$transition;
         }
@@ -46,7 +48,7 @@
           grid-area:text;
           text-overflow: ellipsis;
           white-space: nowrap;
-  
+          max-width:100%;
           overflow:hidden;
         }
         span.circle {
@@ -64,6 +66,20 @@
           span.circle {
             height:0px;
             width:0px;
+          }
+        }
+        span.tool-tip {
+          grid-area:text;
+          opacity:0;
+          position:absolute;
+          background:$grey;
+          border-radius:$borderradius;
+          padding:$margin;
+        }
+        &:hover {
+          span.tool-tip {
+            opacity:1;
+            transform:translateY(30px);
           }
         }
       }
