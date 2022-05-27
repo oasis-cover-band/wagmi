@@ -1,0 +1,255 @@
+
+  <section id="legend">
+    <div class="legend-item" *ngFor="let chartField of this.chartFields; let chartFieldIndex = index" (click)="toggleChartField(chartField)"
+    [ngClass]="{
+    'disabled': (this.data[chartFieldIndex].series[0].value === 0)
+    }"
+    [ngStyle]="{
+      filter: 'drop-shadow(0px 0px 4px' + this.scheme.colorScheme.domain[chartFieldIndex % this.scheme.colorScheme.domain.length] + ')'
+    }"
+    >
+      <span class="circle"
+      [ngStyle]="{
+        backgroundColor: this.scheme.colorScheme.domain[chartFieldIndex % this.scheme.colorScheme.domain.length]
+      }"></span>
+      <span class="text"
+      [ngStyle]="{
+        color: this.scheme.colorScheme.domain[chartFieldIndex % this.scheme.colorScheme.domain.length],
+        filter: 'drop-shadow(0px 0px 4px' + this.scheme.colorScheme.domain[chartFieldIndex % this.scheme.colorScheme.domain.length] + ')'
+      }">
+        {{chartField}}
+      </span>
+    </div>
+  </section>
+<div #containerRef id="container">
+  <ngx-charts-line-chart
+  id="chart"
+  *ngIf="this.displayedData !== undefined && this.displayedData.length > 0 && this.finishedSetting === true"
+    [view]="[containerRef.offsetWidth, containerRef.offsetHeight]"
+    [legend]="legend"
+    [legendPosition]="legendPosition"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [scheme]="scheme.colorScheme"
+    [xAxis]="xAxis"
+    [yAxis]="yAxis"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+    [timeline]="timeline"
+    [autoScale]="autoScale"
+    [yAxisTickFormatting]="removeYAxis"
+    [xAxisTickFormatting]="formatDate"
+    [results]="this.displayedData"
+    (select)="onSelect($event)"
+    (activate)="onActivate($event)"
+    (deactivate)="onDeactivate($event)"
+    >
+    
+    
+      <ng-template #tooltipTemplate let-model="model">
+        {{model.name * 1000 | date:'shortDate'}}
+        <ng-container>
+          <ng-container *ngIf="model.value > 0">
+            <div>
+              <b [ngStyle]="{
+                color: this.scheme.colorScheme.domain[0]
+              }">
+                {{model.series | subgraphName: this.chartDataNames}}:
+              </b> 
+              <span *ngIf="['token0Price', 'token1Price', 'volumeUSD', 'totalValueLockedUSD', 'totalValueLockedUSDUntracked', 'feesUSD'].indexOf(model.series) !== -1">
+                <ng-container *ngIf="
+                (this.chartDataNames[0] === 'WETH' && model.series === 'token1Price') ||
+                (this.chartDataNames[1] === 'WETH' && model.series === 'token0Price')">
+                  {{model.value | currency}}
+                </ng-container>
+                <ng-container *ngIf="
+                (this.chartDataNames[0] !== 'WETH' || model.series !== 'token1Price') &&
+                (this.chartDataNames[1] !== 'WETH' || model.series !== 'token0Price')">
+                
+                  <ng-container *ngIf="
+                  ['volumeUSD', 'totalValueLockedUSD', 'totalValueLockedUSDUntracked', 'feesUSD'].indexOf(model.series) !== -1">
+                  {{model.value | currency}}
+                  </ng-container>
+
+                  <ng-container *ngIf="
+                  ['volumeUSD', 'totalValueLockedUSD', 'totalValueLockedUSDUntracked', 'feesUSD'].indexOf(model.series) === -1">
+                    <ng-container
+                    *ngIf="model.value > 0.00004">
+                    
+                      {{model.value | number: '1.0-5'}}
+
+                    </ng-container>
+
+                    <ng-container
+                    *ngIf="model.value <= 0.00004">
+                    
+                      {{model.value}}
+
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+                <b [ngStyle]="{
+                  color: this.scheme.colorScheme.domain[0]
+                }">
+                <!-- TOKEN0PRICE AND TOKEN1PRICE ARE REVERSED VIA SUBGRAPH FOR SOME REASON -->
+                
+                <ng-container *ngIf="
+                ['volumeUSD', 'totalValueLockedUSD', 'totalValueLockedUSDUntracked', 'feesUSD'].indexOf(model.series) !== -1">
+                  USD
+                </ng-container>
+                <ng-container *ngIf="
+                ['token0Price', 'token1Price'].indexOf(model.series) !== -1">
+                    <ng-container *ngIf="
+                    ((this.chartDataNames[0] === 'WETH' && model.series === 'token1Price') ||
+                    (this.chartDataNames[1] === 'WETH' && model.series === 'token0Price'))">
+                      USD
+                    </ng-container>
+                    <ng-container *ngIf="
+                    (this.chartDataNames[0] !== 'WETH' || model.series !== 'token1Price') &&
+                    (this.chartDataNames[1] !== 'WETH' || model.series !== 'token0Price')">
+                      ETH
+                    </ng-container>
+                </ng-container>
+              </b>
+              </span>
+              <span *ngIf="['derivedETH', 'totalValueLockedETH'].indexOf(model.series) !== -1">
+                {{model.value}} 
+                <b [ngStyle]="{
+                  color: this.scheme.colorScheme.domain[0]
+                }">
+                  ETH
+                </b>
+              </span>
+              <span *ngIf="['totalValueLockedToken0', 'collectedFeesToken0', 'volumeToken0',].indexOf(model.series) !== -1">
+                {{model.value | number}} 
+                <b [ngStyle]="{
+                  color: this.scheme.colorScheme.domain[0]
+                }">
+                  {{this.chartDataNames[0]}}
+                </b>
+              </span>
+              <span *ngIf="['totalValueLockedToken1', 'collectedFeesToken1', 'volumeToken1'].indexOf(model.series) !== -1">
+                {{model.value | number}} 
+                <b [ngStyle]="{
+                  color: this.scheme.colorScheme.domain[0]
+                }">
+                  {{this.chartDataNames[1]}}
+                </b>
+              </span>
+              <span *ngIf="['txCount'].indexOf(model.series) !== -1">
+                {{model.value}} 
+                <b [ngStyle]="{
+                  color: this.scheme.colorScheme.domain[0]
+                }">
+                  TXs
+                </b>
+              </span>
+            </div>
+          </ng-container>     
+        </ng-container>
+      </ng-template>
+
+      <ng-template #seriesTooltipTemplate let-model="model">
+        {{model[0].name * 1000 | date:'shortDate'}}
+        <ng-container *ngFor="let modelItem of model; let index = index">
+          <ng-container *ngIf="modelItem.value > 0">
+            <div>
+              <b [ngStyle]="{
+                color: this.scheme.colorScheme.domain[index % this.scheme.colorScheme.domain.length]
+              }">
+                {{modelItem.series | subgraphName: this.chartDataNames}}:
+              </b> 
+              <span *ngIf="['token0Price', 'token1Price', 'volumeUSD', 'totalValueLockedUSD', 'totalValueLockedUSDUntracked', 'feesUSD'].indexOf(modelItem.series) !== -1">
+                <ng-container *ngIf="
+                (this.chartDataNames[0] === 'WETH' && modelItem.series === 'token1Price') ||
+                (this.chartDataNames[1] === 'WETH' && modelItem.series === 'token0Price')">
+                  {{modelItem.value | currency}}
+                </ng-container>
+                <ng-container *ngIf="
+                (this.chartDataNames[0] !== 'WETH' || modelItem.series !== 'token1Price') &&
+                (this.chartDataNames[1] !== 'WETH' || modelItem.series !== 'token0Price')">
+                
+                  <ng-container *ngIf="
+                  ['volumeUSD', 'totalValueLockedUSD', 'totalValueLockedUSDUntracked', 'feesUSD'].indexOf(modelItem.series) !== -1">
+                  {{modelItem.value | currency}}
+                  </ng-container>
+
+                  <ng-container *ngIf="
+                  ['volumeUSD', 'totalValueLockedUSD', 'totalValueLockedUSDUntracked', 'feesUSD'].indexOf(modelItem.series) === -1">
+                    <ng-container
+                    *ngIf="modelItem.value > 0.00004">
+                    
+                      {{modelItem.value | number: '1.0-5'}}
+
+                    </ng-container>
+
+                    <ng-container
+                    *ngIf="modelItem.value <= 0.00004">
+                    
+                      {{modelItem.value}}
+
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+                <b [ngStyle]="{
+                  color: this.scheme.colorScheme.domain[index % this.scheme.colorScheme.domain.length]
+                }">
+                <!-- TOKEN0PRICE AND TOKEN1PRICE ARE REVERSED VIA SUBGRAPH FOR SOME REASON -->
+                
+                <ng-container *ngIf="
+                ['volumeUSD', 'totalValueLockedUSD', 'totalValueLockedUSDUntracked', 'feesUSD'].indexOf(modelItem.series) !== -1">
+                  USD
+                </ng-container>
+                <ng-container *ngIf="
+                ['token0Price', 'token1Price'].indexOf(modelItem.series) !== -1">
+                    <ng-container *ngIf="
+                    ((this.chartDataNames[0] === 'WETH' && modelItem.series === 'token1Price') ||
+                    (this.chartDataNames[1] === 'WETH' && modelItem.series === 'token0Price'))">
+                      USD
+                    </ng-container>
+                    <ng-container *ngIf="
+                    (this.chartDataNames[0] !== 'WETH' || modelItem.series !== 'token1Price') &&
+                    (this.chartDataNames[1] !== 'WETH' || modelItem.series !== 'token0Price')">
+                      ETH
+                    </ng-container>
+                </ng-container>
+              </b>
+              </span>
+              <span *ngIf="['derivedETH', 'totalValueLockedETH'].indexOf(modelItem.series) !== -1">
+                {{modelItem.value}} 
+                <b [ngStyle]="{
+                  color: this.scheme.colorScheme.domain[index % this.scheme.colorScheme.domain.length]
+                }">
+                  ETH
+                </b>
+              </span>
+              <span *ngIf="['totalValueLockedToken0', 'collectedFeesToken0', 'volumeToken0',].indexOf(modelItem.series) !== -1">
+                {{modelItem.value | number}} 
+                <b [ngStyle]="{
+                  color: this.scheme.colorScheme.domain[index % this.scheme.colorScheme.domain.length]
+                }">
+                  {{this.chartDataNames[0]}}
+                </b>
+              </span>
+              <span *ngIf="['totalValueLockedToken1', 'collectedFeesToken1', 'volumeToken1'].indexOf(modelItem.series) !== -1">
+                {{modelItem.value | number}} 
+                <b [ngStyle]="{
+                  color: this.scheme.colorScheme.domain[index % this.scheme.colorScheme.domain.length]
+                }">
+                  {{this.chartDataNames[1]}}
+                </b>
+              </span>
+              <span *ngIf="['txCount'].indexOf(modelItem.series) !== -1">
+                {{modelItem.value}} 
+                <b [ngStyle]="{
+                  color: this.scheme.colorScheme.domain[index % this.scheme.colorScheme.domain.length]
+                }">
+                  TXs
+                </b>
+              </span>
+            </div>
+          </ng-container>     
+        </ng-container>
+      </ng-template>
+  </ngx-charts-line-chart>
+</div>

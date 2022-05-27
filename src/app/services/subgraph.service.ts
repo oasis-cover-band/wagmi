@@ -101,8 +101,12 @@ export class SubgraphService {
       // this.error = result.error;
     });
   }
+
   async pool(address: string, item: BehaviorSubject<any>): Promise<any> {
-    console.log(address);
+
+  // ********************
+  // TOKEN0PRICE and TOKEN1PRICE ARE MIXED UP!!
+  //  ********************
     return await this.apollo
     .watchQuery({
       query: gql`
@@ -143,15 +147,49 @@ export class SubgraphService {
             totalValueLockedUSD
             totalValueLockedUSDUntracked
             liquidityProviderCount
+            poolDayData (orderBy: date, orderDirection: desc) {
+              id
+              date
+              token0Price
+              token1Price
+              volumeToken0
+              volumeToken1
+              volumeUSD
+              feesUSD
+              txCount
+              open
+              high
+              low
+              close
+            }
           }
         }
       `,
     })
     .valueChanges.subscribe((result: any) => {
-      console.log(result.data);
       item.next(result.data.pool);
     });
   }
+  // async poolDayData(address: string, item: BehaviorSubject<any>): Promise<any> {
+  //   console.log(address);
+  //   return await this.apollo
+  //   .watchQuery({
+  //     query: gql`
+  //       {
+  //         poolDayData(orderBy: date, where: {
+  //          pool.id: "${address}"
+  //         }) {
+  //           id
+  //           date
+  //         }
+  //       }
+  //     `,
+  //   })
+  //   .valueChanges.subscribe((result: any) => {
+  //     console.log(result.data);
+  //     item.next(result.data.pool);
+  //   });
+  // }
   async topPoolsAllTime(limit: number, orderBy: string, newerThan: number = 0, array: BehaviorSubject<any[]>): Promise<any> {
     return await this.apollo
     .watchQuery({

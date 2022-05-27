@@ -9,6 +9,12 @@
         {{item.token1.symbol}}
     </span>
 </h3>
+<section id="chart" *ngIf="(this.item | async) as item">
+    <ng-container *ngIf="this.type === 'pool'">
+        <app-chart *ngIf="item.poolDayData !== undefined && this.chartFields !== undefined" [chartData]="item.poolDayData" [chartFields]="this.chartFields"
+        [chartDataNames]="[item.token0.symbol, item.token1.symbol]"></app-chart>
+    </ng-container>
+</section>
 <section id="historical" *ngIf="(this.item | async) as item">
     <h5 class="historical" id="volume">
         <span>{{item.volumeToken0 | number: '1.0-0'}}</span>

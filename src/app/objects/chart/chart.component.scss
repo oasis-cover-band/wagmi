@@ -1,0 +1,237 @@
+@import '../../../colors.scss';
+:host {
+    min-height:75vh;
+    max-height:75vh;
+    max-width:100%;
+    display:grid;
+    grid-template-areas:
+    '. . .'
+    '. legend .'
+    '. chart .'
+    '. . .';
+    grid-template-columns: $margin 1fr $margin;
+    grid-template-rows: $margin max-content 1fr $margin;
+
+    $color-text-dark: $darkestgrey;
+    $color-text-med-dark: $darkgrey;
+    $color-text-med: $tertiary;
+    $color-text-med-light: $lightergrey;
+    $color-text-light: $lightestgrey;
+    $color-text-lighter: $white;
+    section#legend {
+      grid-area:legend;
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(0px, 100px));
+      row-gap:$gap;
+      column-gap:$gap;
+      div.legend-item {
+        max-width:100px;
+        cursor: pointer;
+        color:$white;
+        padding:$margin;
+        background:$darkestgrey;
+        border-radius:$borderradius;
+        display:grid;
+        grid-template-areas:
+        '. . .'
+        '. text .'
+        '. . .';
+        grid-template-columns: $margin 1fr $margin;
+        grid-template-rows: $margin 1fr $margin;
+        transition:$transition;
+        span {
+          transition:$transition;
+        }
+        span.text {
+          grid-area:text;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+  
+          overflow:hidden;
+        }
+        span.circle {
+          height:10px;
+          width:10px;
+          border-radius:100px;
+          background-color:orange;
+        }
+        &.disabled {
+          filter: drop-shadow(0px 0px 0px rgba(0,0,0,0))!important;
+          span.text {
+            color:$white!important;
+            filter: none!important;
+          }
+          span.circle {
+            height:0px;
+            width:0px;
+          }
+        }
+      }
+    }
+    ::ng-deep {
+        // 
+        // 
+        // 
+        // 
+        * {
+
+        }
+        // background: $color-bg-darker;
+       b {
+         color:$tertiary;
+       }
+        .legend-title-text {
+            // color:$white;
+            color:rgba(0,0,0,0);
+        }
+        .ngx-charts {
+      
+          text {
+            fill: $color-text-med;
+          }
+      
+          .tooltip-anchor {
+            fill: rgb(255, 255, 255);
+          }
+      
+        //   .gridline-path {
+        //     stroke: $color-bg-med;
+        //   }
+      
+        //   .refline-path {
+        //     stroke: $color-bg-light;
+        //   }
+      
+          .reference-area {
+            fill: #fff;
+          }
+      
+          .grid-panel {
+            &.odd {
+              rect {
+                fill: rgba(255, 255, 255, 0.05);
+              }
+            }
+          }
+      
+        //   .force-directed-graph {
+        //     .edge {
+        //       stroke: $color-bg-light;
+        //     }
+        //   }
+      
+          .number-card {
+            p {
+              color: $color-text-light;
+            }
+          }
+      
+          .gauge {
+            // .background-arc {
+            //   path {
+            //     fill: $color-bg-med;
+            //   }
+            // }
+      
+            .gauge-tick {
+              path {
+                stroke: $color-text-med;
+              }
+      
+              text {
+                fill: $color-text-med;
+              }
+            }
+          }
+      
+          .linear-gauge {
+            // .background-bar {
+            //   path {
+            //     fill: $color-bg-med;
+            //   }
+            // }
+      
+            .units {
+              fill: $color-text-dark;
+            }
+          }
+      
+          .timeline {
+            .brush-background {
+              fill: rgba(255, 255, 255, 0.05);
+            }
+      
+            .brush {
+              .selection {
+                fill: rgba(255, 255, 255, 0.1);
+                stroke: #aaa;
+              }
+            }
+          }
+      
+          .polar-chart .polar-chart-background {
+            fill: rgb(30, 34, 46);
+          }
+      
+        }
+      
+        .chart-legend {
+          .legend-labels {
+            background: rgba(255, 255, 255, 0.05) !important;
+          }
+      
+          .legend-item {
+            &:hover {
+              color: #fff;
+            }
+          }
+      
+          .legend-label {
+            &:hover {
+              color: #fff !important;
+            }
+      
+            .active {
+              .legend-label-text {
+                color: #fff !important;
+              }
+            }
+          }
+      
+          .scale-legend-label {
+            color: $color-text-med;
+          }
+        }
+      
+        .advanced-pie-legend {
+          color: $color-text-med;
+      
+          .legend-item {
+            &:hover {
+              color: #fff !important;
+            }
+          }
+        }
+      
+        .number-card .number-card-label {
+          font-size: 0.8em;
+          color: $color-text-med;
+        }
+        ngx-charts-legend {
+          transform:translateY(calc(-78vh + -10px));
+        }
+    }
+    #container {
+      grid-area:chart;
+      max-height:75vh;
+      max-width:100%;
+      display:grid;
+      grid-template-areas:
+      'chart';
+      grid-template-rows: 1fr;
+      #chart {
+        grid-area:chart;
+      }
+      overflow:hidden;
+    }
+}

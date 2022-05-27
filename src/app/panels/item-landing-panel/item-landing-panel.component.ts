@@ -22,6 +22,8 @@ export class ItemLandingPanelComponent implements OnInit {
   ]
   @HostBinding('class.hide') hide: boolean = false;
   listener!: Subscription;
+  chartData!: any[];
+  chartFields!: string[];
   constructor(
     private SITEservice: SiteService,
     private route: ActivatedRoute,
@@ -38,8 +40,22 @@ export class ItemLandingPanelComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    await this.SUBGRAPHservice.pool(this.address, this.item);
+    if (this.type === 'pool') {
+      await this.SUBGRAPHservice.pool(this.address, this.item);
+      this.chartFields = [
+        'token0Price',
+        'token1Price',
+        'volumeToken0',
+        'volumeToken1',
+        'volumeUSD',
+        'feesUSD',
+        'txCount'
+      ];
+      setInterval(() => {
+        console.log(this.item.getValue());
 
+      }, 5000);
+    }
   }
 
   ngOnDestroy(): void {
