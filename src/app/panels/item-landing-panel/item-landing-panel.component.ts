@@ -51,10 +51,16 @@ export class ItemLandingPanelComponent implements OnInit {
         'feesUSD',
         'txCount'
       ];
-      setInterval(() => {
-        console.log(this.item.getValue());
-
-      }, 5000);
+    } else if (this.type === 'token') {
+      await this.SUBGRAPHservice.token(this.address, this.item);
+      this.chartFields = [
+        'volume',
+        'volumeUSD',
+        'priceUSD',
+        'feesUSD',
+        'volumeUSD',
+        'feesUSD'
+      ];
     }
   }
 

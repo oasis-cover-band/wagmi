@@ -14,6 +14,10 @@
         <app-chart *ngIf="item.poolDayData !== undefined && this.chartFields !== undefined" [chartData]="item.poolDayData" [chartFields]="this.chartFields"
         [chartDataNames]="[item.token0.symbol, item.token1.symbol]"></app-chart>
     </ng-container>
+    <ng-container *ngIf="this.type === 'token'">
+        <app-chart *ngIf="item.tokenDayData !== undefined && this.chartFields !== undefined" [chartData]="item.tokenDayData" [chartFields]="this.chartFields"
+        [chartDataNames]="[item.symbol]"></app-chart>
+    </ng-container>
 </section>
 <section id="historical" *ngIf="(this.item | async) as item">
     <h5 class="historical" id="volume">

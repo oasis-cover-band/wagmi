@@ -1,7 +1,7 @@
 
     <section id="search" class="input">
         <span>Search</span>
-        <input (keyup)="updateSearch($event)" (change)="updateSearch($event)" #bio cols="10" rows="5" id="bio" placeholder="Address, Name or Symbol"/>
+        <input #searchBar (change)="updateSearch($event)" #bio cols="10" rows="5" id="bio" placeholder="Address, Name or Symbol"/>
     </section>
 
 <section class="slider-row" id="hottest">

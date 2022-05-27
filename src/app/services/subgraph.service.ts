@@ -16,7 +16,103 @@ export class SubgraphService {
   // ********************
   // START SUBGRAPH
   //  ********************
-  async token(address: string): Promise<any> {
+  async search(searchTerm: string,
+    tokenAddressItem: BehaviorSubject<any>,
+    tokenSymbolItem: BehaviorSubject<any>,
+    tokenNameItem: BehaviorSubject<any>,
+    poolAddressItem: BehaviorSubject<any>) {
+    
+    this.apollo
+    .watchQuery({
+      query: gql`
+        {
+          tokens( first: 3, where: {
+              id_gte: "${searchTerm}"
+            }
+          ) {
+            id
+            symbol
+            name
+            totalSupply
+            derivedETH
+          }
+        }
+      `,
+    })
+    .valueChanges.subscribe((result: any) => {
+      tokenAddressItem.next(result.data.tokens);
+    });
+    
+    this.apollo
+    .watchQuery({
+      query: gql`
+        {
+          tokens( first: 3, where: {
+              symbol_contains: "${searchTerm}"
+            }
+          ) {
+            id
+            symbol
+            name
+            totalSupply
+            derivedETH
+          }
+        }
+      `,
+    })
+    .valueChanges.subscribe((result: any) => {
+      tokenSymbolItem.next(result.data.tokens);
+    });
+
+    this.apollo
+    .watchQuery({
+      query: gql`
+        {
+          tokens( first: 3, where: {
+              name_contains: "${searchTerm}"
+            }
+          ) {
+            id
+            symbol
+            name
+            totalSupply
+            derivedETH
+          }
+        }
+      `,
+    })
+    .valueChanges.subscribe((result: any) => {
+      tokenNameItem.next(result.data.tokens);
+    });
+
+    this.apollo
+    .watchQuery({
+      query: gql`
+        {
+          pools( first: 3, where: {
+              id_gte: "${searchTerm}"
+            }
+          ) {
+            id
+            token0 {
+              id
+              name
+              symbol
+            }
+            token1 {
+              id
+              name
+              symbol
+            }
+          }
+        }
+      `,
+    })
+    .valueChanges.subscribe((result: any) => {
+      poolAddressItem.next(result.data.pools);
+    });
+  }
+  async token(address: string, item: BehaviorSubject<any>): Promise<any> {
     this.apollo
     .watchQuery({
       query: gql`
@@ -37,68 +133,32 @@ export class SubgraphService {
             totalValueLockedUSD
             totalValueLockedUSDUntracked
             derivedETH
-            whitelistPools {
+            whitelistPools (orderBy: volumeUSD, orderDirection: desc) {
               id
-            createdAtTimestamp
-            createdAtBlockNumber
-            token0 {
-              id
+              createdAtTimestamp
+              createdAtBlockNumber
+              volumeUSD
+              totalValueLockedUSD
             }
-            token1 {
+            tokenDayData (orderBy: date, orderDirection: desc) {
               id
+              date
+              volume
+              volumeUSD
+              untrackedVolumeUSD
+              priceUSD
+              feesUSD
+              open
+              high
+              low
+              close
             }
-            feeTier
-            liquidity
-            sqrtPrice
-            feeGrowthGlobal0X128
-            feeGrowthGlobal1X128
-            token0Price
-            token1Price
-            tick
-            observationIndex
-            volumeToken0
-            volumeToken1
-            volumeUSD
-            untrackedVolumeUSD
-            feesUSD
-            txCount
-            collectedFeesToken0
-            collectedFeesToken1
-            collectedFeesUSD
-            totalValueLockedToken0
-            totalValueLockedToken1
-            totalValueLockedETH
-            totalValueLockedUSD
-            totalValueLockedUSDUntracked
-            liquidityProviderCount
-          }
-          tokenDayData {
-            id
-            date
-            token {
-              id
-            }
-            volume
-            volumeUSD
-            untrackedVolumeUSD
-            totalValueLocked
-            totalValueLockedUSD
-            priceUSD
-            feesUSD
-            open
-            high
-            low
-            close
-          }
           }
         }
       `,
     })
     .valueChanges.subscribe((result: any) => {
-      return result.data;
-      // this.rates = result?.data?.rates;
-      // this.loading = result.loading;
-      // this.error = result.error;
+      item.next(result.data.token);
     });
   }
 

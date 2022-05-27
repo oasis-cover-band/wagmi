@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, ElementRef, HostBinding, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ngIfProfileAnimations } from 'src/app/animations';
@@ -25,11 +25,17 @@ export class ServiceBrandLandingPanelComponent implements OnInit {
   }[] = [
   ]
   @HostBinding('class.hide') hide: boolean = false;
+  @ViewChild('searchBar') searchBar!: ElementRef;
   listener!: Subscription;
   mostVolume: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   mostLiquid: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   hottest: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   trending: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  searchResults: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  tokenAddressSearchResults: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  tokenSymbolSearchResults: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  tokenNameSearchResults: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  poolAddressSearchResults: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   constructor(
     private SITEservice: SiteService,
     private route: ActivatedRoute,
@@ -62,7 +68,13 @@ export class ServiceBrandLandingPanelComponent implements OnInit {
   }
 
   updateSearch(event: Event) {
-
+    this.SUBGRAPHservice.search(
+      this.searchBar.nativeElement.value,
+      this.tokenAddressSearchResults,
+      this.tokenSymbolSearchResults,
+      this.tokenNameSearchResults,
+      this.poolAddressSearchResults
+    );
   }
 
 }
