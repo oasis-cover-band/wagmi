@@ -149,7 +149,9 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   }
 
   updateAvatarPicture(event: any) {
+    console.log(event);
     if (event !== null && event.target !== null && event.target.files !== null) {
+      console.log(event.target.files);
       const file:File = event.target.files[0];
       if (file) {
         this.updatedAvatar = file;

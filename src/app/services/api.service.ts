@@ -53,6 +53,8 @@ export class ApiService {
     borderChanged: boolean,
     accessoryChanged: boolean
     ): Promise<AccountInfo | number> {
+      let avatarUri;
+      let bannerUri;
       // THIS IS NOT YET READY
       // FRONT END BUG FIX REQUIRED
       // if (!nameChanged) {
@@ -61,23 +63,42 @@ export class ApiService {
       // if (!bioChanged) {
       //   delete account.bio;
       // }
-      // if (updatedAvatar === undefined) {
-      //   delete account.avatarUri;
-      // }
-      // if (updatedBanner === undefined) {
-      //   delete account.bannerUri;
-      // }
+      if (updatedAvatar === undefined) {
+        avatarUri = updatedAvatar;
+      } else {
+        avatarUri = account.avatarUri;
+      }
+      if (updatedBanner === undefined) {
+        bannerUri = updatedBanner;
+      } else {
+        bannerUri = account.bannerUri;
+      }
       // if (!borderChanged) {
       //   delete account.borderUri;
       // }
       // if (!accessoryChanged) {
       //   delete account.accessoryUri;
       // }
+      console.log(account);
     return await axios({
       url: 'account/'.concat(String(account.walletAddress)),
       baseURL: this.baseURI,
       method: 'PUT',
-      data: account
+      data: {
+        accountId: account.accountId,
+        walletAddress: account.walletAddress,
+        bio: account.bio,
+        followers: account.followers,
+        following: account.following,
+        avatarUri: avatarUri,
+        bannerUri: bannerUri,
+        borderUri: account.borderUri,
+        accessoryUri: account.accessoryUri,
+        record: account.record,
+        joinDate: account.joinDate,
+        reputation: account.reputation,
+        friends: account.friends
+      }
     }).then(async (response: any) => {
       
       if (account.walletAddress !== undefined) {
