@@ -107,13 +107,13 @@
                 display:grid;
                 grid-auto-flow: column;
                 column-gap:$gap;
-                animation: 24s scroll infinite linear;
+                animation: 25s scroll infinite linear;
                 @keyframes scroll {
                     0% {
                         transform:translateX(0%);
                     }
                     100% {
-                        transform:translateX(-50%);
+                        transform:translateX(-50.25%);
                     }
                 }
             }

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TokenPanelComponent } from './token-panel.component';
+import { ItemPanelComponent } from './item-panel.component';
 
-describe('TokenPanelComponent', () => {
-  let component: TokenPanelComponent;
-  let fixture: ComponentFixture<TokenPanelComponent>;
+describe('ItemPanelComponent', () => {
+  let component: ItemPanelComponent;
+  let fixture: ComponentFixture<ItemPanelComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TokenPanelComponent ]
+      declarations: [ ItemPanelComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TokenPanelComponent);
+    fixture = TestBed.createComponent(ItemPanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

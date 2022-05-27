@@ -101,8 +101,56 @@ export class SubgraphService {
       // this.error = result.error;
     });
   }
-  async pair(address: string): Promise<any> {
-   
+  async pool(address: string, item: BehaviorSubject<any>): Promise<any> {
+    console.log(address);
+    return await this.apollo
+    .watchQuery({
+      query: gql`
+        {
+          pool(id: "${address}") {
+            id
+            token0 {
+              id
+              name
+              symbol
+            }
+            token1 {
+              id
+              name
+              symbol
+            }
+            feeTier
+            liquidity
+            sqrtPrice
+            feeGrowthGlobal0X128
+            feeGrowthGlobal1X128
+            token0Price
+            token1Price
+            tick
+            observationIndex
+            volumeToken0
+            volumeToken1
+            volumeUSD
+            untrackedVolumeUSD
+            feesUSD
+            txCount
+            collectedFeesToken0
+            collectedFeesToken1
+            collectedFeesUSD
+            totalValueLockedToken0
+            totalValueLockedToken1
+            totalValueLockedETH
+            totalValueLockedUSD
+            totalValueLockedUSDUntracked
+            liquidityProviderCount
+          }
+        }
+      `,
+    })
+    .valueChanges.subscribe((result: any) => {
+      console.log(result.data);
+      item.next(result.data.pool);
+    });
   }
   async topPoolsAllTime(limit: number, orderBy: string, newerThan: number = 0, array: BehaviorSubject<any[]>): Promise<any> {
     return await this.apollo
@@ -146,7 +194,7 @@ export class SubgraphService {
     });
   }
   async topPoolsDaily(limit: number = 100, orderBy: string, minimumLiquidity: number = 0, minimumVolume: number = 0, array: BehaviorSubject<any[]>, double: boolean = false): Promise<any> {
-    this.apollo
+    return await this.apollo
     .watchQuery({
       query: gql`
         {

@@ -24,6 +24,6 @@
         {{this.data.tagline.substring(this.data.tagline.indexOf(' '))}}
     </ng-container>
 </span>
-<app-action id="goto" icon="view" description="View" [outsideLink]="this.data.link">
+<app-action id="goto" icon="view" description="View" (click)="viewItem()">
 </app-action>
 <!-- <h4 id="footing">{{this.data.footing}}</h4> -->

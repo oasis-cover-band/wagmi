@@ -1,0 +1,13 @@
+@import '../../../colors.scss';
+:host {
+    grid-area: right;
+    display:grid;
+    grid-template-columns: $margin 1fr $margin;
+    grid-template-rows:$margin max-content max-content max-content $margin;
+    grid-template-areas:
+    '. . .'
+    ". logo ."
+    ". reputation ."
+    ". socials ."
+    ". . .";
+}

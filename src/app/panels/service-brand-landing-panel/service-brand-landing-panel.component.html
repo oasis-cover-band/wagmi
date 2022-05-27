@@ -14,11 +14,13 @@
                     footing: object.pool.token1.symbol,
                     tagline: undefined,
                     amount: object.volumeUSD,
-                    link: '',
+                    link: object.id,
                     image: index
                 }"
                 [rank]="index % 10"
-                type="hottest"
+                [service]="this.brandName"
+                styling="hottest"
+                type="pool"
                 [@ngIfProfileAnimations]
                 >
         
@@ -37,11 +39,13 @@
                     footing: object.pool.token1.symbol,
                     tagline: object.txCount + ' TXs',
                     amount: undefined,
-                    link: '',
+                    link: object.id,
                     image: index
                 }"
                 [rank]="index % 10"
-                type="trending"
+                [service]="this.brandName"
+                styling="trending"
+                type="pool"
                 [@ngIfProfileAnimations]
                 >
         

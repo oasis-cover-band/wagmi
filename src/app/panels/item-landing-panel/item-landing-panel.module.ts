@@ -1,18 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TokenPanelComponent } from './token-panel.component';
+import { ItemLandingPanelComponent } from './item-landing-panel.component';
 
 
 
 @NgModule({
   declarations: [
-    TokenPanelComponent
+    ItemLandingPanelComponent
   ],
   imports: [
     CommonModule
-  ],
-  exports: [
-    TokenPanelComponent
   ]
 })
-export class TokenPanelModule { }
+export class ItemLandingPanelModule { }

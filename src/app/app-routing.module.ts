@@ -22,8 +22,6 @@ import { ChatPanelModule } from './panels/chat-panel/chat-panel.module';
 import { ChatPanelComponent } from './panels/chat-panel/chat-panel.component';
 import { LandingPanelModule } from './panels/landing-panel/landing-panel.module';
 import { LandingPanelComponent } from './panels/landing-panel/landing-panel.component';
-import { TokenPanelModule } from './panels/token-panel/token-panel.module';
-import { TokenPanelComponent } from './panels/token-panel/token-panel.component';
 import { ServiceBrandLandingPanelModule } from './panels/service-brand-landing-panel/service-brand-landing-panel.module';
 import { ServiceBrandLandingPanelComponent } from './panels/service-brand-landing-panel/service-brand-landing-panel.component';
 import { ServiceBrandPanelModule } from './panels/service-brand-panel/service-brand-panel.module';
@@ -32,6 +30,12 @@ import { GraphPanelModule } from './panels/graph-panel/graph-panel.module';
 import { GraphPanelComponent } from './panels/graph-panel/graph-panel.component';
 import { ServiceBrandBioPanelModule } from './panels/service-brand-bio-panel/service-brand-bio-panel.module';
 import { ServiceBrandBioPanelComponent } from './panels/service-brand-bio-panel/service-brand-bio-panel.component';
+import { ItemBioPanelModule } from './panels/item-bio-panel/item-bio-panel.module';
+import { ItemPanelModule } from './panels/item-panel/item-panel.module';
+import { ItemLandingPanelModule } from './panels/item-landing-panel/item-landing-panel.module';
+import { ItemBioPanelComponent } from './panels/item-bio-panel/item-bio-panel.component';
+import { ItemPanelComponent } from './panels/item-panel/item-panel.component';
+import { ItemLandingPanelComponent } from './panels/item-landing-panel/item-landing-panel.component';
 
 const routes: Routes = [
   // ***************************
@@ -64,10 +68,17 @@ const routes: Routes = [
   {path: 'graph/:address/:type', component: GraphPanelComponent, outlet: "center"},
   // RIGHT (SERVICE BRAND: 'UNISWAP', 'MOONISWAP')
   {path: 'service-brand/:service', component: ServiceBrandPanelComponent, outlet: "right"},
-  // LEFT (SERVICE BRAND: 'UNISWAP', 'MOONISWAP')
-  {path: 'token/:address', component: TokenPanelComponent, outlet: "left"},
-  // CENTER (SERVICE BRAND: 'UNISWAP', 'MOONISWAP')
+  // LEFT (SERVICE BRAND BIO: 'UNISWAP', 'MOONISWAP')
   {path: 'service-brand-bio/:service', component: ServiceBrandBioPanelComponent, outlet: "left"},
+  // ***************************
+  // ITEMS
+  // ***************************
+  // CENTER (SERVICE BRAND: 'UNISWAP', 'MOONISWAP')
+  {path: 'item-landing/:type/:address', component: ItemLandingPanelComponent, outlet: "center"},
+  // RIGHT (SERVICE BRAND: 'UNISWAP', 'MOONISWAP')
+  {path: 'item/:type/:address', component: ItemPanelComponent, outlet: "right"},
+  // LEFT (SERVICE BRAND BIO: 'UNISWAP', 'MOONISWAP')
+  {path: 'item-bio/:type/:address', component: ItemBioPanelComponent, outlet: "left"},
   // ***************************
   // PROFILE
   // ***************************
@@ -115,11 +126,13 @@ const routes: Routes = [
     ImagePickerModule,
     ChatPanelModule,
     LandingPanelModule,
-    TokenPanelModule,
     ServiceBrandLandingPanelModule,
     ServiceBrandPanelModule,
     GraphPanelModule,
-    ServiceBrandBioPanelModule
+    ServiceBrandBioPanelModule,
+    ItemBioPanelModule,
+    ItemPanelModule,
+    ItemLandingPanelModule
   ],
   exports: [RouterModule]
 })
