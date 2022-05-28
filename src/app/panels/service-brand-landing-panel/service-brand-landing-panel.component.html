@@ -3,6 +3,24 @@
         <span>Search</span>
         <input #searchBar (change)="updateSearch($event)" #bio cols="10" rows="5" id="bio" placeholder="Address, Name or Symbol"/>
     </section>
+    <section id="search-results">
+        <app-search-result type="token" [data]="result" matchedBy="Token Address" *ngFor="let result of (this.tokenAddressSearchResults | async)"
+        [@ngIfProfileAnimations]>
+
+        </app-search-result>
+        <app-search-result type="token" [data]="result" matchedBy="Token Symbol" *ngFor="let result of (this.tokenSymbolSearchResults | async)"
+        [@ngIfProfileAnimations]>
+
+        </app-search-result>
+        <app-search-result type="token" [data]="result" matchedBy="Token Name" *ngFor="let result of (this.tokenNameSearchResults | async)"
+        [@ngIfProfileAnimations]>
+
+        </app-search-result>
+        <app-search-result type="pool" [data]="result" matchedBy="Pool Address" *ngFor="let result of (this.poolAddressSearchResults | async)"
+        [@ngIfProfileAnimations]>
+
+        </app-search-result>
+    </section>
 
 <section class="slider-row" id="hottest">
     <h5 class="heading third"><span id="text">Hottest</span><small id="description">$USD volume in a day</small></h5>

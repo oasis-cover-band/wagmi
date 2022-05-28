@@ -1,1 +1,51 @@
-<p>search-result works!</p>
+
+<ng-container *ngIf="this.type === 'token'">
+    <h6 id="symbol">
+        <span class="text">
+            {{this.data.symbol}}
+        </span>
+    </h6>
+    <h5 id="name">
+        <span class="text">
+            {{this.data.name}}
+        </span>
+    </h5>
+    <span id="price">
+        <span class="text">
+            <small>
+                Volume: 
+            </small>
+        </span>
+        <b class="purple"> {{this.data.whitelistPools[0].volumeUSD | currency}}</b> <b>USD</b>
+    </span>
+    <span id="matched-by">
+        Matched by <b>{{this.matchedBy}}</b>
+    </span>
+    <app-action id="view" icon="view" description="View" (click)="this.goTo()"></app-action>
+
+</ng-container>
+
+
+<ng-container *ngIf="this.type === 'pool'">
+    <h6 id="symbol">
+        <span class="text">
+            {{this.data.token0.symbol}}-{{this.data.token1.symbol}}
+        </span>
+    </h6>
+    <h5 id="name">
+        
+    </h5>
+    <span id="price">
+        <span class="text">
+            <small>
+                Volume: 
+            </small>
+        </span>
+        <b class="purple"> {{this.data.volumeUSD | currency}}</b> <b>USD</b>
+    </span>
+    <span id="matched-by">
+        Matched by <b>{{this.matchedBy}}</b>
+    </span>
+    <app-action id="view" icon="view" description="View" (click)="this.goTo()"></app-action>
+
+</ng-container>

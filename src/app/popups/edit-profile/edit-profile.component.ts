@@ -173,7 +173,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         reader.onloadend = () => {
             // Use a regex to remove data url part
               this.updatedBanner = String(reader.result);
-              this.avatarChanged = true;
+              this.bannerChanged = true;
         };
         reader.readAsDataURL(file);
       }

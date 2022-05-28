@@ -68,13 +68,20 @@ export class ServiceBrandLandingPanelComponent implements OnInit {
   }
 
   updateSearch(event: Event) {
-    this.SUBGRAPHservice.search(
-      this.searchBar.nativeElement.value,
-      this.tokenAddressSearchResults,
-      this.tokenSymbolSearchResults,
-      this.tokenNameSearchResults,
-      this.poolAddressSearchResults
-    );
+    if (this.searchBar.nativeElement.value !== '') {
+      this.SUBGRAPHservice.search(
+        this.searchBar.nativeElement.value,
+        this.tokenAddressSearchResults,
+        this.tokenSymbolSearchResults,
+        this.tokenNameSearchResults,
+        this.poolAddressSearchResults
+      );
+    } else {
+      this.tokenAddressSearchResults.next([]);
+      this.tokenSymbolSearchResults.next([]);
+      this.tokenNameSearchResults.next([]);
+      this.poolAddressSearchResults.next([]);
+    }
   }
 
 }

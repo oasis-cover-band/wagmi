@@ -35,6 +35,10 @@ export class SubgraphService {
             name
             totalSupply
             derivedETH
+            whitelistPools (first: 1, orderBy: volumeUSD, orderDirection: desc) {
+              id
+              volumeUSD
+            }
           }
         }
       `,
@@ -56,6 +60,10 @@ export class SubgraphService {
             name
             totalSupply
             derivedETH
+            whitelistPools (first: 1, orderBy: volumeUSD, orderDirection: desc) {
+              id
+              volumeUSD
+            }
           }
         }
       `,
@@ -77,11 +85,16 @@ export class SubgraphService {
             name
             totalSupply
             derivedETH
+            whitelistPools (first: 1, orderBy: volumeUSD, orderDirection: desc) {
+              id
+              volumeUSD
+            }
           }
         }
       `,
     })
     .valueChanges.subscribe((result: any) => {
+      console.log(result.data.tokens);
       tokenNameItem.next(result.data.tokens);
     });
 
@@ -94,11 +107,14 @@ export class SubgraphService {
             }
           ) {
             id
+            volumeUSD
+            token0Price
             token0 {
               id
               name
               symbol
             }
+            token1Price
             token1 {
               id
               name

@@ -8,17 +8,33 @@
     height:100%;
     grid-area: center;
     display:grid;
-    grid-template-rows:$margin max-content max-content max-content $margin;
+    grid-template-rows:$margin max-content 0px max-content max-content $margin;
     grid-template-columns: $margin 1fr $margin;
     grid-template-areas:
     '. . .'
     '. search .'
+    '. search-results .'
     '. hottest .'
     '. trending .'
     '. . .';
     position:relative;
     row-gap:$gap;
     overflow-y: scroll;
+    section#search-results {
+        grid-area:search-results;
+        min-width:100%;
+        span {
+            opacity:0;
+        }
+        &:hover {
+            span {
+                opacity:1;
+            }
+        }
+        z-index:100;
+        display:grid;
+        row-gap:$gap;
+    }
     section#search {
         grid-area:search;
         min-width:100%;
@@ -88,7 +104,7 @@
             left: 0px;
             bottom: 0px;
             box-shadow: inset 0px 0px 12px 12px $lightgrey;
-            z-index: 199999;
+            z-index: 99;
             pointer-events: none;
         }
         section.items-wrapper {

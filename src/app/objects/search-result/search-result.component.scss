@@ -1,0 +1,92 @@
+@import '../../../colors.scss';
+:host {
+    display:grid;
+    grid-template-areas:
+    '. . . . .'
+    '. symbol symbol view .'
+    '. name price matched-by .'
+    '. . . . .';
+    grid-template-columns: $margin 1fr 1fr 1.25fr $margin;
+    grid-template-rows: $margin max-content 1fr $margin;
+    border-radius: $borderradius;
+    background:$grey;
+    filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $black);
+    border:2px solid $grey;
+    column-gap:$gap;
+    max-width:100%;
+    transition: $transition;
+    cursor: pointer;
+    &:hover {
+        filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $tertiary);
+        border:2px solid $tertiary;
+    }
+    span.text {
+        overflow:hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color:$white;
+        filter: drop-shadow(0px 0px $dropshadow2 $white);
+        small {
+            font-size:0.5rem;
+            position:absolute;
+            transform: translate(-20px, -5px);
+        }
+    }
+    span#matched-by {
+        grid-area:matched-by;
+        color:$white;
+        justify-self: end;
+    }
+    b {
+        color:$tertiary;
+        filter: drop-shadow(0px 0px $dropshadow2 $tertiary);
+        &.purple {
+            color:$secondary;
+            filter: drop-shadow(0px 0px $dropshadow2 $secondary);
+        }
+    }
+    app-action {
+        grid-area:view;
+        justify-self: end;
+    }
+    h6#symbol, h5#name {
+        padding:0px;
+        margin:0px;
+        display:grid;
+        grid-auto-flow: column;
+        grid-auto-columns: max-content;
+        justify-self: start;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    h6#symbol {
+        grid-area:symbol;
+        font-size:3rem;
+        position:relative;
+        &:before {
+            background:$primary;
+            content:'';
+            position:absolute;
+            top:0px;
+            left:0px;
+            right:0px;
+            bottom:0px;
+            border-radius:$borderradius;
+            height:4px;
+            transform:translateY(56px);
+            filter: drop-shadow(0px 0px $dropshadow2 $primary);
+        }
+    }
+    h5#name {
+        grid-area:name;
+        align-self: end;
+    }
+    span#price {
+        grid-area:price;
+        align-self: end;
+        justify-self: start;
+        // font-size:4rem;
+        // color:$white;
+        // filter: drop-shadow(0px 0px $dropshadow2 $white);
+    }
+}
