@@ -61,15 +61,6 @@
                 {{model.series | subgraphName: this.chartDataNames}}:
               </b> 
               <span *ngIf="['token0Price', 'token1Price', 'volumeUSD', 'totalValueLockedUSD', 'totalValueLockedUSDUntracked', 'feesUSD'].indexOf(model.series) !== -1">
-                <ng-container *ngIf="
-                (this.chartDataNames[0] === 'WETH' && model.series === 'token1Price') ||
-                (this.chartDataNames[1] === 'WETH' && model.series === 'token0Price')">
-                  {{model.value | currency}}
-                </ng-container>
-                <ng-container *ngIf="
-                (this.chartDataNames[0] !== 'WETH' || model.series !== 'token1Price') &&
-                (this.chartDataNames[1] !== 'WETH' || model.series !== 'token0Price')">
-                
                   <ng-container *ngIf="
                   ['volumeUSD', 'totalValueLockedUSD', 'totalValueLockedUSDUntracked', 'feesUSD'].indexOf(model.series) !== -1">
                   {{model.value | currency}}
@@ -91,7 +82,6 @@
 
                     </ng-container>
                   </ng-container>
-                </ng-container>
                 <b [ngStyle]="{
                   color: this.scheme.colorScheme.domain[0]
                 }">
@@ -103,16 +93,12 @@
                 </ng-container>
                 <ng-container *ngIf="
                 ['token0Price', 'token1Price'].indexOf(model.series) !== -1">
-                    <ng-container *ngIf="
-                    ((this.chartDataNames[0] === 'WETH' && model.series === 'token1Price') ||
-                    (this.chartDataNames[1] === 'WETH' && model.series === 'token0Price'))">
-                      USD
-                    </ng-container>
-                    <ng-container *ngIf="
-                    (this.chartDataNames[0] !== 'WETH' || model.series !== 'token1Price') &&
-                    (this.chartDataNames[1] !== 'WETH' || model.series !== 'token0Price')">
-                      ETH
-                    </ng-container>
+                  <ng-container *ngIf="model.series === 'token1Price'">
+                    {{this.chartDataNames[1]}}
+                  </ng-container>
+                  <ng-container *ngIf="model.series === 'token0Price'">
+                    {{this.chartDataNames[0]}}
+                  </ng-container>
                 </ng-container>
               </b>
               </span>
@@ -206,16 +192,12 @@
                 </ng-container>
                 <ng-container *ngIf="
                 ['token0Price', 'token1Price'].indexOf(modelItem.series) !== -1">
-                    <ng-container *ngIf="
-                    ((this.chartDataNames[0] === 'WETH' && modelItem.series === 'token1Price') ||
-                    (this.chartDataNames[1] === 'WETH' && modelItem.series === 'token0Price'))">
-                      USD
-                    </ng-container>
-                    <ng-container *ngIf="
-                    (this.chartDataNames[0] !== 'WETH' || modelItem.series !== 'token1Price') &&
-                    (this.chartDataNames[1] !== 'WETH' || modelItem.series !== 'token0Price')">
-                      ETH
-                    </ng-container>
+                  <ng-container *ngIf="modelItem.series === 'token1Price'">
+                    {{this.chartDataNames[1]}}
+                  </ng-container>
+                  <ng-container *ngIf="modelItem.series === 'token0Price'">
+                    {{this.chartDataNames[0]}}
+                  </ng-container>
                 </ng-container>
               </b>
               </span>

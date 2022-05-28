@@ -3,10 +3,10 @@
     display:grid;
     grid-template-areas:
     '. . . . .'
-    '. symbol symbol view .'
-    '. name price matched-by .'
+    '. symbol name view .'
+    '. price price matched-by .'
     '. . . . .';
-    grid-template-columns: $margin 1fr 1fr 1.25fr $margin;
+    grid-template-columns: $margin max-content max-content 1fr $margin;
     grid-template-rows: $margin max-content 1fr $margin;
     border-radius: $borderradius;
     background:$grey;
@@ -28,8 +28,6 @@
         filter: drop-shadow(0px 0px $dropshadow2 $white);
         small {
             font-size:0.5rem;
-            position:absolute;
-            transform: translate(-20px, -5px);
         }
     }
     span#matched-by {
@@ -79,7 +77,7 @@
     }
     h5#name {
         grid-area:name;
-        align-self: end;
+        align-self: center;
     }
     span#price {
         grid-area:price;
