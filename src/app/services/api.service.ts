@@ -48,8 +48,8 @@ export class ApiService {
   async updateAccount(account: AccountInfo,
     nameChanged: boolean,
     bioChanged: boolean,
-    updatedAvatar: File | Blob | undefined,
-    updatedBanner: File | Blob | undefined,
+    updatedAvatar: string | undefined,
+    updatedBanner: string | undefined,
     borderChanged: boolean,
     accessoryChanged: boolean
     ): Promise<AccountInfo | number> {
@@ -79,9 +79,6 @@ export class ApiService {
       // if (!accessoryChanged) {
       //   delete account.accessoryUri;
       // }
-      console.log(account);
-      console.log(avatarUri);
-      console.log(bannerUri);
     return await axios({
       url: 'account/'.concat(String(account.walletAddress)),
       baseURL: this.baseURI,

@@ -35,8 +35,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   originalBanner!: string | undefined;
   originalBorder!: string | undefined;
   originalAccessory!: string | undefined;
-  updatedAvatar!: File | Blob;
-  updatedBanner!: File | Blob;
+  updatedAvatar!: string;
+  updatedBanner!: string;
   constructor(
     private router: Router,
     private WEB3service: Web3Service,
@@ -154,8 +154,15 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       console.log(event.target.files);
       const file:File = event.target.files[0];
       if (file) {
-        this.updatedAvatar = file;
-        this.avatarChanged = true;
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            // Use a regex to remove data url part
+            if (reader.result !== null) {
+              this.updatedAvatar = String(reader.result);
+              this.avatarChanged = true;
+            }
+        };
+        reader.readAsDataURL(file);
       }
     }
   }
@@ -164,8 +171,15 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     if (event !== null && event.target !== null && event.target.files !== null) {
       const file:File = event.target.files[0];
       if (file) {
-        this.updatedBanner = file;
-        this.bannerChanged = true;
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            // Use a regex to remove data url part
+            if (reader.result !== null) {
+              this.updatedBanner = String(reader.result);
+              this.avatarChanged = true;
+            }
+        };
+        reader.readAsDataURL(file);
       }
     }
   }
