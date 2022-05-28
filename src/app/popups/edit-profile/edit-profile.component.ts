@@ -157,10 +157,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         const reader = new FileReader();
         reader.onloadend = () => {
             // Use a regex to remove data url part
-            if (reader.result !== null) {
               this.updatedAvatar = String(reader.result);
               this.avatarChanged = true;
-            }
         };
         reader.readAsDataURL(file);
       }
@@ -174,10 +172,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         const reader = new FileReader();
         reader.onloadend = () => {
             // Use a regex to remove data url part
-            if (reader.result !== null) {
               this.updatedBanner = String(reader.result);
               this.avatarChanged = true;
-            }
         };
         reader.readAsDataURL(file);
       }

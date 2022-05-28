@@ -55,6 +55,8 @@ export class ApiService {
     ): Promise<AccountInfo | number> {
       let avatarUri;
       let bannerUri;
+      console.log(updatedAvatar);
+      console.log(updatedBanner);
       // THIS IS NOT YET READY
       // FRONT END BUG FIX REQUIRED
       // if (!nameChanged) {
@@ -79,6 +81,8 @@ export class ApiService {
       // if (!accessoryChanged) {
       //   delete account.accessoryUri;
       // }
+      console.log(avatarUri);
+      console.log(bannerUri);
     return await axios({
       url: 'account/'.concat(String(account.walletAddress)),
       baseURL: this.baseURI,
