@@ -57,7 +57,6 @@ export class ChartComponent implements OnInit {
   constructor(
     private datePipe: DatePipe
   ) {
-    console.log(this.chartData);
   }
 
   ngOnInit(): void {
@@ -66,7 +65,9 @@ export class ChartComponent implements OnInit {
       this.data = [];
     }
     this.chartData.forEach((chartItem, itemIndex) => {
+      console.log(chartItem);
       this.chartFields.forEach((chartField, fieldIndex) => {
+        console.log(chartField);
         const chartFieldIndex = this.data.findIndex(object => {if(object.name === chartField) {return true} else {return false}});
         if (chartFieldIndex === -1) {
           const chartFieldLength = this.data.push({
@@ -93,7 +94,6 @@ export class ChartComponent implements OnInit {
               this.toggleChartField(chartField);
             }
           });
-          console.log(this.chartDataNames);
         }
       });
     });
@@ -112,23 +112,18 @@ export class ChartComponent implements OnInit {
   
   onLabelClick(event: string, data: any) {
     console.log(event);
-    console.log('label click');
   }
   toggleChartField(chartField: string) {
-    console.log(chartField);
     const chartFieldIndex = this.displayedData.findIndex(object => {if(object.name === chartField) {return true} else {return false}});
     if (chartFieldIndex === -1) {
-      console.log('index === -1');
       return;
     } else {
       if (this.data[chartFieldIndex].series[0].value !== 0) {
-        console.log('removal');
         this.data[chartFieldIndex].series.forEach((itemInSeries: any) => {
           itemInSeries.value = 0;
         })
         this.displayedData = [...this.data];
       } else {
-        console.log('addition');
         this.data[chartFieldIndex].series.forEach((itemInSeries: any, index: number) => {
           itemInSeries.value = this.chartData[index][chartField];
         })

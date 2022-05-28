@@ -56,9 +56,6 @@ export class ItemLandingPanelComponent implements OnInit {
       this.chartFields = [
         'volume',
         'volumeUSD',
-        'priceUSD',
-        'feesUSD',
-        'volumeUSD',
         'feesUSD'
       ];
     }

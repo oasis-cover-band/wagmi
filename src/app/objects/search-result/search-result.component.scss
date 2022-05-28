@@ -87,4 +87,17 @@
         // color:$white;
         // filter: drop-shadow(0px 0px $dropshadow2 $white);
     }
+    @media (max-width: 700px) {
+        grid-template-areas:
+        '. . . .'
+        '. view matched-by .'
+        '. symbol symbol .'
+        '. price price .'
+        '. . . .';
+        grid-template-columns: $margin max-content 1fr $margin;
+        grid-template-rows: $margin max-content max-content max-content $margin;
+        h5#name {
+            display: none;
+        }
+    }
 }

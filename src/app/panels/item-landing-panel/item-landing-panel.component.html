@@ -1,9 +1,9 @@
 <h3 id="heading" class="heading" *ngIf="(this.item | async) as item">
     <span id="token" *ngIf="this.type === 'token'">
-
+        {{item.symbol}}
     </span>
     <span id="token0" *ngIf="this.type === 'pool'">
-        {{item.token0.symbol}}/
+        {{item.token0.symbol}}-
     </span>
     <span id="token1" *ngIf="this.type === 'pool'">
         {{item.token1.symbol}}
@@ -21,55 +21,118 @@
 </section>
 <section id="historical" *ngIf="(this.item | async) as item">
     <h5 class="historical" id="volume">
-        <span>{{item.volumeToken0 | number: '1.0-0'}}</span>
-        <b>{{item.token0.symbol}}</b>
-        <span class="white"> has been traded for </span>
-        <span>{{item.volumeToken1 | number: '1.0-0'}}</span>
-        <b>{{item.token1.symbol}}</b>
-        <span class="white">, for a total trading volume of </span>
-        <span>{{item.untrackedVolumeUSD | currency}}</span>
-        <b>USD</b>
-        <span class="white">.</span>
+        <ng-container *ngIf="this.type === 'pool'">
+            <span>{{item.volumeToken0 | number: '1.0-0'}}</span>
+            <b>{{item.token0.symbol}}</b>
+            <span class="white"> has been traded for </span>
+            <span>{{item.volumeToken1 | number: '1.0-0'}}</span>
+            <b>{{item.token1.symbol}}</b>
+            <span class="white">, for a total trading volume of </span>
+            <span>{{item.untrackedVolumeUSD | currency}}</span>
+            <b>USD</b>
+            <span class="white">.</span>
+        </ng-container>
+        <ng-container *ngIf="this.type === 'token'">
+            <span>{{item.volume | number: '1.0-0'}}</span>
+            <b>{{item.symbol}}</b>
+            <span class="white"> has been traded for a total trading volume of </span>
+            <span>{{item.volumeUSD | currency}}</span>
+            <b>USD</b>
+            <span class="white">.</span>
+        </ng-container>
     </h5>
     <h5 class="historical" id="fees">
-        <span class="white">The </span>
-        <b>{{item.token0.symbol}}</b>
-        <span class="white">/</span>
-        <b>{{item.token1.symbol}}</b>
-        <span class="white"> pool has collected </span>
-        <span>{{item.feesUSD | currency}}</span>
-        <b>USD</b>
-        <span class="white"> in fees, from a total of </span>
-        <span>{{item.txCount | number: '1.0-0'}}</span>
-        <span class="white"> transactions.</span>
+        <ng-container *ngIf="this.type === 'pool'">
+            <span class="white">The </span>
+            <b>{{item.token0.symbol}}</b>
+            <span class="white">-</span>
+            <b>{{item.token1.symbol}}</b>
+            <span class="white"> pool has collected </span>
+            <span>{{item.feesUSD | currency}}</span>
+            <b>USD</b>
+            <span class="white"> in fees, from a total of </span>
+            <span>{{item.txCount | number: '1.0-0'}}</span>
+            <span class="white"> transactions.</span>
+        </ng-container>
+        <ng-container *ngIf="this.type === 'token'">
+            <b>{{item.symbol}}</b>
+            <span class="white"> market makers have collected </span>
+            <span>{{item.feesUSD | currency}}</span>
+            <b>USD</b>
+            <span class="white"> in fees, from a total of </span>
+            <span>{{item.txCount | number: '1.0-0'}}</span>
+            <span class="white"> transactions.</span>
+        </ng-container>
     </h5>
     <h5 class="historical" id="fee">
-        <span class="white">The fees for this pool amount to </span>
-        <span>{{item.feeTier / 10000}}</span>
-        <b>%</b>
-        <span class="white"> per trade.</span>
+        <ng-container *ngIf="this.type === 'pool'">
+            <span class="white">The fees for this pool amount to </span>
+            <span>{{item.feeTier / 10000}}</span>
+            <b>%</b>
+            <span class="white"> per trade.</span>
+        </ng-container>
+        <ng-container *ngIf="this.type === 'token'">
+            <span class="white">The largest pool on Uniswap for </span>
+            <span>{{item.symbol}}</span>
+            <span class="white"> is the </span>
+            <b>{{item.whitelistPools[0].token0.symbol}}</b>
+            <span class="white">-</span>
+            <b>{{item.whitelistPools[0].token1.symbol}}</b>
+            <span class="white"> pool. With a volume of </span>
+            <span>{{item.whitelistPools[0].volumeUSD | currency}}</span>
+            <b>USD</b>
+        </ng-container>
     </h5>
 </section>
 <section id="values" *ngIf="(this.item | async) as item">
     <h4 id="heading">
-        <span>TOTAL VALUE LOCKED</span>
+        <ng-container *ngIf="this.type === 'pool'">
+            <span>TOTAL VALUE LOCKED</span>
+        </ng-container>
+        <ng-container *ngIf="this.type === 'token'">
+            <span>{{item.symbol}} BASIC INFO</span>
+        </ng-container>
     </h4>
     <div class="tvl"  id="tvl-token0">
-        <span id="value">
-            {{item.totalValueLockedToken0 | number: '1.0-0'}}
-        </span>
-        <b id="denomination">{{item.token0.symbol}}</b>
+        <ng-container *ngIf="this.type === 'pool'">
+            <span id="value">
+                {{item.totalValueLockedToken0 | number: '1.0-0'}}
+            </span>
+            <b id="denomination">{{item.token0.symbol}}</b>
+        </ng-container>
+        <ng-container *ngIf="this.type === 'token'">
+            <span id="value">
+                {{item.feesUSD | currency}}
+            </span>
+            <b id="denomination">Fees</b>
+        </ng-container>
     </div>
     <div class="tvl" id="tvl-token1">
-        <span id="value">
-            {{item.totalValueLockedToken1 | number: '1.0-0'}}
-        </span>
-        <b id="denomination">{{item.token1.symbol}}</b>
+        <ng-container *ngIf="this.type === 'pool'">
+            <span id="value">
+                {{item.totalValueLockedToken1 | number: '1.0-0'}}
+            </span>
+            <b id="denomination">{{item.token1.symbol}}</b>
+        </ng-container>
+        <ng-container *ngIf="this.type === 'token'">
+            <span id="value">
+                {{item.txCount | number}}
+            </span>
+            <b id="denomination">TXs</b>
+        </ng-container>
     </div>
     <div class="tvl" id="tvl-usd">
-        <span id="value">
-            {{item.totalValueLockedUSD | currency}}
-        </span>
-        <b id="denomination">USD</b>
+        <ng-container *ngIf="this.type === 'pool'">
+            <span id="value">
+                {{item.totalValueLockedUSD | currency}}
+            </span>
+            <b id="denomination">USD</b>
+        </ng-container>
+        <ng-container *ngIf="this.type === 'token'">
+            <span id="value">
+                {{item.totalSupply | number}}
+            </span>
+            <b id="denomination">{{item.symbol}}</b>
+        </ng-container>
     </div>
 </section>

@@ -7,11 +7,12 @@ import { BehaviorSubject } from 'rxjs';
 export class SubgraphService {
   subgraphURI: string = "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3/";
   tempDate = new Date();
-  currentDay = (new Date(this.tempDate.getUTCFullYear(), this.tempDate.getUTCMonth(), this.tempDate.getUTCDate()).getTime()) / 10000;
-
+  currentDay = (new Date(Date.UTC(this.tempDate.getUTCFullYear(), this.tempDate.getUTCMonth(), this.tempDate.getUTCDate(), 0, 0, 0)).getTime()) / 1000;
+  currentHour = (new Date(Date.UTC(this.tempDate.getUTCFullYear(), this.tempDate.getUTCMonth(), this.tempDate.getUTCDate(), this.tempDate.getUTCHours() - 1)).getTime()) / 1000;
   constructor(
     private apollo: Apollo
-  ) { }
+  ) {
+  }
 
   // ********************
   // START SUBGRAPH
@@ -26,7 +27,7 @@ export class SubgraphService {
     .watchQuery({
       query: gql`
         {
-          tokens( first: 3, where: {
+          tokens(first: 3, orderBy: volumeUSD, orderDirection: desc, where: {
               id_gte: "${searchTerm}"
             }
           ) {
@@ -51,7 +52,7 @@ export class SubgraphService {
     .watchQuery({
       query: gql`
         {
-          tokens( first: 3, where: {
+          tokens(first: 3, orderBy: volumeUSD, orderDirection: desc, where: {
               symbol_contains: "${searchTerm}"
             }
           ) {
@@ -76,7 +77,7 @@ export class SubgraphService {
     .watchQuery({
       query: gql`
         {
-          tokens( first: 3, where: {
+          tokens(first: 3, orderBy: volumeUSD, orderDirection: desc, where: {
               name_contains: "${searchTerm}"
             }
           ) {
@@ -94,7 +95,6 @@ export class SubgraphService {
       `,
     })
     .valueChanges.subscribe((result: any) => {
-      console.log(result.data.tokens);
       tokenNameItem.next(result.data.tokens);
     });
 
@@ -102,7 +102,7 @@ export class SubgraphService {
     .watchQuery({
       query: gql`
         {
-          pools( first: 3, where: {
+          pools(first: 3, orderBy: volumeUSD, orderDirection: desc, where: {
               id_gte: "${searchTerm}"
             }
           ) {
@@ -155,6 +155,14 @@ export class SubgraphService {
               createdAtBlockNumber
               volumeUSD
               totalValueLockedUSD
+              token0 {
+                id
+                symbol
+              }
+              token1 {
+                id
+                symbol
+              }
             }
             tokenDayData (orderBy: date, orderDirection: desc) {
               id
@@ -315,7 +323,7 @@ export class SubgraphService {
           poolDayDatas(first: ${limit}, orderBy: ${orderBy}, orderDirection: desc, where: {
               liquidity_gt: ${minimumLiquidity},
               volumeUSD_gt: ${minimumVolume},
-              date_gt: ${this.currentDay}
+              date: ${this.currentDay}
             } ) {
             id
             volumeUSD
@@ -353,7 +361,7 @@ export class SubgraphService {
           poolHourDatas(first: ${limit}, orderBy: ${orderBy}, orderDirection: desc, where: {
               liquidity_gt: ${minimumLiquidity},
               txCount_gt: ${minimumTxCount},
-              periodStartUnix_gt: ${this.currentDay}
+              periodStartUnix: ${this.currentHour}
             } ) {
             id
             txCount
