@@ -1,12 +1,27 @@
 <h3 id="heading" class="heading" *ngIf="(this.item | async) as item">
     <span id="token" *ngIf="this.type === 'token'">
-        {{item.symbol}}
+        <span class="wrapper">
+            <span class="text">
+                {{this.item.symbol}}
+            </span>
+            <img class="regular" *ngIf="this.CRYPTOCOMPAREservice.coins[this.item.symbol] !== undefined" [src]="'https://www.cryptocompare.com' + this.CRYPTOCOMPAREservice.coins[this.item.symbol].ImageUrl" />
+        </span>
     </span>
     <span id="token0" *ngIf="this.type === 'pool'">
-        {{item.token0.symbol}}-
+        <span class="wrapper">
+            <span class="text">
+                {{this.item.token0.symbol}}-
+            </span>
+            <img class="regular" *ngIf="this.CRYPTOCOMPAREservice.coins[this.item.token0.symbol] !== undefined" [src]="'https://www.cryptocompare.com' + this.CRYPTOCOMPAREservice.coins[this.item.token0.symbol].ImageUrl" />
+        </span>
     </span>
     <span id="token1" *ngIf="this.type === 'pool'">
-        {{item.token1.symbol}}
+        <span class="wrapper">
+            <span class="text">
+                {{this.item.token1.symbol}}
+            </span>
+            <img class="regular" *ngIf="this.CRYPTOCOMPAREservice.coins[this.item.token1.symbol] !== undefined" [src]="'https://www.cryptocompare.com' + this.CRYPTOCOMPAREservice.coins[this.item.token1.symbol].ImageUrl" />
+        </span>
     </span>
 </h3>
 <section id="chart" *ngIf="(this.item | async) as item">

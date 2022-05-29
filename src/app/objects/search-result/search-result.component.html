@@ -1,8 +1,11 @@
 
 <ng-container *ngIf="this.type === 'token'">
     <h6 id="symbol">
-        <span class="text">
-            {{this.data.symbol}}
+        <span class="wrapper">
+            <span class="text">
+                {{this.data.symbol}}
+            </span>
+            <img class="regular" *ngIf="this.CRYPTOCOMPAREservice.coins[this.data.symbol] !== undefined" [src]="'https://www.cryptocompare.com' + this.CRYPTOCOMPAREservice.coins[this.data.symbol].ImageUrl" />
         </span>
     </h6>
     <h5 id="name">
@@ -28,8 +31,17 @@
 
 <ng-container *ngIf="this.type === 'pool'">
     <h6 id="symbol">
-        <span class="text">
-            {{this.data.token0.symbol}}-{{this.data.token1.symbol}}
+        <span class="wrapper">
+            <span class="text">
+                {{this.data.token0.symbol}}-
+            </span>
+            <img class="regular" *ngIf="this.CRYPTOCOMPAREservice.coins[this.data.token0.symbol] !== undefined" [src]="'https://www.cryptocompare.com' + this.CRYPTOCOMPAREservice.coins[this.data.token0.symbol].ImageUrl" />
+        </span>
+        <span class="wrapper">
+            <span class="text">
+                {{this.data.token1.symbol}}
+            </span>
+            <img class="regular" *ngIf="this.CRYPTOCOMPAREservice.coins[this.data.token1.symbol] !== undefined" [src]="'https://www.cryptocompare.com' + this.CRYPTOCOMPAREservice.coins[this.data.token1.symbol].ImageUrl" />
         </span>
     </h6>
     <h5 id="name">

@@ -9,6 +9,7 @@ import { TimeService } from './services/time.service';
 import { IsAccountService } from './services/is-account.service';
 import { timeStamp } from 'console';
 import { SubgraphService } from './services/subgraph.service';
+import { CryptoCompareService } from './services/crypto-compare.service';
 
 @Component({
   selector: 'app-root',
@@ -34,8 +35,10 @@ export class AppComponent implements OnInit, OnDestroy {
     private SITEservice: SiteService,
     private isAccount: IsAccountService,
     private SUBGRAPHservice: SubgraphService,
-    private router: Router
+    private router: Router,
+    private CRYPTOCOMPAREservice: CryptoCompareService
   ) {
+    this.CRYPTOCOMPAREservice.getAllCoins();
     this.TIMEservice.start();
     this.listener = this.SITEservice.viewing.subscribe(async viewing => {
       this.viewing = viewing;

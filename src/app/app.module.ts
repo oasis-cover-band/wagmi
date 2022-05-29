@@ -11,6 +11,7 @@ import { SidebarModule } from './sidebar/sidebar.module';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
+import { CryptoCompareService } from './services/crypto-compare.service';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { DatePipe } from '@angular/common';
   ],
   providers: [
     SiteService,
+    CryptoCompareService,
     DatePipe,
     PipeModule
   ],

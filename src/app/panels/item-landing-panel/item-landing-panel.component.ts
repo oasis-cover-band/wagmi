@@ -1,6 +1,7 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
+import { CryptoCompareService } from 'src/app/services/crypto-compare.service';
 import { SiteService } from 'src/app/services/site.service';
 import { SubgraphService } from 'src/app/services/subgraph.service';
 
@@ -27,7 +28,8 @@ export class ItemLandingPanelComponent implements OnInit {
   constructor(
     private SITEservice: SiteService,
     private route: ActivatedRoute,
-    private SUBGRAPHservice: SubgraphService
+    private SUBGRAPHservice: SubgraphService,
+    public CRYPTOCOMPAREservice: CryptoCompareService
   ) {
     this.listener = this.route.params.subscribe(async params => {
       this.hide = true;

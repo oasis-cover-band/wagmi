@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CryptoCompareService } from 'src/app/services/crypto-compare.service';
 
 @Component({
   selector: 'app-search-result',
@@ -12,7 +13,8 @@ export class SearchResultComponent implements OnInit {
   @Input() type!: string;
   @Input() matchedBy!: string;
   constructor(
-    private router: Router
+    private router: Router,
+    public CRYPTOCOMPAREservice: CryptoCompareService
   ) { }
 
   ngOnInit(): void {

@@ -25,7 +25,7 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         color:$white;
-        filter: drop-shadow(0px 0px $dropshadow2 $white);
+        // filter: drop-shadow(0px 0px $dropshadow2 $white);
         small {
             font-size:0.5rem;
         }
@@ -73,7 +73,23 @@
             height:4px;
             transform:translateY(56px);
             filter: drop-shadow(0px 0px $dropshadow2 $primary);
+            z-index:1;
         }
+        span.text {
+            z-index:2;
+            filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $black);
+        }
+        img {
+            max-height:200px;
+            max-width:200px;
+            position:absolute;
+            transform:translate(-16px, -50px);
+            border-radius:100px;
+            opacity:0.5;
+            z-index:0;
+        }
+        overflow:hidden;
+        border-radius:$borderradius;
     }
     h5#name {
         grid-area:name;
@@ -86,6 +102,13 @@
         // font-size:4rem;
         // color:$white;
         // filter: drop-shadow(0px 0px $dropshadow2 $white);
+    }
+    span.wrapper {
+        display:grid;
+        grid-template-areas: 'text';
+        span.text, img {
+            grid-area:text;
+        }
     }
     @media (max-width: 700px) {
         grid-template-areas:
