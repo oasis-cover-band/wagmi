@@ -1,1 +1,53 @@
-<p>item-bio-panel works!</p>
+
+<section id="wrapper">
+    <section id="bio" *ngIf="(this.item | async) as item">
+        <div id="tvl" class="bio-stat">
+            <h6 class="bio-title">
+                <span class="text">
+                    TVL
+                </span>
+            </h6>
+            <span class="bio-stat">
+                {{item.poolDayData[0].tvlUSD | currency}}
+            </span>
+        </div>
+        <div id="volume-today" class="bio-stat">
+            <h6 class="bio-title">
+                <span class="text">
+                    Volume (Daily)
+                </span>
+            </h6>
+            <span class="bio-stat">
+                {{item.poolDayData[0].volumeUSD | currency}}
+            </span>
+        </div>
+        <div id="volume-this-week" class="bio-stat">
+            <h6 class="bio-title">
+                <span class="text">
+                    Volume (Weekly)
+                </span>
+            </h6>
+            <span class="bio-stat">
+                {{(
+                    parseInt(item.poolDayData[0].volumeUSD) +
+                    parseInt(item.poolDayData[1].volumeUSD) +
+                    parseInt(item.poolDayData[2].volumeUSD) + 
+                    parseInt(item.poolDayData[3].volumeUSD) + 
+                    parseInt(item.poolDayData[4].volumeUSD) +
+                    parseInt(item.poolDayData[5].volumeUSD) + 
+                    parseInt(item.poolDayData[6].volumeUSD)
+                ) | currency}}
+            </span>
+        </div>
+        <div id="fees-today" class="bio-stat">
+            <h6 class="bio-title">
+                <span class="text">
+                    Fees (Daily)
+                </span>
+            </h6>
+            <span class="bio-stat">
+                {{item.poolDayData[0].feesUSD | currency}}
+            </span>
+        </div>
+    </section>
+</section>

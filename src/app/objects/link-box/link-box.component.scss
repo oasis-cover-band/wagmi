@@ -35,7 +35,26 @@
     min-height:150px;
     max-height:150px;
     height:150px;
+    img.image {
+        z-index: 0;
+        grid-area:heading;
+        &#img-0 {
+            justify-self: start;
+            transform:translate(12.5px, 16px);
+        }
+        &#img-1 {
+            justify-self: end;
+            transform:translate(-12.5px, 16px);
+        }
+        max-height:32px;
+        max-width:32px;
+        position:absolute;
+        border-radius:100px;
+        opacity:0.3;
+        z-index:0;
+    }
     h4#heading, h4#footing {
+        z-index:1;
         grid-area:heading;
         // background:$tertiary;
         border:2px solid $primary;

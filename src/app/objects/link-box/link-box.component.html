@@ -1,4 +1,6 @@
 <h4 id="heading">{{this.data.heading}}</h4>
+<img *ngIf="this.data.images[0] !== 'https://www.cryptocompare.com'" [src]="this.data.images[0]" class="image" id="img-0"/>
+<img *ngIf="this.data.images[1] !== 'https://www.cryptocompare.com'" [src]="this.data.images[1]" class="image" id="img-1"/>
 <h6 id="rank">#{{this.rank + 1}}</h6>
 <span id="tagline"
 [ngClass]="{

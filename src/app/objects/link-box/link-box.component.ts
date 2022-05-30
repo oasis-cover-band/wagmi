@@ -11,7 +11,7 @@ export class LinkBoxComponent implements OnInit {
 
   @Input() data!: {
     link: string,
-    image: number,
+    images: string[],
     heading: string,
     footing: string,
     tagline: string | undefined,
@@ -39,6 +39,6 @@ export class LinkBoxComponent implements OnInit {
     }}])
       this.SITEservice.mouseover.next('');
       console.log(this.data.link.substr(0, this.data.link.indexOf("-")));
-      this.SITEservice.currentRoute.next(this.service.concat(this.type.concat('/view/'.concat(this.data.link.substr(0, this.data.link.indexOf("-"))))));
+      this.SITEservice.currentRoute.next(this.service.concat('/').concat(this.type).concat('/view/').concat(this.data.link.substr(0, this.data.link.indexOf("-"))));
     }
 }

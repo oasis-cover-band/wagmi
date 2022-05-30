@@ -2,7 +2,7 @@
     <span id="token" *ngIf="this.type === 'token'">
         <span class="wrapper">
             <span class="text">
-                {{this.item.symbol}}
+                {{this.item.name}} <small>({{this.item.symbol}})</small>
             </span>
             <img class="regular" *ngIf="this.CRYPTOCOMPAREservice.coins[this.item.symbol] !== undefined" [src]="'https://www.cryptocompare.com' + this.CRYPTOCOMPAREservice.coins[this.item.symbol].ImageUrl" />
         </span>
@@ -24,6 +24,47 @@
         </span>
     </span>
 </h3>
+<section id="price" *ngIf="(this.item | async) as item">
+    <ng-container *ngIf="this.type === 'pool'">
+        <div class="price" id="token0">
+            <img class="regular" *ngIf="this.CRYPTOCOMPAREservice.coins[item.token0.symbol] !== undefined" [src]="'https://www.cryptocompare.com' + this.CRYPTOCOMPAREservice.coins[item.token0.symbol].ImageUrl" />
+
+            <ng-container
+            *ngIf="item.token0Price > 0.00004">
+            
+              <small>{{item.token0Price | number: '1.0-5'}}</small>
+
+            </ng-container>
+
+            <ng-container
+            *ngIf="item.token0Price <= 0.00004">
+            
+              <small>{{item.token0Price | number}}</small>
+
+            </ng-container>
+            {{item.token0.symbol}} <b>=</b> <small>1</small> {{item.token1.symbol}}
+        </div>
+        <div class="price" id="token1">
+            <img class="regular" *ngIf="this.CRYPTOCOMPAREservice.coins[item.token1.symbol] !== undefined" [src]="'https://www.cryptocompare.com' + this.CRYPTOCOMPAREservice.coins[item.token1.symbol].ImageUrl" />
+
+            <ng-container
+            *ngIf="item.token1Price > 0.00004">
+            
+              <small>{{item.token1Price | number: '1.0-5'}}</small>
+
+            </ng-container>
+
+            <ng-container
+            *ngIf="item.token1Price <= 0.00004">
+            
+              <small>{{item.token1Price | number}}</small>
+
+            </ng-container>
+            {{item.token1.symbol}} <b>=</b> <small>1</small> {{item.token0.symbol}}
+        </div>
+    </ng-container>
+
+</section>
 <section id="chart" *ngIf="(this.item | async) as item">
     <ng-container *ngIf="this.type === 'pool'">
         <app-chart *ngIf="item.poolDayData !== undefined && this.chartFields !== undefined" [chartData]="item.poolDayData" [chartFields]="this.chartFields"
@@ -114,6 +155,8 @@
                 {{item.totalValueLockedToken0 | number: '1.0-0'}}
             </span>
             <b id="denomination">{{item.token0.symbol}}</b>
+            <img class="regular" *ngIf="this.CRYPTOCOMPAREservice.coins[item.token0.symbol] !== undefined" [src]="'https://www.cryptocompare.com' + this.CRYPTOCOMPAREservice.coins[item.token0.symbol].ImageUrl" />
+
         </ng-container>
         <ng-container *ngIf="this.type === 'token'">
             <span id="value">
@@ -128,12 +171,15 @@
                 {{item.totalValueLockedToken1 | number: '1.0-0'}}
             </span>
             <b id="denomination">{{item.token1.symbol}}</b>
+            <img class="regular" *ngIf="this.CRYPTOCOMPAREservice.coins[item.token1.symbol] !== undefined" [src]="'https://www.cryptocompare.com' + this.CRYPTOCOMPAREservice.coins[item.token1.symbol].ImageUrl" />
+
         </ng-container>
         <ng-container *ngIf="this.type === 'token'">
             <span id="value">
                 {{item.txCount | number}}
             </span>
             <b id="denomination">TXs</b>
+
         </ng-container>
     </div>
     <div class="tvl" id="tvl-usd">

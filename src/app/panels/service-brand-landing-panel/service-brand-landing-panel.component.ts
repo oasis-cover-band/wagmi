@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ngIfProfileAnimations } from 'src/app/animations';
 import { Brand } from 'src/app/classes/brand';
+import { CryptoCompareService } from 'src/app/services/crypto-compare.service';
 import { SiteService } from 'src/app/services/site.service';
 import { SubgraphService } from 'src/app/services/subgraph.service';
 
@@ -39,7 +40,8 @@ export class ServiceBrandLandingPanelComponent implements OnInit {
   constructor(
     private SITEservice: SiteService,
     private route: ActivatedRoute,
-    private SUBGRAPHservice: SubgraphService
+    private SUBGRAPHservice: SubgraphService,
+    public CRYPTOCOMPAREservice: CryptoCompareService
   ) {
     this.listener = this.route.params.subscribe(async params => {
       this.hide = true;

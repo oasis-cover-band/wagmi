@@ -8,11 +8,12 @@
     height:100%;
     grid-area: center;
     display:grid;
-    grid-template-rows:$margin max-content max-content max-content max-content $margin;
+    grid-template-rows:$margin max-content max-content max-content max-content max-content $margin;
     grid-template-columns: $margin 1fr $margin;
     grid-template-areas:
     '. . .'
     '. heading .'
+    '. price .'
     '. chart .'
     '. historical .'
     '. values .'
@@ -55,8 +56,52 @@
             span.text {
                 z-index:1;
                 filter: drop-shadow($dropshadow0 $dropshadow1 $dropshadow2 $black);
+                display:grid;
+                grid-auto-flow:column;
+                small {
+                    font-size:2rem;
+                    align-self: center;
+                }
             }
         }
+        &:before {
+            background:$primary;
+            content:'';
+            position:absolute;
+            top:0px;
+            left:4px;
+            right:4px;
+            bottom:0px;
+            border-radius:$borderradius;
+            height:4px;
+            transform:translateY(88px);
+            filter: drop-shadow(0px 0px $dropshadow2 $primary);
+            z-index:1;
+        }
+    }
+    section#price {
+        grid-area:price;
+        display:grid;
+        row-gap: $gap;
+        column-gap: $gap;
+        grid-auto-flow: column;
+        div.price {
+            background:$grey;
+            border-radius:$borderradius;
+            padding:$margin;
+            color:$white;
+            display:grid;
+            grid-auto-flow:column;
+            column-gap:$mobilegap;
+            align-content: center;
+            align-items: center;
+            justify-content: start;
+            img {
+                max-height:32px;
+                max-width:32px;
+            }
+        }
+
     }
     section#chart {
         grid-area:chart;
@@ -165,6 +210,7 @@
                 text-overflow: ellipsis;
                 white-space:nowrap;
                 color:$white;
+                font-weight:900;
                 // filter: drop-shadow(0px 0px $dropshadow2 $white);
             }
             b#denomination {
@@ -173,6 +219,13 @@
                 justify-self: center;
                 color:$primary;
                 filter: drop-shadow(0px 0px $dropshadow2 $primary);
+            }
+            position:relative;
+            img {
+                max-height:32px;
+                max-width:32px;
+                position:absolute;
+                grid-area:value;
             }
         }
     }
@@ -191,6 +244,9 @@
     @media (max-width:1100px) {
         h3#heading {
             font-size:2rem;
+        }
+        section#price {
+        grid-auto-flow: row;
         }
         @media (max-width:500px) {
             section#values {

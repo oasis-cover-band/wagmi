@@ -185,7 +185,6 @@ export class SubgraphService {
       item.next(result.data.token);
     });
   }
-
   async pool(address: string, item: BehaviorSubject<any>): Promise<any> {
 
   // ********************
@@ -239,6 +238,7 @@ export class SubgraphService {
               volumeToken0
               volumeToken1
               volumeUSD
+              tvlUSD
               feesUSD
               txCount
               open

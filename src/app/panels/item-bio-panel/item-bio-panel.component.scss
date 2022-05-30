@@ -4,11 +4,109 @@
     display:grid;
     grid-template-areas:
     '. . .'
-    '. bio .'
+    '. wrapper .'
     '. . .';
     grid-template-columns: $margin 1fr $margin;
     grid-template-rows: $margin max-content $margin;
     min-height:100%;
     max-height:100%;
     height:100%;
+    section#wrapper {
+        grid-area:wrapper;
+        grid-template-areas:
+        '. . .'
+        '. bio .'
+        '. . .';
+        grid-template-columns: $margin 1fr $margin;
+        grid-template-rows: $margin max-content $margin;
+        min-height:100%;
+        section#bio {
+            grid-area:bio;
+            background:$grey;
+            border-radius:$borderradius;
+            padding:$margin;
+            display:grid;
+            grid-template-areas:
+            '. . .'
+            '. tvl .'
+            '. volume-today .'
+            '. volume-this-week .'
+            '. fees-today .'
+            '. . .';
+            grid-template-columns: $margin 1fr $margin;
+            grid-template-rows: $margin max-content max-content max-content max-content $margin;
+            div.bio-stat {
+                display:grid;
+                grid-template-areas:
+                '. . .'
+                '. bio-title .'
+                '. bio-stat .'
+                '. . .';
+                grid-template-columns: $margin 1fr $margin;
+                grid-template-rows: $margin max-content max-content $margin;
+                row-gap:$mobilegap;
+                h6.bio-title {
+                    grid-area:bio-title;
+                    margin:0px;
+                    padding:0px;
+                    font-size:1rem;
+                    color:$lightestgrey;
+                    position:relative;
+                    span.text {
+                        text-overflow: ellipsis;
+                        overflow:hidden;
+                        white-space: nowrap;
+                    }
+                    &:before {
+                        background:$primary;
+                        content:'';
+                        position:absolute;
+                        top:0px;
+                        left:0px;
+                        right:0px;
+                        bottom:0px;
+                        border-radius:$borderradius;
+                        height:4px;
+                        transform:translateY(22px);
+                        filter: drop-shadow(0px 0px $dropshadow2 $primary);
+                    }
+                }
+                span.bio-stat {
+                    grid-area:bio-stat;
+                    color:$white;
+                    font-weight:900;
+                    text-overflow: ellipsis;
+                    overflow:hidden;
+                }
+                &#tvl {
+                    grid-area:tvl;
+                }
+                &#volume-today {
+                    grid-area:volume-today;
+                }
+                &#volume-this-week {
+                    grid-area:volume-this-week;
+                }
+                &#fees-today {
+                    grid-area:fees-today;
+                }
+                overflow:hidden;
+            }
+        }
+    }
+    @media (max-width:1100px) {
+        section#wrapper {
+            overflow-x:hidden;
+            section#bio {
+                overflow-x: scroll;
+                display:grid;
+                grid-template-areas:
+                '. . . . . .'
+                '. tvl volume-today volume-this-week fees-today .'
+                '. . . . . .';
+                grid-template-rows: $margin 1fr $margin;
+                grid-template-columns: $margin max-content max-content max-content max-content $margin;
+            }
+        }
+    }
 }
