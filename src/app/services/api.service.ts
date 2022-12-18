@@ -14,6 +14,19 @@ export class ApiService {
   maximumTextures = 425;
   baseURI: string = "https://m22xvxrqse.execute-api.us-east-2.amazonaws.com/";
   accounts: any = {
+    accountId: '0230',
+    walletAddress: '',
+    bio: 'This is a test account',
+    followers: 4234,
+    following: 213,
+    avatarUri: 'assets/textures/63.png',
+    bannerUri: '',
+    borderUri: '',
+    accessoryUri:  'assets/accessories/png/18.png',
+    record: [],
+    joinDate: '12/02/22',
+    reputation: 1232,
+    friends: []
   };
   constructor() { }
   // ********************
@@ -24,23 +37,25 @@ export class ApiService {
   // GETS
   // 
   async getAccount(address: string, force: boolean = false): Promise<AccountInfo | number> {
-    if (force || (this.accounts[address] === null || this.accounts[address] === undefined)) {
-      return await axios({
-        url: 'account/'.concat(String(address)),
-        baseURL: this.baseURI,
-        method: 'GET' 
-      }).then(async (response: any) => {
-        // handle success
-        this.accounts[address] = response.data;
-        return await response.data;
-      })
-      .catch(async (error: any) => {
-        // handle error
-        return await error.response.status;
-      })
-    } else {
-      return this.accounts[address];
-    }
+    this.accounts.walletAddress = address;
+    return this.accounts;
+    // if (force || (this.accounts[address] === null || this.accounts[address] === undefined)) {
+    //   return await axios({
+    //     url: 'account/'.concat(String(address)),
+    //     baseURL: this.baseURI,
+    //     method: 'GET' 
+    //   }).then(async (response: any) => {
+    //     // handle success
+    //     this.accounts[address] = response.data;
+    //     return await response.data;
+    //   })
+    //   .catch(async (error: any) => {
+    //     // handle error
+    //     return await error.response.status;
+    //   })
+    // } else {
+    //   return this.accounts[address];
+    // }
   }
   // 
   // PUT

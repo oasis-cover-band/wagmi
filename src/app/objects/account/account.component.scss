@@ -203,6 +203,9 @@
         border-radius:320px;
         justify-self: center;
         align-self: center;
+        img {
+            image-rendering: pixelated;
+        }
     }
     section#wrapper {
         display:grid;
