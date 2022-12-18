@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'Nunito';
+    src: url('Nunito-ExtraLight.eot');
+    src: url('Nunito-ExtraLight.eot?#iefix') format('embedded-opentype'),
+        url('Nunito-ExtraLight.woff2') format('woff2'),
+        url('Nunito-ExtraLight.woff') format('woff'),
+        url('Nunito-ExtraLight.ttf') format('truetype'),
+        url('Nunito-ExtraLight.svg#Nunito-ExtraLight') format('svg');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Istok Web';
+    src: url('IstokWeb-Regular.eot');
+    src: url('IstokWeb-Regular.eot?#iefix') format('embedded-opentype'),
+        url('IstokWeb-Regular.woff2') format('woff2'),
+        url('IstokWeb-Regular.woff') format('woff'),
+        url('IstokWeb-Regular.ttf') format('truetype'),
+        url('IstokWeb-Regular.svg#IstokWeb-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
