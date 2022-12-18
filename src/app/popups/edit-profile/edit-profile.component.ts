@@ -91,7 +91,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       });
     }
     if (this.account.getValue().bannerUri === '') {
-      this.account.getValue().bannerUri = `../assets/textures/` + Number(this.myAddress.getValue()) % 340 + `.png`;
+      this.account.getValue().bannerUri = `assets/textures/` + Number(this.myAddress.getValue()) % 340 + `.png`;
     }
   }
 

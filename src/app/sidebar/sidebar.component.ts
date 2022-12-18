@@ -25,7 +25,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
       avatarUri: '',
       bannerUri: '',
       borderUri: '',
-      accessoryUri: '../../../assets/accessories/png/0.png',
+      accessoryUri: 'assets/accessories/png/0.png',
       record: [],
       joinDate: '',
       reputation: 0,

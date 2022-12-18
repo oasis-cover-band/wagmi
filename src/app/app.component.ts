@@ -47,7 +47,7 @@ export class AppComponent implements OnInit, OnDestroy {
       if (this.isAccount.isAccount(response)) {
         this.viewingAccount = response;
         if (this.viewingAccount.bannerUri === '') {
-          this.viewingAccount.bannerUri = `../assets/textures/` + Number(this.viewing) % 340 + `.png`
+          this.viewingAccount.bannerUri = `assets/textures/` + Number(this.viewing) % 340 + `.png`
         }
     }
     });

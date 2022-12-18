@@ -55,7 +55,7 @@ export class ImagePickerComponent implements OnInit, OnDestroy {
   selectBorder(index: number) {
     this.borderChanged = true;
     this.selectedImage = index;
-    this.updatedImage = '../assets/textures/' + this.selectedImage + '.png';
+    this.updatedImage = 'assets/textures/' + this.selectedImage + '.png';
     const account = this.SITEservice.editedAccount.getValue();
     console.log(account);
     account.borderUri = this.updatedImage;
@@ -65,7 +65,7 @@ export class ImagePickerComponent implements OnInit, OnDestroy {
   selectAccessory(index: number) {
     this.accessoryChanged = true;
     this.selectedImage = index;
-    this.updatedImage = '../assets/accessories/png/' + this.selectedImage + '.png';
+    this.updatedImage = 'assets/accessories/png/' + this.selectedImage + '.png';
     const account = this.SITEservice.editedAccount.getValue();
     console.log(account);
     account.accessoryUri = this.updatedImage;

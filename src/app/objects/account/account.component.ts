@@ -93,11 +93,11 @@ export class AccountComponent implements OnInit, OnChanges {
 
   setDefaults(account: AccountInfo): void {
     if (this.avatarUri.substr(3, 6) === 'assets' || this.avatarUri === '' || this.avatarUri === undefined || this.avatarUri === null || this.avatarUri === "") {
-      this.avatarUri = `../assets/textures/` + (Math.floor(Number(this.address) * 420 / 3)) % 340 + `.png`;
+      this.avatarUri = `assets/textures/` + (Math.floor(Number(this.address) * 420 / 3)) % 340 + `.png`;
       this.defaultAvatar = true;
     }
     if (this.borderUri === '' || this.borderUri === undefined || this.borderUri === null || this.borderUri === "") {
-      this.borderUri = `../assets/textures/` + (Math.floor(Number(this.address) * 42069 / 3)) % 340 + `.png`;
+      this.borderUri = `assets/textures/` + (Math.floor(Number(this.address) * 42069 / 3)) % 340 + `.png`;
       this.defaultBorder = true;
     }
     if (this.accessoryUri === '' || this.accessoryUri === undefined || this.accessoryUri === null || this.accessoryUri === "") {
@@ -106,55 +106,55 @@ export class AccountComponent implements OnInit, OnChanges {
       // START FULL USE OF GIFS
       // ***********************
       // if (account !== undefined && account.reputation !== undefined && account.reputation < 0) {
-      //   this.accessoryUri = `../assets/accessories/png/112.png`;
+      //   this.accessoryUri = `assets/accessories/png/112.png`;
       // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 100) {
-      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
-      //   this.accessoryUri = `../assets/accessories/gif/3.gif`;
+      //   // this.accessoryUri = `assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `assets/accessories/gif/3.gif`;
       // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 200) {
-      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
-      //   this.accessoryUri = `../assets/accessories/gif/5.gif`;
+      //   // this.accessoryUri = `assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `assets/accessories/gif/5.gif`;
       // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 300) {
-      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
-      //   this.accessoryUri = `../assets/accessories/gif/6.gif`;
+      //   // this.accessoryUri = `assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `assets/accessories/gif/6.gif`;
       // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 400) {
-      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
-      //   this.accessoryUri = `../assets/accessories/gif/4.gif`;
+      //   // this.accessoryUri = `assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `assets/accessories/gif/4.gif`;
       // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 500) {
-      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
-      //   this.accessoryUri = `../assets/accessories/gif/7.gif`;
+      //   // this.accessoryUri = `assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `assets/accessories/gif/7.gif`;
       // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 600) {
-      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
-      //   this.accessoryUri = `../assets/accessories/gif/8.gif`;
+      //   // this.accessoryUri = `assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `assets/accessories/gif/8.gif`;
       // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 700) {
-      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
-      //   this.accessoryUri = `../assets/accessories/gif/13.gif`;
+      //   // this.accessoryUri = `assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `assets/accessories/gif/13.gif`;
       // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 800) {
-      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
-      //   this.accessoryUri = `../assets/accessories/gif/14.gif`;
+      //   // this.accessoryUri = `assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `assets/accessories/gif/14.gif`;
       // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 900) {
-      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
-      //   this.accessoryUri = `../assets/accessories/gif/1.gif`;
+      //   // this.accessoryUri = `assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `assets/accessories/gif/1.gif`;
       // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 1000) {
-      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
-      //   this.accessoryUri = `../assets/accessories/gif/2.gif`;
+      //   // this.accessoryUri = `assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `assets/accessories/gif/2.gif`;
       // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 1100) {
-      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
-      //   this.accessoryUri = `../assets/accessories/gif/15.gif`;
+      //   // this.accessoryUri = `assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `assets/accessories/gif/15.gif`;
       // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 1200) {
-      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
-      //   this.accessoryUri = `../assets/accessories/gif/0.gif`;
+      //   // this.accessoryUri = `assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `assets/accessories/gif/0.gif`;
       // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 1300) {
-      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
-      //   this.accessoryUri = `../assets/accessories/gif/12.gif`;
+      //   // this.accessoryUri = `assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `assets/accessories/gif/12.gif`;
       // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 1400) {
-      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
-      //   this.accessoryUri = `../assets/accessories/gif/11.gif`;
+      //   // this.accessoryUri = `assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `assets/accessories/gif/11.gif`;
       // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 1500) {
-      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
-      //   this.accessoryUri = `../assets/accessories/gif/9.gif`;
+      //   // this.accessoryUri = `assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `assets/accessories/gif/9.gif`;
       // } else if (account !== undefined && account.reputation !== undefined && account.reputation < 1600) {
-      //   // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
-      //   this.accessoryUri = `../assets/accessories/gif/10.gif`;
+      //   // this.accessoryUri = `assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+      //   this.accessoryUri = `assets/accessories/gif/10.gif`;
       // }
       // ***********************
       // END FULL USE OF GIFS
@@ -164,25 +164,25 @@ export class AccountComponent implements OnInit, OnChanges {
       // START SHIELDS ONLY USE OF GIFS
       // ***********************
       if (account !== undefined && account.reputation !== undefined && account.reputation < 0) {
-          this.accessoryUri = `../assets/accessories/png/112.png`;
+          this.accessoryUri = `assets/accessories/png/112.png`;
         } else if (account !== undefined && account.reputation !== undefined && account.reputation < 100) {
           // PICK PNG ACCORDING TO % OF USER ADDRESS
           this.accessoryUri = ``;
         } else if (account !== undefined && account.reputation !== undefined && account.reputation < 200) {
           // PICK PNG ACCORDING TO % OF USER ADDRESS
-          this.accessoryUri = `../assets/accessories/png/` + (Math.floor(Number(this.address) * 42069 / 3)) % 311 + `.png`;
+          this.accessoryUri = `assets/accessories/png/` + (Math.floor(Number(this.address) * 42069 / 3)) % 311 + `.png`;
         }  else if (account !== undefined && account.reputation !== undefined && account.reputation < 400) {
-          // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
-          this.accessoryUri = `../assets/accessories/gif/4.gif`;
+          // this.accessoryUri = `assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+          this.accessoryUri = `assets/accessories/gif/4.gif`;
         } else if (account !== undefined && account.reputation !== undefined && account.reputation < 800) {
-          // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
-          this.accessoryUri = `../assets/accessories/gif/14.gif`;
+          // this.accessoryUri = `assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+          this.accessoryUri = `assets/accessories/gif/14.gif`;
         } else if (account !== undefined && account.reputation !== undefined && account.reputation < 1200) {
-          // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
-          this.accessoryUri = `../assets/accessories/gif/0.gif`;
+          // this.accessoryUri = `assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+          this.accessoryUri = `assets/accessories/gif/0.gif`;
         } else if (account !== undefined && account.reputation !== undefined && account.reputation < 1600) {
-          // this.accessoryUri = `../assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
-          this.accessoryUri = `../assets/accessories/gif/10.gif`;
+          // this.accessoryUri = `assets/accessories/gif/` + (Math.floor(Number(this.address) * 42069 / 3)) % 8 + `.gif`;
+          this.accessoryUri = `assets/accessories/gif/10.gif`;
         }
         // ***********************
         // END SHIELDS ONLY USE OF GIFS

@@ -9,7 +9,7 @@ import { FollowInfo } from '../classes/followInfo';
 export class ApiService {
 
   images = [
-    "../assets/dummy.png"
+    "assets/dummy.png"
   ]
   maximumTextures = 425;
   baseURI: string = "https://m22xvxrqse.execute-api.us-east-2.amazonaws.com/";

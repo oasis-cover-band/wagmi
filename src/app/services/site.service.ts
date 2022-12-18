@@ -29,7 +29,7 @@ export class SiteService {
   public serviceBrands: Brand[] = [
     {
       name: 'uniswap',
-      avatarUri: '../../assets/icons/uniswap.png',
+      avatarUri: 'assets/icons/uniswap.png',
       bio: `Uniswap is one of the leading AMM's on Ethereum.`,
       socials: {
         websiteUri: `https://uniswap.org/`,

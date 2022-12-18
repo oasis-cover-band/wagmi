@@ -28,7 +28,7 @@ export class LinkBoxComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.background = 'url(../../../assets/textures/'.concat(String(this.data.image)).concat('.png)');
+    // this.background = 'url(assets/textures/'.concat(String(this.data.image)).concat('.png)');
   }
 
   viewItem(): void {
