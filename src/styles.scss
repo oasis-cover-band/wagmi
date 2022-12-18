@@ -20,6 +20,7 @@ html {
     ::selection {
         color: $black;
         background: $tertiary;
+        border-radius:$borderradius;
       }
     
     ::-webkit-scrollbar-thumb {
