@@ -98,7 +98,7 @@
                 background: $tertiary;
             }
             &:after {
-                background: url('assets/icons/check.png');
+                background: url('/assets/icons/check.png');
                 transform:scale(0.5);
                 filter:invert(1);
                 top:8px;
